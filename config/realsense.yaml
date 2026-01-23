@@ -1,0 +1,2 @@
+pointcloud__neon_.enable: true
+pointcloud__neon_.allow_no_texture_points: true

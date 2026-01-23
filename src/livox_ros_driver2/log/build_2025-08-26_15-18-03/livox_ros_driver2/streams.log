@@ -1,0 +1,16 @@
+[0.013s] Invoking command in '/home/vertin/ros2_ws/src/livox_ros_driver2/build/livox_ros_driver2': CMAKE_PREFIX_PATH=/home/vertin/my_ws/install/robot_localizer:/opt/ros/humble /usr/bin/cmake /home/vertin/ros2_ws/src/livox_ros_driver2 -DCMAKE_INSTALL_PREFIX=/home/vertin/ros2_ws/src/livox_ros_driver2/install/livox_ros_driver2
+[0.066s] -- The C compiler identification is GNU 11.4.0
+[0.124s] -- The CXX compiler identification is GNU 11.4.0
+[0.132s] -- Detecting C compiler ABI info
+[0.202s] -- Detecting C compiler ABI info - done
+[0.209s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.210s] -- Detecting C compile features
+[0.210s] -- Detecting C compile features - done
+[0.213s] -- Detecting CXX compiler ABI info
+[0.290s] -- Detecting CXX compiler ABI info - done
+[0.296s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.296s] -- Detecting CXX compile features
+[0.297s] -- Detecting CXX compile features - done
+[0.298s] -- livox_ros_driver2 version: 1.2.4
+[0.301s] -- Found ament_cmake_auto: 1.3.11 (/opt/ros/humble/share/ament_cmake_auto/cmake)
+[0.569s] Invoked command in '/home/vertin/ros2_ws/src/livox_ros_driver2/build/livox_ros_driver2' returned '-2': CMAKE_PREFIX_PATH=/home/vertin/my_ws/install/robot_localizer:/opt/ros/humble /usr/bin/cmake /home/vertin/ros2_ws/src/livox_ros_driver2 -DCMAKE_INSTALL_PREFIX=/home/vertin/ros2_ws/src/livox_ros_driver2/install/livox_ros_driver2

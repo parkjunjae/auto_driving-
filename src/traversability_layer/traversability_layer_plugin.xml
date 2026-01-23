@@ -1,0 +1,9 @@
+<library path="traversability_layer">
+  <class name="traversability_layer/TraversabilityLayer" 
+         type="traversability_layer::TraversabilityLayer" 
+         base_class_type="nav2_costmap_2d::Layer">
+    <description>
+      Traversability analysis layer that marks under-table spaces as traversable
+    </description>
+  </class>
+</library>

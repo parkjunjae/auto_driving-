@@ -1,0 +1,378 @@
+bt_navigator:
+  ros__parameters:
+    use_sim_time: false
+    global_frame: map
+    robot_base_frame: base_link
+    odom_topic: /odometry/filtered # EKF 융합된 오도메트리 사용
+    bt_loop_duration: 10
+    default_server_timeout: 20
+    enable_groot_monitoring: True
+    groot_zmq_publisher_port: 1666
+    groot_zmq_server_port: 1667
+    # Replan when path becomes invalid/expired and add a small forward nudge in recovery.
+    default_nav_to_pose_bt_xml: /home/world/to_ws/src/rtabmap_ros/rtabmap_launch/launch/config/nav_to_pose_replan_and_nudge.xml
+    default_nav_through_poses_bt_xml: /opt/ros/humble/share/nav2_bt_navigator/behavior_trees/navigate_through_poses_w_replanning_and_recovery.xml
+    goal_reached_tol: 0.25
+    always_reload_bt_xml: false
+    plugin_lib_names:
+      - nav2_compute_path_to_pose_action_bt_node
+      - nav2_compute_path_through_poses_action_bt_node
+      - nav2_smooth_path_action_bt_node
+      - nav2_follow_path_action_bt_node
+      - nav2_spin_action_bt_node
+      - nav2_wait_action_bt_node
+      - nav2_assisted_teleop_action_bt_node
+      - nav2_back_up_action_bt_node
+      - nav2_drive_on_heading_bt_node
+      - nav2_clear_costmap_service_bt_node
+      - nav2_is_stuck_condition_bt_node
+      - nav2_goal_reached_condition_bt_node
+      - nav2_goal_updated_condition_bt_node
+      - nav2_globally_updated_goal_condition_bt_node
+      - nav2_is_path_valid_condition_bt_node
+      - nav2_initial_pose_received_condition_bt_node
+      - nav2_reinitialize_global_localization_service_bt_node
+      - nav2_rate_controller_bt_node
+      - nav2_distance_controller_bt_node
+      - nav2_speed_controller_bt_node
+      - nav2_truncate_path_action_bt_node
+      - nav2_truncate_path_local_action_bt_node
+      - nav2_goal_updater_node_bt_node
+      - nav2_recovery_node_bt_node
+      - nav2_pipeline_sequence_bt_node
+      - nav2_round_robin_node_bt_node
+      - nav2_transform_available_condition_bt_node
+      - nav2_time_expired_condition_bt_node
+      - nav2_path_expiring_timer_condition
+      - nav2_distance_traveled_condition_bt_node
+      - nav2_single_trigger_bt_node
+      - nav2_goal_updated_controller_bt_node
+      - nav2_is_battery_low_condition_bt_node
+      - nav2_navigate_through_poses_action_bt_node
+      - nav2_navigate_to_pose_action_bt_node
+      - nav2_remove_passed_goals_action_bt_node
+      - nav2_planner_selector_bt_node
+      - nav2_controller_selector_bt_node
+      - nav2_goal_checker_selector_bt_node
+      - nav2_controller_cancel_bt_node
+      - nav2_path_longer_on_approach_bt_node
+      - nav2_wait_cancel_bt_node
+      - nav2_spin_cancel_bt_node
+      - nav2_back_up_cancel_bt_node
+      - nav2_assisted_teleop_cancel_bt_node
+      - nav2_drive_on_heading_cancel_bt_node
+      - nav2_is_battery_charging_condition_bt_node
+      - temp_goal_bt_node
+
+controller_server:
+  ros__parameters:
+    use_sim_time: false
+    controller_frequency: 10.0
+    min_x_velocity_threshold: 0.001
+    min_y_velocity_threshold: 0.001
+    min_theta_velocity_threshold: 0.001
+    failure_tolerance: 3.0
+    progress_checker_plugin: "progress_checker"
+    goal_checker_plugins: ["general_goal_checker"]
+    controller_plugins: ["RLController"]
+
+    progress_checker:
+      plugin: "nav2_controller::SimpleProgressChecker"
+      required_movement_radius: 0.5
+      movement_time_allowance: 30.0
+
+    general_goal_checker:
+      stateful: True
+      plugin: "nav2_controller::SimpleGoalChecker"
+      xy_goal_tolerance: 0.25
+      yaw_goal_tolerance: 0.25
+
+    # 규칙 기반 로컬 컨트롤러(플러그인) 사용
+    RLController:
+      plugin: "rl_local_controller/RlLocalController"
+      # ---- 최대속도-------
+      max_lin: 0.25
+      max_ang: 1.0
+      # ---- 장애물 근접 감속/정지 거리-------
+      # 전방이 이 거리보다 가까우면 회전/크립 모드로 전환
+      stop_dist: 0.4
+      # 전방이 너무 가까우면 완전 정지
+      hard_stop_dist: 0.25
+      # 막힘 상태에서 천천히 전진하며 재탐색
+      creep_speed: 0.02
+      # 제자리 회전으로 정렬할 heading 오차(rad)
+      in_place_heading: 0.7
+      # 제자리 회전 최소 각속도(rad/s)
+      min_turn_rate: 0.2
+      slow_dist: 1.2
+      #------------------------------
+      heading_gain: 0.6
+      avoid_gain: 0.1
+      turn_gain: 1.0
+      # 좌우 여유 차이가 작을 때 회전 방향 흔들림을 줄임
+      turn_deadband: 0.5
+      range_max: 6.0
+      # ---- 경로 추종 룩어헤드-------
+      lookahead_dist: 1.2
+      #------------------------------
+      front_angle: 0.35
+      side_angle: 1.2
+      angle_step: 0.05
+      raycast_step: 0.05
+      # ---- 장애물 판정-------
+      cost_threshold: 253
+      treat_unknown_as_obstacle: false
+      # PID로 목표 속도를 추종하도록 보정 (저수준 제어 안정화) 안정화용 PID
+      use_pid: true
+      pid_kp_lin: 1.0
+      pid_ki_lin: 0.0
+      pid_kd_lin: 0.1
+      pid_kp_ang: 2.0
+      pid_ki_ang: 0.0
+      pid_kd_ang: 0.1
+      pid_i_max_lin: 0.5
+      pid_i_max_ang: 1.0
+      pid_dt_max: 0.5
+
+planner_server:
+  ros__parameters:
+    use_sim_time: false
+    expected_planner_frequency: 1.0
+    planner_plugins: ["GridBased"]
+    GridBased:
+      # SmacPlanner2D로 교체해 비용(벽 근접) 페널티를 더 크게 반영.
+      plugin: "nav2_smac_planner/SmacPlanner2D"
+      tolerance: 0.5
+      allow_unknown: true
+      # 값이 클수록 저비용(중앙) 영역을 더 선호.
+      cost_travel_multiplier: 8.0
+
+smoother_server:
+  ros__parameters:
+    use_sim_time: false
+    smoother_plugins: ["simple_smoother"]
+    simple_smoother:
+      plugin: "nav2_smoother::SimpleSmoother"
+      max_its: 1000
+      do_refinement: True
+
+behavior_server:
+  ros__parameters:
+    use_sim_time: false
+    costmap_topic: local_costmap/costmap_raw
+    footprint_topic: local_costmap/published_footprint
+    cycle_frequency: 10.0
+    behavior_plugins:
+      ["spin", "backup", "drive_on_heading", "assisted_teleop", "wait"]
+    spin:
+      plugin: "nav2_behaviors/Spin"
+    backup:
+      plugin: "nav2_behaviors/BackUp"
+    drive_on_heading:
+      plugin: "nav2_behaviors/DriveOnHeading"
+    wait:
+      plugin: "nav2_behaviors/Wait"
+    assisted_teleop:
+      plugin: "nav2_behaviors/AssistedTeleop"
+    global_frame: map
+    robot_base_frame: base_link
+    transform_tolerance: 0.2 # 2.0 → 0.2초로 변경
+    simulate_ahead_time: 2.0
+    max_rotational_vel: 1.0
+    min_rotational_vel: 0.4
+    rotational_acc_lim: 3.2
+
+waypoint_follower:
+  ros__parameters:
+    use_sim_time: false
+    loop_rate: 20
+    stop_on_failure: false
+    waypoint_task_executor_plugin: "wait_at_waypoint"
+    wait_at_waypoint:
+      plugin: "nav2_waypoint_follower::WaitAtWaypoint"
+      enabled: True
+      waypoint_pause_duration: 200
+
+velocity_smoother:
+  ros__parameters:
+    use_sim_time: false
+    smoothing_frequency: 20.0
+    scale_velocities: false
+
+# ==============================================================================
+# 로컬 코스트맵: 실시간 장애물 회피용
+# ==============================================================================
+local_costmap:
+  local_costmap:
+    ros__parameters:
+      use_sim_time: false
+      global_frame: odom
+      robot_base_frame: base_link
+      rolling_window: true
+      width: 10
+      height: 10
+      resolution: 0.05
+      footprint: "[[0.20, 0.20], [0.20, -0.20], [-0.20, -0.20], [-0.20, 0.20]]"
+      update_frequency: 20.0
+      publish_frequency: 10.0
+      transform_tolerance: 0.3 # 0.2 → 0.3초로 완화(캐시 미스 감소)
+      plugins: ["obstacle_layer", "inflation_layer"]
+
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        footprint_clearing_enabled: true
+        observation_sources: livox
+
+        livox:
+          topic: /livox/lidar/filtered
+          data_type: PointCloud2
+          sensor_frame: livox_frame
+          marking: true
+          clearing: true
+          obstacle_range: 5.0
+          raytrace_range: 8.0
+          min_obstacle_height: 0.0
+          max_obstacle_height: 2.5
+          observation_persistence: 0.5
+          expected_update_rate: 20.0
+
+      # voxel_layer:  # 필요 시 다시 사용 (3D voxel)
+      #   plugin: "nav2_costmap_2d::VoxelLayer"
+      #   enabled: true
+      #   publish_voxel_map: false
+      #   z_resolution: 0.1
+      #   z_voxels: 16
+      #   origin_z: 0.0
+      #   mark_threshold: 1
+      #   unknown_threshold: 2
+      #   combination_method: 1
+      #   max_obstacle_height: 2.0
+      #   min_obstacle_height: 0.15
+      #   footprint_clearing_enabled: true
+      #   observation_sources: livox
+      #
+      #   livox:
+      #     topic: /livox/lidar/deskewed
+      #     data_type: PointCloud2
+      #     sensor_frame: livox_frame
+      #     marking: true
+      #     clearing: true
+      #     obstacle_range: 5.0
+      #     raytrace_range: 8.0
+      #     min_obstacle_height: 0.15
+      #     max_obstacle_height: 2.0
+      #     observation_persistence: 0.0
+      #     expected_update_rate: 20.0
+
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        enabled: true
+        cost_scaling_factor: 4.0
+        inflation_radius: 0.06
+        footprint_clearing_enabled: true
+
+      always_send_full_costmap: true
+
+# ==============================================================================
+# 글로벌 코스트맵: 정적맵 기반 (동적 장애물은 로컬 코스트맵에서 처리)
+# ==============================================================================
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      use_sim_time: false
+      global_frame: map
+      robot_base_frame: base_link
+      rolling_window: false
+      resolution: 0.03
+      footprint: "[[0.20, 0.20], [0.20, -0.20], [-0.20, -0.20], [-0.20, 0.20]]"
+      update_frequency: 10.0 # 5.0 → 10.0Hz로 증가 (더 빠른 맵 업데이트)
+      publish_frequency: 5.0 # 2.0 → 5.0Hz로 증가
+      transform_tolerance: 0.3 # 1.0 → 0.2초로 변경
+      track_unknown_space: true
+
+      # 레이어 구성: 정적맵 + 안전거리
+      # plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
+      plugins: ["static_layer", "inflation_layer"]
+
+      # ========================================================================
+      # 1. 정적 맵 레이어: 벽, 기둥 등 고정 구조물 (RTABMap SLAM 맵)
+      # ========================================================================
+      static_layer:
+        plugin: "nav2_costmap_2d::StaticLayer"
+        map_topic: /rtabmap/map
+        map_subscribe_transient_local: false
+        subscribe_to_updates: true
+        enabled: true
+        transform_tolerance: 0.2
+
+      # ========================================================================
+      # 2. 동적 장애물 레이어: 글로벌 맵에서는 비활성화
+      #    (실시간 장애물은 로컬 코스트맵에서만 처리)
+      # ========================================================================
+      # obstacle_layer:
+      #   plugin: "nav2_costmap_2d::ObstacleLayer"
+      #   enabled: true
+      #   footprint_clearing_enabled: true
+      #   observation_sources: livox_deskew
+      #
+      #   livox_deskew:
+      #     topic: /livox/lidar/deskewed
+      #     data_type: "PointCloud2"
+      #     obstacle_max_range: 8.0
+      #     raytrace_max_range: 10.0
+      #     min_obstacle_height: 0.15
+      #     max_obstacle_height: 2.0
+      #     expected_update_rate: 10.0
+      #     clearing: true
+      #     marking: true
+      #     inf_is_valid: false
+      #     observation_persistence: 0.0
+      # ========================================================================
+      # 2.5. obstacle_layer 레이어: 안전거리 확보
+      # ========================================================================
+      # obstacle_layer:
+      #   plugin: "nav2_costmap_2d::ObstacleLayer"
+      #   enabled: true
+      #   footprint_clearing_enabled: true
+      #   observation_sources: livox
+      #   livox:
+      #     topic: /livox/lidar/deskewed
+      #     data_type: PointCloud2
+      #     sensor_frame: livox_frame
+      #     marking: true
+      #     clearing: true
+      #     obstacle_range: 5.0
+      #     raytrace_range: 8.0
+      #     min_obstacle_height: 0.15
+      #     max_obstacle_height: 2.0
+      #     expected_update_rate: 10.0
+
+      # ========================================================================
+      # 3. Inflation 레이어: 안전거리 확보
+      # ========================================================================
+      inflation_layer:
+        plugin: "nav2_costmap_2d::InflationLayer"
+        enabled: true
+        footprint_clearing_enabled: true
+        # 낮출수록 비용 영향 범위가 멀리 퍼져 중앙 유도 효과가 커짐.
+        cost_scaling_factor: 1.5
+        inflation_radius: 0.07
+
+      always_send_full_costmap: true
+
+lifecycle_manager:
+  ros__parameters:
+    use_sim_time: false
+    autostart: true
+    bond_timeout: 10.0
+    attempt_respawn_reconnection: true
+    bond_respawn_max_duration: 30.0
+    node_names:
+      - controller_server
+      - planner_server
+      - smoother_server
+      - bt_navigator
+      - behavior_server
+      - waypoint_follower
+      - velocity_smoother

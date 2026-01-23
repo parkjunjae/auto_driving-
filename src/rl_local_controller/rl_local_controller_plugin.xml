@@ -1,0 +1,7 @@
+<library path="rl_local_controller">
+  <class name="rl_local_controller/RlLocalController"
+         type="rl_local_controller::RlLocalController"
+         base_class_type="nav2_core::Controller">
+    <description>규칙 기반 회피와 목표 방향을 결합하는 로컬 컨트롤러</description>
+  </class>
+</library>

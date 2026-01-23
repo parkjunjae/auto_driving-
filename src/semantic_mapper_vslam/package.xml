@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>semantic_mapper_vslam</name>
+  <version>1.0.0</version>
+  <description>Semantic mapping for RTAB-Map VSLAM with YOLO object detection on RealSense D455</description>
+  <maintainer email="jihan1125@gmail.com">world</maintainer>
+  <license>Apache-2.0</license>
+
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>cv_bridge</depend>
+  <depend>semantic_mapper_msgs</depend>
+  <depend>realsense2_camera</depend>
+  <depend>rtabmap_slam</depend>
+  <depend>rtabmap_odom</depend>
+  <depend>rtabmap_util</depend>
+  <depend>imu_filter_madgwick</depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
