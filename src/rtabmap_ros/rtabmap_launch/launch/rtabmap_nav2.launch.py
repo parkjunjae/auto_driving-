@@ -55,19 +55,21 @@ def generate_launch_description():
         remappings=[('input_cloud', '/livox/lidar')],
     )
     # Livox 포인트클라우드 필터(다운샘플 + ROR)
+    # - 데스큐된 포인트를 입력으로 받아 다운샘플링 + ROR 노이즈 제거 수행
+    # - 필터링 결과를 /livox/lidar/filtered로 출력하여 코스트맵에 사용
     livox_filter_node = Node(
-        package='livox_pointcloud_filter',
-        executable='livox_pointcloud_filter_node',
-        name='livox_pointcloud_filter',
-        output='screen',
+        package='livox_pointcloud_filter',          # 필터 노드가 들어있는 패키지
+        executable='livox_pointcloud_filter_node',  # 실행할 노드 이름
+        name='livox_pointcloud_filter',             # 노드 이름(ros2 node list에 표시됨)
+        output='screen',                            # 로그를 터미널에 출력
         parameters=[{
-            'input_topic': '/livox/lidar/deskewed',
-            'output_topic': '/livox/lidar/filtered',
-            'leaf_size': 0.05,
-            'ror_radius': 0.10,
-            'ror_min_neighbors': 4,
-            'use_voxel': True,
-            'use_ror': True,
+            'input_topic': '/livox/lidar/deskewed',  # 입력 포인트클라우드(데스큐 완료)
+            'output_topic': '/livox/lidar/filtered', # 필터링 후 출력 토픽
+            'leaf_size': 0.05,                       # VoxelGrid 다운샘플 크기(해상도)
+            'ror_radius': 0.15,                      # ROR 반경(이웃 탐색 거리)
+            'ror_min_neighbors': 2,                  # ROR 이웃 최소 개수
+            'use_voxel': True,                       # VoxelGrid 다운샘플 사용 여부
+            'use_ror': True,                         # ROR 노이즈 제거 사용 여부
         }],
     )
     # # ICP odometry (LiDAR) for EKF fusion
