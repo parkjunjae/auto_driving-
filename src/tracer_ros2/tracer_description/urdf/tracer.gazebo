@@ -30,8 +30,13 @@ Reference:
 
     <!-- Controller configurations -->
     <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>$(arg robot_namespace)</robotNamespace>
+        <!-- Gazebo Sim(ros_gz)용 ros2_control 플러그인 -->
+        <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system.so">
+            <ros>
+                <namespace>$(arg robot_namespace)</namespace>
+            </ros>
+            <!-- ros2_control 컨트롤러 파라미터 -->
+            <parameters>$(find tracer_description)/config/tracer_controllers.yaml</parameters>
         </plugin>
     </gazebo>
 

@@ -1,0 +1,44 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+    use_sim_time: true
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+
+diff_drive_controller:
+  ros__parameters:
+    # 구동 바퀴 조인트 이름
+    left_wheel_names: ["left_wheel"]
+    right_wheel_names: ["right_wheel"]
+
+    # 트랙(좌우 중심 거리)과 바퀴 반경
+    wheel_separation: 0.36
+    wheel_radius: 0.16
+
+    # 프레임 설정
+    base_frame_id: base_link
+    odom_frame_id: odom
+    enable_odom_tf: true
+
+    # 명령/오도메트리 설정
+    cmd_vel_timeout: 0.25
+    publish_rate: 50.0
+    open_loop: false
+
+    # 속도/가속도 제한(실차 추정값 반영)
+    linear:
+      x:
+        has_velocity_limits: true
+        max_velocity: 1.67           # 6 km/h ≈ 1.67 m/s
+        has_acceleration_limits: true
+        max_acceleration: 0.99       # 실측 max dv/dt
+        max_deceleration: 0.99
+    angular:
+      z:
+        has_velocity_limits: true
+        max_velocity: 1.5            # 안전 상한(임시)
+        has_acceleration_limits: true
+        max_acceleration: 1.30       # 실측 max dw/dt
+        max_deceleration: 1.30

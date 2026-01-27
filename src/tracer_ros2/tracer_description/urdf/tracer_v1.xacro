@@ -168,6 +168,9 @@
     <!-- Additional definitions -->
     <xacro:include filename="$(arg urdf_extras)" />
 
+    <!-- ros2_control 설정 -->
+    <xacro:include filename="$(find tracer_description)/urdf/tracer_ros2_control.xacro" />
+
     <!-- Gazebo definitions  -->
     <xacro:include filename="$(find tracer_description)/urdf/tracer.gazebo" />
 </robot>
