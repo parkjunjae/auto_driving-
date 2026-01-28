@@ -121,7 +121,7 @@ ros2 run nav2_controller controller_server \
 #### 종료/저장
 
 - `train_pid.py`의 `model.learn(total_timesteps=...)`까지 학습하면 자동 종료
-- 종료 시 모델 자동 저장: `/home/world/to_ws/rl_pid_model.zip`
+- 종료 시 모델 자동 저장: `/home/world/to_ws/<지정한모델 이름>.zip`
 
 ### 5) 동작 확인 (옵션)
 
