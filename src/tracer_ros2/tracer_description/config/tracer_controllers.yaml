@@ -9,6 +9,7 @@ controller_manager:
 
 diff_drive_controller:
   ros__parameters:
+    use_stamped_vel: true
     # 구동 바퀴 조인트 이름
     left_wheel_names: ["left_wheel"]
     right_wheel_names: ["right_wheel"]
@@ -31,14 +32,14 @@ diff_drive_controller:
     linear:
       x:
         has_velocity_limits: true
-        max_velocity: 1.67           # 6 km/h ≈ 1.67 m/s
+        max_velocity: 1.67 # 6 km/h ≈ 1.67 m/s
         has_acceleration_limits: true
-        max_acceleration: 0.99       # 실측 max dv/dt
+        max_acceleration: 0.99 # 실측 max dv/dt
         max_deceleration: 0.99
     angular:
       z:
         has_velocity_limits: true
-        max_velocity: 1.5            # 안전 상한(임시)
+        max_velocity: 1.5 # 안전 상한(임시)
         has_acceleration_limits: true
-        max_acceleration: 1.30       # 실측 max dw/dt
+        max_acceleration: 1.30 # 실측 max dw/dt
         max_deceleration: 1.30

@@ -51,6 +51,18 @@ source ~/to_ws/.venv/bin/activate
 python3 ~/to_ws/rl_pid_training/train_pid.py
 ```
 
+#### (필수) controller_server 실행 시 cmd_vel 리맵 + odom 토픽 맞추기
+가제보에서는 실제 오도메트리 토픽이 `/diff_drive_controller/odom`이므로 아래처럼 맞춰야
+controller_server가 정상적으로 목표 속도를 계산하고, diff_drive_controller가 cmd_vel을 받습니다.
+```bash
+ros2 run nav2_controller controller_server \
+  --ros-args \
+  --params-file /home/world/to_ws/src/rtabmap_ros/rtabmap_launch/launch/config/nav2_rtabmap_params.yaml \
+  -p use_sim_time:=true \
+  -p odom_topic:=/diff_drive_controller/odom \
+  -r cmd_vel:=/diff_drive_controller/cmd_vel
+```
+
 #### 학습 로그 해석(예시)
 ```
 | rollout/           |

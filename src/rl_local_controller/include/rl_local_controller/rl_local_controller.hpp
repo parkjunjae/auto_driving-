@@ -123,6 +123,12 @@ private:
   double pid_prev_err_lin_{0.0};
   double pid_prev_err_ang_{0.0};
   rclcpp::Time pid_last_time_;
+
+  // PID 파라미터 동적 업데이트 콜백
+  rclcpp::node_interfaces::OnSetParametersCallbackHandle::SharedPtr param_cb_handle_;
+
+  // PID 목표 속도 퍼블리셔(학습/디버깅용)
+  rclcpp::Publisher<geometry_msgs::msg::TwistStamped>::SharedPtr desired_cmd_pub_;
 };
 
 }  // namespace rl_local_controller

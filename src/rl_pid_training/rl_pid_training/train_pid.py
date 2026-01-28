@@ -16,10 +16,10 @@ def main():
     model = PPO("MlpPolicy", env, verbose=1)
 
     # 학습 스텝 수는 환경에 맞게 조절
-    model.learn(total_timesteps=20000)
+    model.learn(total_timesteps=100000)
 
     # 모델 저장
-    model.save("/home/world/to_ws/rl_pid_model")
+    model.save("/home/world/to_ws/rl_pid_model_new")
 
     env.close()
 

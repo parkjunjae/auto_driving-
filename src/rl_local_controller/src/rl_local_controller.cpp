@@ -118,6 +118,37 @@ void RlLocalController::configure(
   base_max_lin_ = max_lin_;
   base_max_ang_ = max_ang_;
   pid_last_time_ = rclcpp::Time(0, 0, node_->get_clock()->get_clock_type());
+
+  // PID 목표 속도 퍼블리셔(학습/디버깅용)
+  const std::string desired_topic =
+    std::string("/") + node_->get_name() + "/" + name_ + "/desired_cmd";
+  desired_cmd_pub_ =
+    node_->create_publisher<geometry_msgs::msg::TwistStamped>(desired_topic, 10);
+
+  // PID 파라미터 동적 업데이트 콜백 등록
+  param_cb_handle_ = node_->add_on_set_parameters_callback(
+    [this](const std::vector<rclcpp::Parameter> & params)
+    -> rcl_interfaces::msg::SetParametersResult {
+      rcl_interfaces::msg::SetParametersResult result;
+      result.successful = true;
+      for (const auto & p : params) {
+        const auto & n = p.get_name();
+        if (n == name_ + ".pid_kp_lin") {
+          pid_kp_lin_ = p.as_double();
+        } else if (n == name_ + ".pid_ki_lin") {
+          pid_ki_lin_ = p.as_double();
+        } else if (n == name_ + ".pid_kd_lin") {
+          pid_kd_lin_ = p.as_double();
+        } else if (n == name_ + ".pid_kp_ang") {
+          pid_kp_ang_ = p.as_double();
+        } else if (n == name_ + ".pid_ki_ang") {
+          pid_ki_ang_ = p.as_double();
+        } else if (n == name_ + ".pid_kd_ang") {
+          pid_kd_ang_ = p.as_double();
+        }
+      }
+      return result;
+    });
 }
 
 void RlLocalController::cleanup()
@@ -225,6 +256,15 @@ geometry_msgs::msg::TwistStamped RlLocalController::computeVelocityCommands(
     if (std::abs(w_des) > 1e-3) {
       last_turn_dir_ = (w_des >= 0.0) ? 1 : -1;
     }
+  }
+
+  // PID 이전 단계에서 목표 속도 발행(학습/디버깅용)
+  if (desired_cmd_pub_) {
+    geometry_msgs::msg::TwistStamped desired;
+    desired.header = cmd.header;
+    desired.twist.linear.x = v_des;
+    desired.twist.angular.z = w_des;
+    desired_cmd_pub_->publish(desired);
   }
 
   // PID를 쓰지 않으면 바로 목표 속도를 출력한다.

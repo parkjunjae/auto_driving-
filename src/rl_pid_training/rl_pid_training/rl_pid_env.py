@@ -2,11 +2,13 @@ import time
 from dataclasses import dataclass
 
 import rclpy
+from rclpy.action import ActionClient
 from rclpy.parameter import Parameter
 from rclpy.node import Node
 from rcl_interfaces.srv import SetParameters
-from geometry_msgs.msg import Twist
-from nav_msgs.msg import Odometry
+from geometry_msgs.msg import Twist, TwistStamped, PoseStamped
+from nav_msgs.msg import Odometry, Path
+from nav2_msgs.action import FollowPath
 
 try:
     import gymnasium as gym
@@ -43,13 +45,15 @@ class PidGainEnv(gym.Env):
 
     def __init__(
         self,
-        cmd_ref_topic: str = "/cmd_vel",
-        odom_topic: str = "/odometry/filtered",
+        odom_topic: str = "/diff_drive_controller/odom",
         controller_node: str = "/controller_server",
         param_prefix: str = "RLController",
+        desired_cmd_topic: str = "/controller_server/RLController/desired_cmd",
+        follow_path_action: str = "/follow_path",
         step_dt: float = 0.1,
         episode_seconds: float = 10.0,
         param_wait_sec: float = 15.0,
+        use_sim_time: bool = True,
     ):
         super().__init__()
 
@@ -58,8 +62,15 @@ class PidGainEnv(gym.Env):
             rclpy.init()
 
         self.node = rclpy.create_node("rl_pid_env")
-        self.cmd_pub = self.node.create_publisher(Twist, cmd_ref_topic, 10)
+        # 시뮬레이터 시간 사용 여부(가제보 학습 시 True 권장)
+        if use_sim_time:
+            self.node.set_parameters([Parameter("use_sim_time", Parameter.Type.BOOL, True)])
         self.odom_sub = self.node.create_subscription(Odometry, odom_topic, self._cb_odom, 10)
+        self.desired_sub = self.node.create_subscription(
+            TwistStamped, desired_cmd_topic, self._cb_desired, 10)
+
+        # FollowPath 액션 클라이언트 (Nav2 controller_server)
+        self.follow_client = ActionClient(self.node, FollowPath, follow_path_action)
         # 컨트롤러 노드의 파라미터 서비스로 직접 요청(모듈 의존성 최소화)
         self.param_srv = f"{controller_node}/set_parameters"
         self.param_cli = self.node.create_client(SetParameters, self.param_srv)
@@ -94,6 +105,7 @@ class PidGainEnv(gym.Env):
         self.v_meas = 0.0
         self.w_meas = 0.0
         self.last_w_meas = 0.0
+        self.last_odom = None
 
         self.t0 = None
 
@@ -107,8 +119,13 @@ class PidGainEnv(gym.Env):
         return False
 
     def _cb_odom(self, msg: Odometry):
+        self.last_odom = msg
         self.v_meas = msg.twist.twist.linear.x
         self.w_meas = msg.twist.twist.angular.z
+
+    def _cb_desired(self, msg: TwistStamped):
+        self.v_ref = msg.twist.linear.x
+        self.w_ref = msg.twist.angular.z
 
     def _set_pid_params(self):
         params = [
@@ -126,12 +143,6 @@ class PidGainEnv(gym.Env):
         req = SetParameters.Request()
         req.parameters = [p.to_parameter_msg() for p in params]
         self.param_cli.call_async(req)
-
-    def _publish_cmd(self):
-        cmd = Twist()
-        cmd.linear.x = self.v_ref
-        cmd.angular.z = self.w_ref
-        self.cmd_pub.publish(cmd)
 
     def _spin_once(self):
         rclpy.spin_once(self.node, timeout_sec=0.0)
@@ -154,13 +165,11 @@ class PidGainEnv(gym.Env):
         super().reset(seed=seed)
         self.t0 = time.time()
 
-        # 에피소드마다 목표 속도 변경(임의)
-        self.v_ref = 0.3
-        self.w_ref = 0.6
+        # 에피소드 시작 시 FollowPath 목표를 한번 보낸다.
+        self._send_follow_path()
         self.last_w_meas = self.w_meas
 
         self._set_pid_params()
-        self._publish_cmd()
         for _ in range(5):
             self._spin_once()
             time.sleep(0.01)
@@ -174,7 +183,6 @@ class PidGainEnv(gym.Env):
 
     def step(self, action):
         self._apply_action(action)
-        self._publish_cmd()
 
         # 한 스텝 동안 센서 업데이트 대기
         end = time.time() + self.step_dt
@@ -195,7 +203,45 @@ class PidGainEnv(gym.Env):
 
         return self._get_obs(), reward, terminated, truncated, {}
 
+    def _send_follow_path(self):
+        # FollowPath 서버 준비 대기
+        if not self.follow_client.wait_for_server(timeout_sec=2.0):
+            return
+
+        # 오도메트리 수신 대기
+        t_end = time.time() + 2.0
+        while self.last_odom is None and time.time() < t_end:
+            self._spin_once()
+            time.sleep(0.01)
+        if self.last_odom is None:
+            self.node.get_logger().warn("odom not received, skip sending FollowPath")
+            return
+
+        # 간단한 직진 경로 생성(현재 위치에서 +2m)
+        start = PoseStamped()
+        start.header.frame_id = self.last_odom.header.frame_id
+        start.header.stamp = self.last_odom.header.stamp
+        start.pose = self.last_odom.pose.pose
+
+        goal = PoseStamped()
+        goal.header.frame_id = start.header.frame_id
+        goal.header.stamp = start.header.stamp
+        goal.pose = start.pose
+        goal.pose.position.x += 2.0
+
+        path = Path()
+        path.header.frame_id = start.header.frame_id
+        path.header.stamp = start.header.stamp
+        path.poses = [start, goal]
+
+        goal_msg = FollowPath.Goal()
+        goal_msg.path = path
+        goal_msg.controller_id = ""  # 기본 컨트롤러 사용
+        goal_msg.goal_checker_id = ""  # 기본 goal checker 사용
+
+        self.follow_client.send_goal_async(goal_msg)
+
     def close(self):
-        self.cmd_pub.publish(Twist())
+        # cmd_vel 퍼블리셔를 사용하지 않으므로 안전하게 종료만 수행
         self.node.destroy_node()
         rclpy.shutdown()
