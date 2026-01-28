@@ -51,10 +51,38 @@ source ~/to_ws/.venv/bin/activate
 python3 ~/to_ws/rl_pid_training/train_pid.py
 ```
 
+#### 학습 로그 해석(예시)
+```
+| rollout/           |
+|    ep_len_mean     | 87.2
+|    ep_rew_mean     | -52.3
+| time/              |
+|    fps             | 8
+|    total_timesteps | 2048
+```
+- `ep_len_mean`: 평균 에피소드 길이(스텝 수)
+- `ep_rew_mean`: 평균 보상(값이 올라가면 성능 개선)
+- `fps`: 초당 스텝 처리량(젯슨+Gazebo는 5~10fps가 흔함)
+- `total_timesteps`: 누적 학습 스텝 수
+
+#### 종료/저장
+- `train_pid.py`의 `model.learn(total_timesteps=...)`까지 학습하면 자동 종료
+- 종료 시 모델 자동 저장: `/home/world/to_ws/rl_pid_model.zip`
+
 ### 5) 동작 확인 (옵션)
 ```bash
 ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear:{x:0.3}, angular:{z:0.0}}" -r 10
 ```
+
+### 6) 학습된 모델로 추론 실행
+```bash
+source /opt/ros/humble/setup.bash
+source ~/to_ws/install/setup.bash
+source ~/to_ws/.venv/bin/activate
+python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py
+```
+
+> 추론 중 PID 파라미터는 `ros2 param get /controller_server RLController.pid_kp_lin` 등으로 변화를 확인할 수 있습니다.
 
 ---
 

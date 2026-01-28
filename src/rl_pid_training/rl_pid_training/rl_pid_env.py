@@ -4,6 +4,7 @@ from dataclasses import dataclass
 import rclpy
 from rclpy.parameter import Parameter
 from rclpy.node import Node
+from rcl_interfaces.srv import SetParameters
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 
@@ -48,13 +49,24 @@ class PidGainEnv(gym.Env):
         param_prefix: str = "RLController",
         step_dt: float = 0.1,
         episode_seconds: float = 10.0,
+        param_wait_sec: float = 15.0,
     ):
         super().__init__()
+
+        # rclpy 초기화가 안 되어 있으면 먼저 초기화
+        if not rclpy.ok():
+            rclpy.init()
 
         self.node = rclpy.create_node("rl_pid_env")
         self.cmd_pub = self.node.create_publisher(Twist, cmd_ref_topic, 10)
         self.odom_sub = self.node.create_subscription(Odometry, odom_topic, self._cb_odom, 10)
-        self.param_client = rclpy.parameter_client.AsyncParametersClient(self.node, controller_node)
+        # 컨트롤러 노드의 파라미터 서비스로 직접 요청(모듈 의존성 최소화)
+        self.param_srv = f"{controller_node}/set_parameters"
+        self.param_cli = self.node.create_client(SetParameters, self.param_srv)
+        # 서비스가 올라올 때까지 잠깐 대기(레이스 방지)
+        self.param_ready = self._wait_for_param_service(param_wait_sec)
+        if not self.param_ready:
+            self.node.get_logger().warn(f"parameter service not ready: {self.param_srv}")
 
         self.param_prefix = param_prefix
         self.step_dt = step_dt
@@ -70,7 +82,7 @@ class PidGainEnv(gym.Env):
         self.kp_lin = 1.0
         self.ki_lin = 0.0
         self.kd_lin = 0.1
-        self.kp_ang = 2.0
+        self.kp_ang = 1.0
         self.ki_ang = 0.0
         self.kd_ang = 0.1
 
@@ -85,6 +97,15 @@ class PidGainEnv(gym.Env):
 
         self.t0 = None
 
+    def _wait_for_param_service(self, timeout_sec: float) -> bool:
+        """파라미터 서비스가 준비될 때까지 기다림."""
+        t_end = time.time() + timeout_sec
+        while time.time() < t_end:
+            if self.param_cli.wait_for_service(timeout_sec=0.5):
+                return True
+            self._spin_once()
+        return False
+
     def _cb_odom(self, msg: Odometry):
         self.v_meas = msg.twist.twist.linear.x
         self.w_meas = msg.twist.twist.angular.z
@@ -98,7 +119,13 @@ class PidGainEnv(gym.Env):
             Parameter(f"{self.param_prefix}.pid_ki_ang", Parameter.Type.DOUBLE, float(self.ki_ang)),
             Parameter(f"{self.param_prefix}.pid_kd_ang", Parameter.Type.DOUBLE, float(self.kd_ang)),
         ]
-        self.param_client.set_parameters(params)
+        if not self.param_cli.service_is_ready():
+            # 학습 중간에 서비스가 늦게 올라오는 경우를 대비해 재시도
+            if not self._wait_for_param_service(1.0):
+                return
+        req = SetParameters.Request()
+        req.parameters = [p.to_parameter_msg() for p in params]
+        self.param_cli.call_async(req)
 
     def _publish_cmd(self):
         cmd = Twist()
