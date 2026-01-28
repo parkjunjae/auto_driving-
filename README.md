@@ -140,4 +140,58 @@ python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py
 
 > 추론 중 PID 파라미터는 `ros2 param get /controller_server RLController.pid_kp_lin` 등으로 변화를 확인할 수 있습니다.
 
+### 7) 실차(Real) 적용 순서
+
+아래 순서대로 올리면 됩니다. **중요:** `/controller_server/RLController/desired_cmd` 토픽은
+`controller_server`에 **RLController 플러그인이 로드/활성화**된 경우에만 생성됩니다.
+
+1) ROS 환경 소스
+
+```bash
+source /opt/ros/humble/setup.bash
+source ~/to_ws/install/setup.bash
+```
+
+2) 하드웨어/센서/TF 기동  
+   (트레이서 베이스 + 리얼센스 + 리복스 + 카메라/라이다 static TF)
+
+```bash
+# 예시: 사용 중인 실제 런치로 교체
+# ros2 launch tracer_base tracer_base.launch.py
+# ros2 launch realsense2_camera rs_launch.py
+# ros2 launch livox_ros_driver2 msg_mid360.launch.py
+# ros2 run tf2_ros static_transform_publisher ... (camera_link/livox_frame)
+```
+
+3) 로컬라이제이션(ekf) + 맵/내비게이션(RTAB-Map + Nav2)
+
+```bash
+# 예시: 실차 통합 런치 사용
+ros2 launch rtabmap_launch rtabmap_nav2.launch.py
+```
+
+4) controller_server가 RLController로 뜨는지 확인
+
+```bash
+ros2 lifecycle get /controller_server
+ros2 topic list | grep /controller_server/RLController/desired_cmd
+```
+
+5) **실차용 추론 실행**  
+   (실차는 시뮬 시간이 아니므로 `--use-sim-time` 없이 실행)
+
+```bash
+source ~/to_ws/.venv/bin/activate
+python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py \
+  --model /home/world/to_ws/rl_pid_model_new \
+  --odom-topic /odometry/filtered \
+  --desired-cmd-topic /controller_server/RLController/desired_cmd
+```
+
+6) 목표 주행은 기존 방식 그대로  
+   (RViz 2D Nav Goal 또는 기존 목표 전송 로직 사용)
+
+> 요약: **run_pid_policy.py는 PID 게인만 실시간으로 갱신**합니다.  
+> 실제 이동/경로 생성은 기존 Nav2/RTAB-Map 흐름 그대로 유지됩니다.
+
 ---
