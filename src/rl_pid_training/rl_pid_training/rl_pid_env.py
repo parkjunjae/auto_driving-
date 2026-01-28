@@ -54,6 +54,9 @@ class PidGainEnv(gym.Env):
         episode_seconds: float = 10.0,
         param_wait_sec: float = 15.0,
         use_sim_time: bool = True,
+        path_mode: str = "mixed",
+        forward_dist: float = 2.0,
+        turn_offset: float = 0.6,
     ):
         super().__init__()
 
@@ -82,6 +85,10 @@ class PidGainEnv(gym.Env):
         self.param_prefix = param_prefix
         self.step_dt = step_dt
         self.episode_seconds = episode_seconds
+        self.path_mode = path_mode
+        self.forward_dist = forward_dist
+        self.turn_offset = turn_offset
+        self.episode_idx = 0
 
         # 상태(관측) = [v_ref, w_ref, v_meas, w_meas, e_v, e_w]
         self.observation_space = spaces.Box(low=-10.0, high=10.0, shape=(6,), dtype=float)
@@ -166,6 +173,7 @@ class PidGainEnv(gym.Env):
         self.t0 = time.time()
 
         # 에피소드 시작 시 FollowPath 목표를 한번 보낸다.
+        self.episode_idx += 1
         self._send_follow_path()
         self.last_w_meas = self.w_meas
 
@@ -217,22 +225,43 @@ class PidGainEnv(gym.Env):
             self.node.get_logger().warn("odom not received, skip sending FollowPath")
             return
 
-        # 간단한 직진 경로 생성(현재 위치에서 +2m)
+        # 간단한 직진/회전 경로 생성
         start = PoseStamped()
         start.header.frame_id = self.last_odom.header.frame_id
         start.header.stamp = self.last_odom.header.stamp
         start.pose = self.last_odom.pose.pose
 
-        goal = PoseStamped()
-        goal.header.frame_id = start.header.frame_id
-        goal.header.stamp = start.header.stamp
-        goal.pose = start.pose
-        goal.pose.position.x += 2.0
+        # 에피소드마다 직진/회전을 섞어서 각속도 응답도 학습
+        mode = self.path_mode
+        if mode == "mixed":
+            mode = "turn" if (self.episode_idx % 2 == 0) else "straight"
 
         path = Path()
         path.header.frame_id = start.header.frame_id
         path.header.stamp = start.header.stamp
-        path.poses = [start, goal]
+        path.poses = [start]
+
+        if mode == "straight":
+            goal = PoseStamped()
+            goal.header = start.header
+            goal.pose = start.pose
+            goal.pose.position.x += self.forward_dist
+            path.poses.append(goal)
+        else:
+            # 회전이 포함되도록 중간 점을 옆으로 치우친 경로 생성
+            sign = 1.0 if (self.episode_idx % 4 in (0, 1)) else -1.0
+            mid = PoseStamped()
+            mid.header = start.header
+            mid.pose = start.pose
+            mid.pose.position.x += self.forward_dist * 0.5
+            mid.pose.position.y += sign * self.turn_offset
+            path.poses.append(mid)
+
+            goal = PoseStamped()
+            goal.header = start.header
+            goal.pose = start.pose
+            goal.pose.position.x += self.forward_dist
+            path.poses.append(goal)
 
         goal_msg = FollowPath.Goal()
         goal_msg.path = path

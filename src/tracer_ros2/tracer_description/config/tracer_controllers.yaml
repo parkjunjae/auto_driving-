@@ -9,7 +9,7 @@ controller_manager:
 
 diff_drive_controller:
   ros__parameters:
-    use_stamped_vel: true
+    use_stamped_vel: false
     # 구동 바퀴 조인트 이름
     left_wheel_names: ["left_wheel"]
     right_wheel_names: ["right_wheel"]
