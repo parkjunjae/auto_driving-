@@ -145,14 +145,14 @@ python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py
 아래 순서대로 올리면 됩니다. **중요:** `/controller_server/RLController/desired_cmd` 토픽은
 `controller_server`에 **RLController 플러그인이 로드/활성화**된 경우에만 생성됩니다.
 
-1) ROS 환경 소스
+1. ROS 환경 소스
 
 ```bash
 source /opt/ros/humble/setup.bash
 source ~/to_ws/install/setup.bash
 ```
 
-2) 하드웨어/센서/TF 기동  
+2. 하드웨어/센서/TF 기동  
    (트레이서 베이스 + 리얼센스 + 리복스 + 카메라/라이다 static TF)
 
 ```bash
@@ -163,21 +163,21 @@ source ~/to_ws/install/setup.bash
 # ros2 run tf2_ros static_transform_publisher ... (camera_link/livox_frame)
 ```
 
-3) 로컬라이제이션(ekf) + 맵/내비게이션(RTAB-Map + Nav2)
+3. 로컬라이제이션(ekf) + 맵/내비게이션(RTAB-Map + Nav2)
 
 ```bash
 # 예시: 실차 통합 런치 사용
 ros2 launch rtabmap_launch rtabmap_nav2.launch.py
 ```
 
-4) controller_server가 RLController로 뜨는지 확인
+4. controller_server가 RLController로 뜨는지 확인
 
 ```bash
 ros2 lifecycle get /controller_server
 ros2 topic list | grep /controller_server/RLController/desired_cmd
 ```
 
-5) **실차용 추론 실행**  
+5. **실차용 추론 실행**  
    (실차는 시뮬 시간이 아니므로 `--use-sim-time` 없이 실행)
 
 ```bash
@@ -188,7 +188,7 @@ python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py \
   --desired-cmd-topic /controller_server/RLController/desired_cmd
 ```
 
-6) 목표 주행은 기존 방식 그대로  
+6. 목표 주행은 기존 방식 그대로  
    (RViz 2D Nav Goal 또는 기존 목표 전송 로직 사용)
 
 > 요약: **run_pid_policy.py는 PID 게인만 실시간으로 갱신**합니다.  
@@ -237,18 +237,16 @@ ros2 launch rtabmap_launch rtabmap.launch.py \
   imu_topic:=/camera/camera/imu_fixed \
   scan_cloud_topic:=/livox/lidar/deskewed \
   odom_sensor_sync:=false \
-  RGBD/ProximityBySpace:=true \
-  Rtabmap/LoopThr:=0.15 \
-  Rtabmap/DetectionRate:=2.0 \
-  Mem/STMSize:=50 \
-  Mem/RehearsalSimilarity:=0.3 \
-  Vis/MinInliers:=10 \
-  RGBD/LinearUpdate:=0.15 \
-  RGBD/AngularUpdate:=0.10 \
-  Reg/Strategy:=1 \
-  topic_queue_size:=30 \
-  sync_queue_size:=30 \
-  approx_sync_max_interval:=0.2
+  rtabmap_args:="\
+--RGBD/ProximityBySpace true \
+--Rtabmap/LoopThr 0.15 \
+--Rtabmap/DetectionRate 2.0 \
+--Mem/STMSize 50 \
+--Mem/RehearsalSimilarity 0.3 \
+--Vis/MinInliers 10 \
+--RGBD/LinearUpdate 0.15 \
+--RGBD/AngularUpdate 0.10 \
+--Reg/Strategy 1"
 ```
 
 ### 4) 루프클로저 자동 모니터링
