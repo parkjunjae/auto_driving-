@@ -195,3 +195,68 @@ python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py \
 > 실제 이동/경로 생성은 기존 Nav2/RTAB-Map 흐름 그대로 유지됩니다.
 
 ---
+
+## RTAB-Map 맵핑/루프클로저 안정화
+
+### 1) IMU 파이프라인(C++)
+
+IMU 축이 이미 정상이라면 **변환 기능은 끄는 것이 안전**합니다.  
+기본값은 변환 OFF로 바꿔두었습니다.
+
+```bash
+colcon build --packages-select camera_imu_pipeline_cpp --symlink-install
+source ~/to_ws/install/setup.bash
+
+# 변환 OFF(기본값)
+ros2 launch camera_imu_pipeline_cpp imu_pipeline_cpp.launch.py
+
+# 필요 시 변환 ON
+# ros2 launch camera_imu_pipeline_cpp imu_pipeline_cpp.launch.py imu_target_frame:=camera_imu_frame
+```
+
+### 2) Livox deskew (rtabmap.launch.py 사용 시)
+
+`rtabmap_nav2.launch.py`를 쓰지 않으면 deskew 노드를 별도로 올려야 합니다.
+
+```bash
+ros2 run rtabmap_util lidar_deskewing --ros-args \
+  -p fixed_frame_id:=odom \
+  -p wait_for_transform:=0.5 \
+  -p slerp:=true \
+  -r input_cloud:=/livox/lidar \
+  -r output_cloud:=/livox/lidar/deskewed
+```
+
+### 3) 루프클로저 강화 실행(인라인)
+
+```bash
+ros2 launch rtabmap_launch rtabmap.launch.py \
+  rtabmap_viz:=true \
+  localization:=false \
+  delete_db_on_start:=true \
+  imu_topic:=/camera/camera/imu_fixed \
+  scan_cloud_topic:=/livox/lidar/deskewed \
+  odom_sensor_sync:=false \
+  RGBD/ProximityBySpace:=true \
+  Rtabmap/LoopThr:=0.15 \
+  Rtabmap/DetectionRate:=2.0 \
+  Mem/STMSize:=50 \
+  Mem/RehearsalSimilarity:=0.3 \
+  Vis/MinInliers:=10 \
+  RGBD/LinearUpdate:=0.15 \
+  RGBD/AngularUpdate:=0.10 \
+  Reg/Strategy:=1 \
+  topic_queue_size:=30 \
+  sync_queue_size:=30 \
+  approx_sync_max_interval:=0.2
+```
+
+### 4) 루프클로저 자동 모니터링
+
+```bash
+python3 /home/world/to_ws/rtabmap_loop_status.py
+```
+
+출력에서 `accepted`가 0이 아니면 루프클로저가 붙은 것입니다.
+
+---

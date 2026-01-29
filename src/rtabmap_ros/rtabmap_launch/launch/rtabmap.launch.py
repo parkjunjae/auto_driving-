@@ -316,7 +316,7 @@ def launch_setup(context, *args, **kwargs):
                 # 3D 포인트를 누적해서 2D grid로 만드는 구조
                 "Grid/3D": "true", # 3D 그리드 맵 생성 활성화
                 "Grid/RangeMax": "7.0",  # 최대 감지 거리 (8m)
-                "Grid/RangeMin": "0.5",  # 로봇 근처 노이즈/자체 반사 제거
+                "Grid/RangeMin": "0.1",  # 로봇 근처 장애물(25cm 등) 인식 보강
                 "Grid/CellSize": "0.07", # 2D 그리드 맵의 셀(격자) 크기
                 #---------------------------------------------------------
                 "Grid/Sensor": "0", # 0: Laser(라이다)만, 1: Depth만, 2: 둘 다 (타임싱크 문제로 0 권장)
@@ -345,23 +345,23 @@ def launch_setup(context, *args, **kwargs):
                 "Mem/STMSize": "30", # 단기 메모리 크기 (최근 10프레임만 유지, 동적 장애물 빠른 제거)
                 #---------------------------------------------------------
                 # 포즈가 안정되면 → 아주 깨끗한 맵을 만들어줌
-                "Mem/IncrementalMemory": "true", # 증분 SLAM 모드 (loop closure로 맵 업데이트)
+                # (증분/로컬라이제이션 모드는 아래 ConditionalText로 일원화)
                 # ---------------------------------------------------------
                 # odom 보조 필터링
                 "odom/FilteringStrategy": "1", #"0=No filtering 1=Kalman filtering 2=Particle filtering. This filter is used to smooth the odometry output.
                 #---------------------------------------------------------
                 #---------------------------------------------------------
-                "RGBD/ProximityBySpace": "true",
+                "RGBD/ProximityBySpace": "false",
                 # 회전 중 과도한 노드 삽입 억제 (고스팅 감소)
-                "RGBD/LinearUpdate": "0.05",
-                "RGBD/AngularUpdate": "0.10",
+                "RGBD/LinearUpdate": "0.10",
+                "RGBD/AngularUpdate": "0.15",
                 # Set here so args do not override ROS params.
-                "Rtabmap/DetectionRate": "2.0",
+                "Rtabmap/DetectionRate": "1.5",
                 #---------------------------------------------------------
                 # loop closure와 그래프 최적화의 성격을 정하는 옵션
                 "Reg/Strategy": "1",   # 0 = ICP, 1 = Vis (visual), 2 = Vis + ICP
                 "RGBD/OptimizeMaxError": "0.8",        # (예시) 최적화 허용 오차 제한
-                "Rtabmap/LoopThr": "0.30",             # (예시) 루프 성립 임계 더 엄격히(빈도수 낮게)
+                "Rtabmap/LoopThr": "0.40",             # (예시) 루프 성립 임계 더 엄격히(빈도수 낮게)
                 #---------------------------------------------------------
                 # Keep local area stable by optimizing from the latest pose.
                 "RGBD/OptimizeFromGraphEnd": "true",
@@ -576,7 +576,7 @@ def generate_launch_description():
         DeclareLaunchArgument('odom_always_process_most_recent_frame', default_value='false', description='Odometry: always process latest frame to reduce delay, skipping frames in case odometry is slower than camera frame rate. In case you want to make sure to process all frames (e.g., from a rosbag/dataset) and you don\'t care about delay, set this to false.'),
 
         # imu
-        DeclareLaunchArgument('imu_topic',        default_value='/livox/imu_fixed', description='Used with VIO approaches and for SLAM graph optimization (gravity constraints).'),
+        DeclareLaunchArgument('imu_topic',        default_value='/camera/camera/imu_fixed', description='Used with VIO approaches and for SLAM graph optimization (gravity constraints).'),
         DeclareLaunchArgument('wait_imu_to_init', default_value='false',     description=''),
         DeclareLaunchArgument('always_check_imu_tf', default_value='true',     description='The odometry node will always check if TF between IMU frame and base frame has changed. If false, it is checked till a valid transform is initialized.'),
 

@@ -17,6 +17,7 @@ def generate_launch_description():
     rviz = LaunchConfiguration('rviz')
     log_level = LaunchConfiguration('log_level')
     rtabmap_args = LaunchConfiguration('rtabmap_args')
+    localization = LaunchConfiguration('localization')
     database_path = LaunchConfiguration('database_path')
     delete_db_on_start = LaunchConfiguration('delete_db_on_start')
 
@@ -28,7 +29,7 @@ def generate_launch_description():
             'use_sim_time': use_sim_time,
             'rtabmap_viz': rtabmap_viz,
             'rviz': rviz,
-            'localization': 'false',  
+            'localization': localization,
             'log_level': 'error',  
             'odom_log_level': 'error',  # Odometry 로그도 error 레벨로
             'qos': '2',  # BEST_EFFORT QoS for Nav2 compatibility
@@ -203,6 +204,7 @@ def generate_launch_description():
         DeclareLaunchArgument('rtabmap_viz', default_value='false', description='Launch rtabmap_viz GUI'),
         DeclareLaunchArgument('rviz', default_value='false', description='Launch RVIZ from rtabmap launch'),
         DeclareLaunchArgument('log_level', default_value='warn', description='Nav2 log level'),
+        DeclareLaunchArgument('localization', default_value='false', description='Enable localization-only mode'),
         # Keep args empty to avoid overriding ROS params.
         DeclareLaunchArgument('rtabmap_args', default_value='', description='Extra CLI flags for rtabmap'),
         # Use ROS param to control DB reset from this launch file.

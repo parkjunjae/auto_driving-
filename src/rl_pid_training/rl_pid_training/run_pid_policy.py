@@ -7,7 +7,7 @@ from datetime import datetime
 import rclpy
 from stable_baselines3 import PPO
 
-from rl_pid_training.rl_pid_env import PidGainEnv
+from rl_pid_training.rl_pid_env_real import RealPidGainEnv
 
 
 def main():
@@ -24,13 +24,18 @@ def main():
     )
     parser.add_argument(
         "--odom-topic",
-        default="/diff_drive_controller/odom",
+        default="/odometry/filtered",
         help="오도메트리 토픽",
     )
     parser.add_argument(
         "--desired-cmd-topic",
         default="/controller_server/RLController/desired_cmd",
         help="컨트롤러 목표 속도 토픽",
+    )
+    parser.add_argument(
+        "--desired-cmd-type",
+        default="auto",
+        help="desired_cmd 타입(auto|twist|twist_stamped)",
     )
     parser.add_argument(
         "--use-sim-time",
@@ -43,9 +48,10 @@ def main():
     model = PPO.load(args.model)
 
     # 환경 생성(시뮬 실행 + controller_server 활성 상태여야 함)
-    env = PidGainEnv(
+    env = RealPidGainEnv(
         odom_topic=args.odom_topic,
         desired_cmd_topic=args.desired_cmd_topic,
+        desired_cmd_type=args.desired_cmd_type,
         use_sim_time=args.use_sim_time,
     )
 
