@@ -227,6 +227,85 @@ ros2 run rtabmap_util lidar_deskewing --ros-args \
   -r output_cloud:=/livox/lidar/deskewed
 ```
 
+### 2-1) (권장) Livox 타임스탬프 오프셋 + ICP Odom 기반 맵핑
+
+라이다 타임스탬프가 과거로 밀려 있으면 deskew가 실패합니다. 아래 순서로 맞춥니다.
+
+1) **타임스탬프 오프셋 노드**
+
+```bash
+ros2 launch livox_timestamp_offset livox_timestamp_offset.launch.py \
+  input_topic:=/livox/lidar \
+  output_topic:=/livox/lidar/offset \
+  offset_sec:=-0.42
+```
+
+> `offset_sec`는 `now - stamp` 값을 보고 조정합니다. (예: 0.424s → -0.42)
+
+2) **ICP Odometry (guess는 EKF/odom TF 사용)**
+
+```bash
+ros2 run rtabmap_odom icp_odometry --ros-args \
+  -r scan_cloud:=/livox/lidar/offset \
+  -p odom_frame_id:=icp_odom \
+  -p publish_tf:=true \
+  -p guess_from_tf:=true \
+  -p guess_frame_id:=odom \
+  -p "Icp/RangeMin:='0.3'" \
+  -p "Icp/RangeMax:='20.0'" \
+  -p "Icp/MaxCorrespondenceDistance:='1.0'" \
+  -p "Icp/MaxTranslation:='0.6'" \
+  -p "Icp/CorrespondenceRatio:='0.01'" \
+  -p "Icp/VoxelSize:='0.1'" \
+  -p "Icp/DownsamplingStep:='1'" \
+  -p "Icp/Iterations:='30'" \
+  -p "Icp/PointToPlane:='false'"
+```
+
+> `ratio`가 0.2~0.7 수준으로 꾸준히 나오면 정상입니다.
+
+3) **Deskew (offset 라이다 기준)**
+
+```bash
+ros2 run rtabmap_util lidar_deskewing --ros-args \
+  -p fixed_frame_id:=icp_odom \
+  -p wait_for_transform:=1.0 \
+  -p slerp:=true \
+  -r input_cloud:=/livox/lidar/offset \
+  -r output_cloud:=/livox/lidar/offset/deskewed
+```
+
+> `/livox/lidar/offset/deskewed`가 출력되는지 확인하세요.
+
+4) **RTAB-Map 실행 (deskew 토픽 연결)**
+
+```bash
+ros2 launch rtabmap_launch rtabmap.launch.py \
+  rtabmap_viz:=true \
+  localization:=false \
+  delete_db_on_start:=true \
+  odom_topic:=/icp_odom \
+  odom_frame_id:=icp_odom \
+  publish_tf_odom:=true \
+  odom_sensor_sync:=false \
+  scan_cloud_topic:=/livox/lidar/offset/deskewed \
+  rtabmap_args:="\
+--RGBD/ProximityBySpace true \
+--Rtabmap/LoopThr 0.15 \
+--Rtabmap/DetectionRate 2.0 \
+--Mem/STMSize 50 \
+--Mem/RehearsalSimilarity 0.3 \
+--Vis/MinInliers 10 \
+--RGBD/LinearUpdate 0.15 \
+--RGBD/AngularUpdate 0.10 \
+--Reg/Strategy 1"
+```
+
+#### 체크 포인트
+
+- `tf2_echo icp_odom livox_frame`가 **계속 출력**되어야 deskew가 동작합니다.
+- `ros2 topic hz /livox/lidar/offset/deskewed`가 **정상 출력**되어야 RTAB‑Map 입력이 살아있습니다.
+
 ### 3) 루프클로저 강화 실행(인라인)
 
 ```bash

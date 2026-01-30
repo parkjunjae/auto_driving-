@@ -323,14 +323,14 @@ def launch_setup(context, *args, **kwargs):
                 "Grid/FromDepth": "false", # Depth 맵 생성 비활성화 (occupancy grid용)
                 "Cloud/FromDepth": "false", # Depth에서 클라우드 생성 비활성화 (라이다만 사용)
                 "Grid/MaxObstacleHeight": "2.0",  # 최대 장애물 높이 (2m)
-                "Grid/MaxGroundHeight": "0.15",   # 바닥으로 간주할 최대 높이 (15cm)
+                "Grid/MaxGroundHeight": "0.0",   # 바닥으로 간주할 최대 높이 (15cm)
                 "Grid/MinGroundHeight": "-0.5",    # 최소 바닥 높이 (base_link 아래 -50cm까지 바닥)
                 #---------------------------------------------------------
                 # 프레임마다 조금씩 다른 위치에 와도 같은 덩어리로 묶을 수 있게 도와줌 
                 "Grid/NormalsSegmentation": "false",  # 법선 기반 비활성화 (희소 라이다에 더 안정적)
-                "Grid/NoiseFilteringRadius": "0.2",  # 0.1 → 0.2 (노이즈 필터링 반경 확대, 중복 포인트 통합)
-                "Grid/NoiseFilteringMinNeighbors": "5",  # 3 → 5 (더 엄격한 필터링, 고립 포인트 제거)
-                "Grid/ClusterRadius": "0.1", # 0.3 → 0.1 (클러스터링 반경 축소, 같은 장애물 통합)
+                "Grid/NoiseFilteringRadius": "0.1",  # 노이즈 필터 반경(너무 크면 포인트가 비어짐)
+                "Grid/NoiseFilteringMinNeighbors": "3",  # 이웃 수 완화(희소 라이다에서도 맵이 비지 않게)
+                "Grid/ClusterRadius": "0.2", # 클러스터링 반경(너무 작으면 같은 물체가 분리됨)
                 #---------------------------------------------------------
                 "Grid/FlatObstacleDetected": "true", # 평평한 장애물도 감지 (테이블 등)
                 "Grid/RayTracing": "true", # Raytrace 활성화 (빈 공간 명시적 삭제)
@@ -342,7 +342,8 @@ def launch_setup(context, *args, **kwargs):
                 # 이전 셀과 차이가 작으면 덮어쓰지않게 불확실하면 장애물로 취급 안하게 오래된 정보는 빨리 잊게 
                 "GridGlobal/UpdateError": "0.05", # 5cm 이상 차이나는 셀만 업데이트 (잔상 감소)
                 "GridGlobal/OccupancyThr": "0.7", # 점유 확률 70% 이상만 장애물 (불확실한 잔상 제거)
-                "Mem/STMSize": "30", # 단기 메모리 크기 (최근 10프레임만 유지, 동적 장애물 빠른 제거)
+                "Mem/STMSize": "50", # 단기 메모리 크기(루프클로저 후보 확보)
+                "Mem/RehearsalSimilarity": "0.3", # 유사 노드 재사용(중복 억제)
                 #---------------------------------------------------------
                 # 포즈가 안정되면 → 아주 깨끗한 맵을 만들어줌
                 # (증분/로컬라이제이션 모드는 아래 ConditionalText로 일원화)
@@ -351,17 +352,21 @@ def launch_setup(context, *args, **kwargs):
                 "odom/FilteringStrategy": "1", #"0=No filtering 1=Kalman filtering 2=Particle filtering. This filter is used to smooth the odometry output.
                 #---------------------------------------------------------
                 #---------------------------------------------------------
-                "RGBD/ProximityBySpace": "false",
+                # 공간 기반 근접 매칭(루프클로저/드리프트 보정 강화)
+                "RGBD/ProximityBySpace": "true",
+                "RGBD/ProximityMaxGraphDepth": "0",     # 전체 그래프까지 근접 탐색
+                "RGBD/ProximityPathMaxNeighbors": "1",  # 근접 링크를 늘려 경로 정합 보강
                 # 회전 중 과도한 노드 삽입 억제 (고스팅 감소)
-                "RGBD/LinearUpdate": "0.10",
-                "RGBD/AngularUpdate": "0.15",
-                # Set here so args do not override ROS params.
-                "Rtabmap/DetectionRate": "1.5",
+                "RGBD/LinearUpdate": "0.15",
+                "RGBD/AngularUpdate": "0.10",
+                # 처리 주기(Hz) - 너무 낮으면 보정이 늦고, 너무 높으면 부담
+                "Rtabmap/DetectionRate": "2.0",
                 #---------------------------------------------------------
                 # loop closure와 그래프 최적화의 성격을 정하는 옵션
                 "Reg/Strategy": "1",   # 0 = ICP, 1 = Vis (visual), 2 = Vis + ICP
                 "RGBD/OptimizeMaxError": "0.8",        # (예시) 최적화 허용 오차 제한
-                "Rtabmap/LoopThr": "0.40",             # (예시) 루프 성립 임계 더 엄격히(빈도수 낮게)
+                "Rtabmap/LoopThr": "0.15",             # 루프 성립 임계(너무 높으면 루프가 안 잡힘)
+                "Vis/MinInliers": "10",                # 시각 매칭 최소 인라이어 수(루프 안정성)
                 #---------------------------------------------------------
                 # Keep local area stable by optimizing from the latest pose.
                 "RGBD/OptimizeFromGraphEnd": "true",
