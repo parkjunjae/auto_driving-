@@ -40,21 +40,22 @@ def generate_launch_description():
         }.items()
     )
     # Livox deskewing using rtabmap_util (C++), faster than Python deskew
-    lidar_deskew_node = Node(
-        package='rtabmap_util',
-        executable='lidar_deskewing',
-        name='rtabmap_lidar_deskewing',
-        output='screen',
-        parameters=[{
-            'fixed_frame_id': 'odom',
-            'queue_size': 5,
-            'qos': 2,  # BEST_EFFORT
-            'wait_for_transform': 0.5,
-            'slerp': True,
-            'use_sim_time': use_sim_time,
-        }],
-        remappings=[('input_cloud', '/livox/lidar')],
-    )
+    # NOTE: sensor_sync.launch.py로 이동됨 (시간동기 + deskew + static TF 통합)
+    # lidar_deskew_node = Node(
+    #     package='rtabmap_util',
+    #     executable='lidar_deskewing',
+    #     name='rtabmap_lidar_deskewing',
+    #     output='screen',
+    #     parameters=[{
+    #         'fixed_frame_id': 'odom',
+    #         'queue_size': 5,
+    #         'qos': 2,  # BEST_EFFORT
+    #         'wait_for_transform': 0.5,
+    #         'slerp': True,
+    #         'use_sim_time': use_sim_time,
+    #     }],
+    #     remappings=[('input_cloud', '/livox/lidar')],
+    # )
     # Livox 포인트클라우드 필터(다운샘플 + ROR)
     # - 데스큐된 포인트를 입력으로 받아 다운샘플링 + ROR 노이즈 제거 수행
     # - 필터링 결과를 /livox/lidar/filtered로 출력하여 코스트맵에 사용
@@ -211,7 +212,7 @@ def generate_launch_description():
         DeclareLaunchArgument('delete_db_on_start', default_value='true', description='Delete RTAB-Map database at startup'),
         DeclareLaunchArgument('database_path', default_value=os.path.expanduser('~/.ros/rtabmap_nav2.db'), description=''),
         rtabmap_launch,
-        lidar_deskew_node,
+        # lidar_deskew_node,  # sensor_sync.launch.py로 이동됨
         livox_filter_node,
         # icp_odometry_node,
         # pointcloud_transform_node,
