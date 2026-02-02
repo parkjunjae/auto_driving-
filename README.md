@@ -163,7 +163,7 @@ source ~/to_ws/install/setup.bash
 # ros2 run tf2_ros static_transform_publisher ... (camera_link/livox_frame)
 ```
 
-3. 로컬라이제이션(ekf) + 맵/내비게이션(RTAB-Map + Nav2)
+3. EKF + 맵/내비게이션(RTAB-Map + Nav2)
 
 ```bash
 # 예시: 실차 통합 런치 사용
@@ -196,144 +196,53 @@ python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py \
 
 ---
 
-## RTAB-Map 맵핑/루프클로저 안정화
+## RTAB-Map 맵핑/TF 안정화 (현재 반영 상태)
 
-### 1) IMU 파이프라인(C++)
+### 1) 이번에 반영한 수정
 
-IMU 축이 이미 정상이라면 **변환 기능은 끄는 것이 안전**합니다.  
-기본값은 변환 OFF로 바꿔두었습니다.
+- `rtabmap_nav2.launch.py`에서 RTAB-Map 입력 체인을 EKF 기준으로 고정:
+  - `odom_topic:=/odometry/filtered`
+  - `odom_frame_id:=odom`
+  - `map_frame_id:=map`
+  - `publish_tf_map:=true`
+  - `visual_odometry:=false`, `icp_odometry:=false`
+- LiDAR 토픽 경로를 하나로 통일:
+  - deskew 입력 기준 토픽: `/livox/lidar/synced/deskewed`
+  - 필터 출력 토픽: `/livox/lidar/filtered`
+- `livox_pointcloud_filter` 입력을 deskew 토픽으로 정렬해서 `/livox/lidar/filtered`가 안정적으로 발행되게 수정
+- `rtabmap.launch.py`에서 경고 제거:
+  - `Grid/MaxGroundHeight`를 `0.07`로 고정 (0.0 경고 제거)
 
-```bash
-colcon build --packages-select camera_imu_pipeline_cpp --symlink-install
-source ~/to_ws/install/setup.bash
+### 2) 실행 순서 (현재 권장)
 
-# 변환 OFF(기본값)
-ros2 launch camera_imu_pipeline_cpp imu_pipeline_cpp.launch.py
-
-# 필요 시 변환 ON
-# ros2 launch camera_imu_pipeline_cpp imu_pipeline_cpp.launch.py imu_target_frame:=camera_imu_frame
-```
-
-### 2) Livox deskew (rtabmap.launch.py 사용 시)
-
-`rtabmap_nav2.launch.py`를 쓰지 않으면 deskew 노드를 별도로 올려야 합니다.
-
-```bash
-ros2 run rtabmap_util lidar_deskewing --ros-args \
-  -p fixed_frame_id:=odom \
-  -p wait_for_transform:=0.5 \
-  -p slerp:=true \
-  -r input_cloud:=/livox/lidar \
-  -r output_cloud:=/livox/lidar/deskewed
-```
-
-### 2-1) (권장) Livox 타임스탬프 오프셋 + ICP Odom 기반 맵핑
-
-라이다 타임스탬프가 과거로 밀려 있으면 deskew가 실패합니다. 아래 순서로 맞춥니다.
-
-1) **타임스탬프 오프셋 노드**
+1. 센서 동기/deskew/정적 TF 실행
 
 ```bash
-ros2 launch livox_timestamp_offset livox_timestamp_offset.launch.py \
-  input_topic:=/livox/lidar \
-  output_topic:=/livox/lidar/offset \
-  offset_sec:=-0.42
+ros2 launch rtabmap_launch sensor_sync.launch.py
 ```
 
-> `offset_sec`는 `now - stamp` 값을 보고 조정합니다. (예: 0.424s → -0.42)
-
-2) **ICP Odometry (guess는 EKF/odom TF 사용)**
+2. RTAB-Map + Nav2 실행
 
 ```bash
-ros2 run rtabmap_odom icp_odometry --ros-args \
-  -r scan_cloud:=/livox/lidar/offset \
-  -p odom_frame_id:=icp_odom \
-  -p publish_tf:=true \
-  -p guess_from_tf:=true \
-  -p guess_frame_id:=odom \
-  -p "Icp/RangeMin:='0.3'" \
-  -p "Icp/RangeMax:='20.0'" \
-  -p "Icp/MaxCorrespondenceDistance:='1.0'" \
-  -p "Icp/MaxTranslation:='0.6'" \
-  -p "Icp/CorrespondenceRatio:='0.01'" \
-  -p "Icp/VoxelSize:='0.1'" \
-  -p "Icp/DownsamplingStep:='1'" \
-  -p "Icp/Iterations:='30'" \
-  -p "Icp/PointToPlane:='false'"
+ros2 launch rtabmap_launch rtabmap_nav2.launch.py
 ```
 
-> `ratio`가 0.2~0.7 수준으로 꾸준히 나오면 정상입니다.
-
-3) **Deskew (offset 라이다 기준)**
+### 3) 필수 검증 명령
 
 ```bash
-ros2 run rtabmap_util lidar_deskewing --ros-args \
-  -p fixed_frame_id:=icp_odom \
-  -p wait_for_transform:=1.0 \
-  -p slerp:=true \
-  -r input_cloud:=/livox/lidar/offset \
-  -r output_cloud:=/livox/lidar/offset/deskewed
+ros2 topic hz /livox/lidar/synced/deskewed
+ros2 topic hz /livox/lidar/filtered
+ros2 topic hz /odometry/filtered
+
+ros2 topic info -v /odometry/filtered
+ros2 topic info -v /livox/lidar/synced/deskewed
+
+ros2 run tf2_ros tf2_echo map odom
+ros2 run tf2_ros tf2_echo map base_link
 ```
 
-> `/livox/lidar/offset/deskewed`가 출력되는지 확인하세요.
+### 4) 주의사항
 
-4) **RTAB-Map 실행 (deskew 토픽 연결)**
-
-```bash
-ros2 launch rtabmap_launch rtabmap.launch.py \
-  rtabmap_viz:=true \
-  localization:=false \
-  delete_db_on_start:=true \
-  odom_topic:=/icp_odom \
-  odom_frame_id:=icp_odom \
-  publish_tf_odom:=true \
-  odom_sensor_sync:=false \
-  scan_cloud_topic:=/livox/lidar/offset/deskewed \
-  rtabmap_args:="\
---RGBD/ProximityBySpace true \
---Rtabmap/LoopThr 0.15 \
---Rtabmap/DetectionRate 2.0 \
---Mem/STMSize 50 \
---Mem/RehearsalSimilarity 0.3 \
---Vis/MinInliers 10 \
---RGBD/LinearUpdate 0.15 \
---RGBD/AngularUpdate 0.10 \
---Reg/Strategy 1"
-```
-
-#### 체크 포인트
-
-- `tf2_echo icp_odom livox_frame`가 **계속 출력**되어야 deskew가 동작합니다.
-- `ros2 topic hz /livox/lidar/offset/deskewed`가 **정상 출력**되어야 RTAB‑Map 입력이 살아있습니다.
-
-### 3) 루프클로저 강화 실행(인라인)
-
-```bash
-ros2 launch rtabmap_launch rtabmap.launch.py \
-  rtabmap_viz:=true \
-  localization:=false \
-  delete_db_on_start:=true \
-  imu_topic:=/camera/camera/imu_fixed \
-  scan_cloud_topic:=/livox/lidar/deskewed \
-  odom_sensor_sync:=false \
-  rtabmap_args:="\
---RGBD/ProximityBySpace true \
---Rtabmap/LoopThr 0.15 \
---Rtabmap/DetectionRate 2.0 \
---Mem/STMSize 50 \
---Mem/RehearsalSimilarity 0.3 \
---Vis/MinInliers 10 \
---RGBD/LinearUpdate 0.15 \
---RGBD/AngularUpdate 0.10 \
---Reg/Strategy 1"
-```
-
-### 4) 루프클로저 자동 모니터링
-
-```bash
-python3 /home/world/to_ws/rtabmap_loop_status.py
-```
-
-출력에서 `accepted`가 0이 아니면 루프클로저가 붙은 것입니다.
-
----
+- `map` 프레임은 RTAB-Map 초기화 직후 잠깐 안 보일 수 있으며, 데이터가 들어오면 생성됨
+- `/livox/lidar/filtered`가 없으면 Nav2 obstacle mark가 동작하지 않음
+- `Reg/Strategy=1`은 RTAB-Map 기준으로 ICP 전략임 (Vis-only가 아님)

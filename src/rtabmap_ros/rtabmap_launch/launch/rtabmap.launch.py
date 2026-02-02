@@ -323,7 +323,8 @@ def launch_setup(context, *args, **kwargs):
                 "Grid/FromDepth": "false", # Depth 맵 생성 비활성화 (occupancy grid용)
                 "Cloud/FromDepth": "false", # Depth에서 클라우드 생성 비활성화 (라이다만 사용)
                 "Grid/MaxObstacleHeight": "2.0",  # 최대 장애물 높이 (2m)
-                "Grid/MaxGroundHeight": "0.0",   # 바닥으로 간주할 최대 높이 (15cm)
+                # MaxGroundHeight=0이면 RTAB-Map이 자동으로 CellSize로 대체하며 경고를 출력한다.
+                "Grid/MaxGroundHeight": "0.07",  # 바닥으로 간주할 최대 높이(7cm, CellSize와 동일)
                 "Grid/MinGroundHeight": "-0.5",    # 최소 바닥 높이 (base_link 아래 -50cm까지 바닥)
                 #---------------------------------------------------------
                 # 프레임마다 조금씩 다른 위치에 와도 같은 덩어리로 묶을 수 있게 도와줌 
@@ -349,7 +350,7 @@ def launch_setup(context, *args, **kwargs):
                 # (증분/로컬라이제이션 모드는 아래 ConditionalText로 일원화)
                 # ---------------------------------------------------------
                 # odom 보조 필터링
-                "odom/FilteringStrategy": "1", #"0=No filtering 1=Kalman filtering 2=Particle filtering. This filter is used to smooth the odometry output.
+                "odom/FilteringStrategy": "0", #"0=No filtering 1=Kalman filtering 2=Particle filtering. This filter is used to smooth the odometry output.
                 #---------------------------------------------------------
                 #---------------------------------------------------------
                 # 공간 기반 근접 매칭(루프클로저/드리프트 보정 강화)
@@ -363,7 +364,7 @@ def launch_setup(context, *args, **kwargs):
                 "Rtabmap/DetectionRate": "2.0",
                 #---------------------------------------------------------
                 # loop closure와 그래프 최적화의 성격을 정하는 옵션
-                "Reg/Strategy": "1",   # 0 = ICP, 1 = Vis (visual), 2 = Vis + ICP
+                "Reg/Strategy": "1",   # 0 = Vis, 1 = ICP, 2 = Vis+ICP
                 "RGBD/OptimizeMaxError": "0.8",        # (예시) 최적화 허용 오차 제한
                 "Rtabmap/LoopThr": "0.15",             # 루프 성립 임계(너무 높으면 루프가 안 잡힘)
                 "Vis/MinInliers": "10",                # 시각 매칭 최소 인라이어 수(루프 안정성)
@@ -507,7 +508,7 @@ def generate_launch_description():
         DeclareLaunchArgument('rviz_cfg', default_value=config_rviz,               description='Configuration path of rviz2.'),
 
         DeclareLaunchArgument('frame_id',       default_value='base_link',          description='Fixed frame id of the robot (base frame), you may set "base_link" or "base_footprint" if they are published. For camera-only config, this could be "camera_link".'),
-        DeclareLaunchArgument('odom_frame_id',  default_value='',                   description='If set, TF is used to get odometry instead of the topic.'),
+        DeclareLaunchArgument('odom_frame_id',  default_value='odom',                   description='If set, TF is used to get odometry instead of the topic.'),
         DeclareLaunchArgument('map_frame_id',   default_value='map',                description='Output map frame id (TF).'),
         DeclareLaunchArgument('map_topic',      default_value='map',                description='Map topic name.'),
         DeclareLaunchArgument('publish_tf_map', default_value='true',               description='Publish TF between map and odomerty.'),

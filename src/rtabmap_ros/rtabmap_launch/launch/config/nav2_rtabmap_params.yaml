@@ -241,7 +241,7 @@ local_costmap:
           expected_update_rate: 0.0 # 드롭 무시
 
         lidar_clear:
-          topic: /livox/lidar/deskewed
+          topic: /livox/lidar/synced/deskewed
           data_type: PointCloud2
           marking: false
           clearing: true

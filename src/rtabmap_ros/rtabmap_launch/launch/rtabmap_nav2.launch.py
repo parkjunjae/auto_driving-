@@ -20,6 +20,8 @@ def generate_launch_description():
     localization = LaunchConfiguration('localization')
     database_path = LaunchConfiguration('database_path')
     delete_db_on_start = LaunchConfiguration('delete_db_on_start')
+    livox_deskewed_topic = LaunchConfiguration('livox_deskewed_topic')
+    livox_filtered_topic = LaunchConfiguration('livox_filtered_topic')
 
     rtabmap_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -30,6 +32,13 @@ def generate_launch_description():
             'rtabmap_viz': rtabmap_viz,
             'rviz': rviz,
             'localization': localization,
+            # EKF(odometry/filtered) + RTAB-Map 구조를 고정해 TF 체인을 일관되게 유지
+            'odom_topic': '/odometry/filtered',
+            'odom_frame_id': 'odom',
+            'map_frame_id': 'map',
+            'publish_tf_map': 'true',
+            'visual_odometry': 'false',
+            'icp_odometry': 'false',
             'log_level': 'error',  
             'odom_log_level': 'error',  # Odometry 로그도 error 레벨로
             'qos': '2',  # BEST_EFFORT QoS for Nav2 compatibility
@@ -37,6 +46,7 @@ def generate_launch_description():
             'rtabmap_args': rtabmap_args,  # Prefer ROS params in rtabmap.launch.py
             'database_path': database_path,
             'delete_db_on_start': delete_db_on_start,  # DB reset via ROS param
+            'scan_cloud_topic': livox_deskewed_topic,  # Use the same deskewed cloud everywhere
         }.items()
     )
     # Livox deskewing using rtabmap_util (C++), faster than Python deskew
@@ -65,8 +75,8 @@ def generate_launch_description():
         name='livox_pointcloud_filter',             # 노드 이름(ros2 node list에 표시됨)
         output='screen',                            # 로그를 터미널에 출력
         parameters=[{
-            'input_topic': '/livox/lidar/deskewed',  # 입력 포인트클라우드(데스큐 완료)
-            'output_topic': '/livox/lidar/filtered', # 필터링 후 출력 토픽
+            'input_topic': livox_deskewed_topic,      # 입력 포인트클라우드(데스큐 완료)
+            'output_topic': livox_filtered_topic,     # 필터링 후 출력 토픽
             'leaf_size': 0.05,                       # VoxelGrid 다운샘플 크기(해상도)
             'ror_radius': 0.15,                      # ROR 반경(이웃 탐색 거리)
             'ror_min_neighbors': 2,                  # ROR 이웃 최소 개수
@@ -206,6 +216,10 @@ def generate_launch_description():
         DeclareLaunchArgument('rviz', default_value='false', description='Launch RVIZ from rtabmap launch'),
         DeclareLaunchArgument('log_level', default_value='warn', description='Nav2 log level'),
         DeclareLaunchArgument('localization', default_value='false', description='Enable localization-only mode'),
+        DeclareLaunchArgument('livox_deskewed_topic', default_value='/livox/lidar/synced/deskewed',
+                             description='Deskewed LiDAR topic used by RTAB-Map and Livox filter'),
+        DeclareLaunchArgument('livox_filtered_topic', default_value='/livox/lidar/filtered',
+                             description='Filtered LiDAR topic for Nav2 costmap marking'),
         # Keep args empty to avoid overriding ROS params.
         DeclareLaunchArgument('rtabmap_args', default_value='', description='Extra CLI flags for rtabmap'),
         # Use ROS param to control DB reset from this launch file.
