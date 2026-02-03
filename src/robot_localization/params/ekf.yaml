@@ -1,90 +1,67 @@
 ekf_filter_node:
   ros__parameters:
-    frequency: 30.0
-    sensor_timeout: 0.2
+    frequency: 30.0 # EKF 출력/예측 주기(Hz)
+    sensor_timeout: 0.2 # 이 시간(sec) 동안 센서 입력이 없으면 해당 센서를 일시적으로 무시
 
-    two_d_mode: true
+    two_d_mode: true # 평면 주행 모드( z, roll, pitch 축을 0으로 고정 )
 
-    map_frame: map
-    odom_frame: odom
-    base_link_frame: base_link
-    world_frame: odom
+    map_frame: map # 전역 참조 프레임(전역 위치 표현용)
+    odom_frame: odom # 연속적인 로컬 프레임(점프 없는 주행 기준)
+    base_link_frame: base_link # 로봇 본체 프레임
+    world_frame: odom # EKF가 pose를 출력할 기준 프레임(현재는 odom 기준)
 
-    publish_tf: true
-    transform_time_offset: 0.0
-    predict_to_current_time: true
+    publish_tf: true # odom -> base_link TF를 EKF가 직접 publish
+    transform_time_offset: 0.0 # TF 타임스탬프 오프셋(sec), 필요 시 미래/과거 보정
+    predict_to_current_time: false # 현재 시각까지 추가 예측 비활성(오버슈트/앞서감 방지)
 
-    # Tracer odom
-    odom0: /odom
-    odom0_queue_size: 10
-    odom0_differential: false
-    odom0_relative: false
+    # Wheel odometry 입력
+    odom0: /odom # 바퀴 오도메트리 토픽
+    odom0_queue_size: 10 # odom 메시지 큐 크기
+    odom0_differential: false # 절대값 입력 사용(true면 미분값으로 해석)
+    odom0_relative: false # 상대 프레임 누적 사용 여부(false=절대 pose 해석)
+    # odom0_config 순서:
+    # [x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az]
     odom0_config:
       [
-        true,
-        true,
-        false,
-        false,
-        false,
-        true,
-        true,
-        false,
-        false,
-        false,
-        false,
-        true,
-        false,
-        false,
-        false,
+        false, # x (wheel pose는 슬립 영향으로 사용 안 함)
+        false, # y (wheel pose는 슬립 영향으로 사용 안 함)
+        false, # z
+        false, # roll
+        false, # pitch
+        false, # yaw (회전은 IMU를 신뢰)
+        true,  # vx
+        false, # vy
+        false, # vz
+        false, # vroll
+        false, # vpitch
+        false, # vyaw (회전속도도 IMU를 신뢰)
+        false, # ax
+        false, # ay
+        false, # az
       ]
 
-    # # ICP odom (LiDAR)
-    # odom1: /icp_odom
-    # odom1_queue_size: 10
-    # odom1_differential: false
-    # odom1_relative: false
-    # odom1_config:
-    #   [
-    #     false,
-    #     false,
-    #     false,
-    #     false,
-    #     false,
-    #     true,
-    #     false,
-    #     false,
-    #     false,
-    #     false,
-    #     false,
-    #     false,
-    #     false,
-    #     false,
-    #     false,
-    #   ]
-
-    # Livox IMU (disabled)
-    # imu0: /livox/imu_fixed
-    # Camera IMU (bias corrected)
-    imu0: /camera/camera/imu_fixed
-    imu0_queue_size: 200
-    imu0_differential: false
-    imu0_relative: true
-    imu0_remove_gravitational_acceleration: false
+    # IMU 입력
+    imu0: /camera/camera/imu_fixed # 보정된 IMU 토픽
+    imu0_queue_size: 200 # IMU 큐 크기(고주파 센서라 크게 설정)
+    imu0_differential: false # 절대 orientation/각속도 사용
+    imu0_relative: true # 초기값 기준 상대 orientation 사용(시작 자세 오프셋 완화)
+    imu0_remove_gravitational_acceleration: false # 가속도에서 중력 성분 제거 여부
+    # imu0_config 순서는 odom0_config와 동일
     imu0_config:
       [
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        true,
-        false,
-        false,
-        false,
+        false, # x
+        false, # y
+        false, # z
+        false, # roll
+        false, # pitch
+        true,  # yaw
+        false, # vx
+        false, # vy
+        false, # vz
+        false, # vroll
+        false, # vpitch
+        true,  # vyaw
+        false, # ax
+        false, # ay
+        false, # az
       ]

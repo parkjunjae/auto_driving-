@@ -198,51 +198,80 @@ python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py \
 
 ## RTAB-Map 맵핑/TF 안정화 (현재 반영 상태)
 
-### 1) 이번에 반영한 수정
+### 1. 시간동기/deskew/TF 보정
 
-- `rtabmap_nav2.launch.py`에서 RTAB-Map 입력 체인을 EKF 기준으로 고정:
-  - `odom_topic:=/odometry/filtered`
-  - `odom_frame_id:=odom`
-  - `map_frame_id:=map`
-  - `publish_tf_map:=true`
-  - `visual_odometry:=false`, `icp_odometry:=false`
-- LiDAR 토픽 경로를 하나로 통일:
-  - deskew 입력 기준 토픽: `/livox/lidar/synced/deskewed`
-  - 필터 출력 토픽: `/livox/lidar/filtered`
-- `livox_pointcloud_filter` 입력을 deskew 토픽으로 정렬해서 `/livox/lidar/filtered`가 안정적으로 발행되게 수정
-- `rtabmap.launch.py`에서 경고 제거:
-  - `Grid/MaxGroundHeight`를 `0.07`로 고정 (0.0 경고 제거)
+- **목표**
+  - LiDAR/IMU/odom 시간축 불일치와 TF 초기 불안정을 줄여 맵 뒤틀림과 고스팅을 완화.
 
-### 2) 실행 순서 (현재 권장)
+- **수정한 내용**
+  - `sensor_sync.launch.py`에서 Livox 타임스탬프 오프셋 적용:
+    - `/livox/lidar -> /livox/lidar/synced`
+    - 운영값: `lidar_offset_sec:=0.036`
+  - deskew/필터/RTAB-Map 입력 토픽 경로 통일:
+    - deskew 입력 기준: `/livox/lidar/synced/deskewed`
+    - 필터 출력: `/livox/lidar/filtered`
+  - `rtabmap_nav2.launch.py`에서 TF 체인 고정:
+    - `odom_topic=/odometry/filtered`
+    - `odom_frame_id=odom`
+    - `map_frame_id=map`
+    - `publish_tf_map=true`
+    - 내부 odom 중복 방지: `visual_odometry=false`, `icp_odometry=false`
+  - `rtabmap.launch.py`:
+    - `tf_delay: 0.05`로 조정
+    - `Grid/MaxGroundHeight: 0.07`로 경고 제거
+    - 정합 보수화 반영:
+      - `Reg/Strategy=2 (Vis+ICP)`
+      - `Reg/Force3DoF=true`
+      - `RGBD/ProximityBySpace=false`
+      - `Vis/MinInliers=20`
+      - `Rtabmap/LoopThr=0.25`
+      - `RGBD/OptimizeMaxError=0.3`
+      - `RGBD/AngularUpdate=0.20`
 
-1. 센서 동기/deskew/정적 TF 실행
+- **검증 명령**
 
 ```bash
-ros2 launch rtabmap_launch sensor_sync.launch.py
+ros2 topic delay /livox/lidar/synced
+ros2 topic delay /livox/lidar/synced/deskewed
+ros2 topic delay /odometry/filtered
+
+sleep 5
+python3 ~/to_ws/tf_jump_monitor.py --jump-trans 0.03 --jump-rot-deg 2 --output ~/to_ws/tf_jump_final_sensitive.csv
 ```
 
-2. RTAB-Map + Nav2 실행
+- **검증 결과 요약**
+  - `/livox/lidar/synced` delay 평균 `~0.001~0.002s`
+  - `/odometry/filtered` delay 평균 `~0.003s` (max `~0.010s`)
+  - TF `MISSING` 1회는 시작 시점(`0.00s`) transient로 확인됨
 
-```bash
-ros2 launch rtabmap_launch rtabmap_nav2.launch.py
-```
+### 2. EKF 튜닝 (odom->base_link 안정화)
 
-### 3) 필수 검증 명령
+- **문제**
+  - 회전 구간에서 `odom->base_link` 점프가 많고, RViz에서 전진 시 대각선 드리프트가 발생.
 
-```bash
-ros2 topic hz /livox/lidar/synced/deskewed
-ros2 topic hz /livox/lidar/filtered
-ros2 topic hz /odometry/filtered
+- **원인 분석**
+  - wheel `/odom`의 `pose/yaw` 공분산이 너무 작아 EKF가 wheel pose를 과신.
+  - 실측 반복 오차에서 회전(360도) yaw 오차가 크게 확인됨.
 
-ros2 topic info -v /odometry/filtered
-ros2 topic info -v /livox/lidar/synced/deskewed
+- **수정한 내용**
+  - `src/robot_localization/params/ekf.yaml`:
+    - `predict_to_current_time=false`
+    - `odom0_config`: `vx`만 사용 (`x,y,yaw,vyaw` 비활성)
+    - `imu0_config`: `yaw`, `vyaw` 사용
+  - `src/tracer_ros2/tracer_base/include/tracer_base/tracer_messenger.hpp`:
+    - wheel pose/yaw 비신뢰 처리:
+      - `pose.covariance[x,y,yaw] = 1e6`
+    - wheel 속도는 `vx`만 제한적으로 사용:
+      - `twist.covariance[vx] = 0.01`
+      - `twist.covariance[vyaw] = 1e6`
 
-ros2 run tf2_ros tf2_echo map odom
-ros2 run tf2_ros tf2_echo map base_link
-```
+- **검증 결과 요약**
+  - 튜닝 후 민감 기준에서:
+    - `odom->base_link JUMP`가 크게 감소 (`53 -> 11`)
+    - `MISSING`은 시작 transient 1회 수준
+  - 해석:
+    - 회전 시 관측 충돌이 줄었고, TF/odom 체인이 실사용 수준으로 안정화됨
 
-### 4) 주의사항
-
-- `map` 프레임은 RTAB-Map 초기화 직후 잠깐 안 보일 수 있으며, 데이터가 들어오면 생성됨
-- `/livox/lidar/filtered`가 없으면 Nav2 obstacle mark가 동작하지 않음
-- `Reg/Strategy=1`은 RTAB-Map 기준으로 ICP 전략임 (Vis-only가 아님)
+- **추가 미세조정 포인트**
+  - 회전 시 아직 흔들리면 `twist.covariance[vx]`를 `0.01 -> 0.02`로 상향
+  - 반응이 둔하면 `0.01 -> 0.005`로 하향

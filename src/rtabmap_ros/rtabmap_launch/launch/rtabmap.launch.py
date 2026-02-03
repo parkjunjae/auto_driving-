@@ -307,7 +307,7 @@ def launch_setup(context, *args, **kwargs):
                 "odom_tf_angular_variance": LaunchConfiguration('odom_tf_angular_variance'),
                 "odom_tf_linear_variance": LaunchConfiguration('odom_tf_linear_variance'),
                 "odom_sensor_sync": LaunchConfiguration('odom_sensor_sync'),
-                "tf_delay": 0.2,
+                "tf_delay": 0.05,
                 "wait_for_transform": LaunchConfiguration('wait_for_transform'),
                 "database_path": LaunchConfiguration('database_path'),
                 "delete_db_on_start": LaunchConfiguration('delete_db_on_start'),  # Keep DB reset as ROS param (avoid CLI args override)
@@ -354,21 +354,22 @@ def launch_setup(context, *args, **kwargs):
                 #---------------------------------------------------------
                 #---------------------------------------------------------
                 # 공간 기반 근접 매칭(루프클로저/드리프트 보정 강화)
-                "RGBD/ProximityBySpace": "true",
+                "RGBD/ProximityBySpace": "false",
                 "RGBD/ProximityMaxGraphDepth": "0",     # 전체 그래프까지 근접 탐색
                 "RGBD/ProximityPathMaxNeighbors": "1",  # 근접 링크를 늘려 경로 정합 보강
                 # 회전 중 과도한 노드 삽입 억제 (고스팅 감소)
                 "RGBD/LinearUpdate": "0.15",
-                "RGBD/AngularUpdate": "0.10",
+                "RGBD/AngularUpdate": "0.20",
                 # 처리 주기(Hz) - 너무 낮으면 보정이 늦고, 너무 높으면 부담
                 "Rtabmap/DetectionRate": "2.0",
                 #---------------------------------------------------------
                 # loop closure와 그래프 최적화의 성격을 정하는 옵션
-                "Reg/Strategy": "1",   # 0 = Vis, 1 = ICP, 2 = Vis+ICP
-                "RGBD/OptimizeMaxError": "0.8",        # (예시) 최적화 허용 오차 제한
-                "Rtabmap/LoopThr": "0.15",             # 루프 성립 임계(너무 높으면 루프가 안 잡힘)
-                "Vis/MinInliers": "10",                # 시각 매칭 최소 인라이어 수(루프 안정성)
-                #---------------------------------------------------------
+                "Reg/Strategy": "2",   # 0 = Vis, 1 = ICP, 2 = Vis+ICP
+                "Reg/Force3DoF": "true", #정합(등록) 결과를 **3자유도(평면)**로 강제하는 옵션 로봇 포즈를 x, y, yaw만 쓰고 z, roll, pitch 변화를 무시/억제
+                "RGBD/OptimizeMaxError": "0.3",        # (예시) 최적화 허용 오차 제한
+                "Rtabmap/LoopThr": "0.25",             # 루프 성립 임계(너무 높으면 루프가 안 잡힘)
+                "Vis/MinInliers": "20",                # 시각 매칭 최소 인라이어 수(루프 안정성)
+                #--------------------------------------------------------
                 # Keep local area stable by optimizing from the latest pose.
                 "RGBD/OptimizeFromGraphEnd": "true",
                 "topic_queue_size": LaunchConfiguration('topic_queue_size'),

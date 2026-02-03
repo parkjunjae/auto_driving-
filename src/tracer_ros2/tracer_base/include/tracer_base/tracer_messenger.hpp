@@ -305,15 +305,15 @@ class TracerMessenger {
     odom_msg.twist.twist.linear.y = 0.0;
     odom_msg.twist.twist.angular.z = angular_speed;
 
-    // Covariance 설정 (EKF가 이 데이터를 신뢰하도록)
-    // pose covariance (x, y, yaw에 대한 불확실성)
-    odom_msg.pose.covariance[0] = 0.001;   // x
-    odom_msg.pose.covariance[7] = 0.001;   // y
-    odom_msg.pose.covariance[35] = 0.01;   // yaw
+    // Covariance 설정
+    // wheel pose/yaw는 슬립 영향이 커서 EKF에서 거의 무시되도록 크게 설정
+    odom_msg.pose.covariance[0] = 1000000.0;   // x
+    odom_msg.pose.covariance[7] = 1000000.0;   // y
+    odom_msg.pose.covariance[35] = 1000000.0;  // yaw
 
-    // twist covariance (vx, vyaw에 대한 불확실성)
-    odom_msg.twist.covariance[0] = 0.001;  // vx
-    odom_msg.twist.covariance[35] = 0.01;  // vyaw
+    // wheel 속도는 vx만 제한적으로 사용, vyaw는 IMU를 신뢰
+    odom_msg.twist.covariance[0] = 0.01;       // vx
+    odom_msg.twist.covariance[35] = 1000000.0; // vyaw
 
     odom_pub_->publish(odom_msg);
   }

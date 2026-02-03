@@ -49,26 +49,6 @@ def generate_launch_description():
             'scan_cloud_topic': livox_deskewed_topic,  # Use the same deskewed cloud everywhere
         }.items()
     )
-    # Livox deskewing using rtabmap_util (C++), faster than Python deskew
-    # NOTE: sensor_sync.launch.py로 이동됨 (시간동기 + deskew + static TF 통합)
-    # lidar_deskew_node = Node(
-    #     package='rtabmap_util',
-    #     executable='lidar_deskewing',
-    #     name='rtabmap_lidar_deskewing',
-    #     output='screen',
-    #     parameters=[{
-    #         'fixed_frame_id': 'odom',
-    #         'queue_size': 5,
-    #         'qos': 2,  # BEST_EFFORT
-    #         'wait_for_transform': 0.5,
-    #         'slerp': True,
-    #         'use_sim_time': use_sim_time,
-    #     }],
-    #     remappings=[('input_cloud', '/livox/lidar')],
-    # )
-    # Livox 포인트클라우드 필터(다운샘플 + ROR)
-    # - 데스큐된 포인트를 입력으로 받아 다운샘플링 + ROR 노이즈 제거 수행
-    # - 필터링 결과를 /livox/lidar/filtered로 출력하여 코스트맵에 사용
     livox_filter_node = Node(
         package='livox_pointcloud_filter',          # 필터 노드가 들어있는 패키지
         executable='livox_pointcloud_filter_node',  # 실행할 노드 이름
@@ -84,50 +64,6 @@ def generate_launch_description():
             'use_ror': True,                         # ROR 노이즈 제거 사용 여부
         }],
     )
-    # # ICP odometry (LiDAR) for EKF fusion
-    # icp_odometry_node = Node(
-    #     package='rtabmap_odom',
-    #     executable='icp_odometry',
-    #     name='icp_odometry',
-    #     output='screen',
-    #     parameters=[{
-    #         'frame_id': 'base_link',
-    #         'odom_frame_id': 'odom',
-    #         'publish_tf': False,
-    #         'wait_for_transform': 0.2,
-    #         'approx_sync': False,
-    #         'qos': 2,  # BEST_EFFORT
-    #         'topic_queue_size': 10,
-    #         'sync_queue_size': 10,
-    #         'deskewing': False,
-    #         'deskewing_slerp': False,
-    #         'guess_frame_id': 'odom',
-    #         'guess_min_translation': 0.0,
-    #         'guess_min_rotation': 0.0,
-    #         'always_process_most_recent_frame': True,
-    #         'use_sim_time': use_sim_time,
-    #     }],
-    #     remappings=[
-    #         ('scan_cloud', '/livox/lidar/deskewed'),
-    #         ('scan', '/scan_dummy'),
-    #         ('odom', '/icp_odom'),
-    #         ('imu', '/livox/imu_fixed'),
-    #     ],
-    # )
-    # PointCloud2 frame transform node (base_link → odom)
-    # pointcloud_transform_node = Node(
-    #     package='pointcloud_transform',
-    #     executable='transform_node',
-    #     name='pointcloud_transform_node',
-    #     output='screen',
-    #     parameters=[{
-    #         'input_topic': '/rtabmap/local_grid_obstacle',
-    #         'output_topic': '/rtabmap/local_grid_obstacle_odom',
-    #         'target_frame': 'odom'
-    #     }]
-    # )
-
-    # Nav2 server nodes (without lifecycle manager)
     nav2_server_nodes = TimerAction(
         period=5.0,
         actions=[
@@ -226,10 +162,7 @@ def generate_launch_description():
         DeclareLaunchArgument('delete_db_on_start', default_value='true', description='Delete RTAB-Map database at startup'),
         DeclareLaunchArgument('database_path', default_value=os.path.expanduser('~/.ros/rtabmap_nav2.db'), description=''),
         rtabmap_launch,
-        # lidar_deskew_node,  # sensor_sync.launch.py로 이동됨
         livox_filter_node,
-        # icp_odometry_node,
-        # pointcloud_transform_node,
         nav2_server_nodes,
         lifecycle_manager_node
     ])

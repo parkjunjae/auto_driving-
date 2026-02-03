@@ -1,0 +1,3 @@
+wall_time,ros_time,chain,event,trans_delta_m,rot_delta_deg,age_sec,detail
+2026-02-03T13:10:05.524,1770091805.524848,odom->base_link,STALE,0.000000,0.000000,0.104503,
+2026-02-03T13:12:14.082,1770091934.082343,odom->base_link,JUMP,0.000390,2.585954,0.030716,

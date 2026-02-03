@@ -1,0 +1,5 @@
+wall_time,ros_time,chain,event,trans_delta_m,rot_delta_deg,age_sec,detail
+2026-02-03T09:28:23.450,1770078503.450326,map->odom,MISSING,0.000000,0.000000,0.000000,"""map"" passed to lookupTransform argument target_frame does not exist. "
+2026-02-03T09:28:23.450,1770078503.450681,odom->base_link,MISSING,0.000000,0.000000,0.000000,"""odom"" passed to lookupTransform argument target_frame does not exist. "
+2026-02-03T09:28:23.983,1770078503.983142,odom->base_link,MISSING,0.000000,0.000000,0.000000,Could not find a connection between 'odom' and 'base_link' because they are not part of the same tree.Tf has two or more unconnected trees.
+2026-02-03T09:28:24.483,1770078504.483159,odom->base_link,MISSING,0.000000,0.000000,0.000000,Could not find a connection between 'odom' and 'base_link' because they are not part of the same tree.Tf has two or more unconnected trees.
