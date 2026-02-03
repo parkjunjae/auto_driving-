@@ -1,5 +1,3 @@
-# auto_driving-
-
 ## 가제보(ros_gz) 기반 PID 강화학습 절차
 
 > Jetson Orin에서 GUI가 느릴 수 있어 **headless(-s)** 권장
