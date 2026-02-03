@@ -17,18 +17,19 @@ except ImportError as e:
 
 @dataclass
 class PidBounds:
-    kp_lin_min: float = 0.2
-    kp_lin_max: float = 2.0
+    # 최근 실차 로그 저오차 구간(상위 25%) 기반으로 범위를 좁혀 헌팅을 억제
+    kp_lin_min: float = 1.05
+    kp_lin_max: float = 1.30
     ki_lin_min: float = 0.0
-    ki_lin_max: float = 0.05
-    kd_lin_min: float = 0.0
-    kd_lin_max: float = 0.5
-    kp_ang_min: float = 0.5
-    kp_ang_max: float = 4.0
+    ki_lin_max: float = 0.01
+    kd_lin_min: float = 0.02
+    kd_lin_max: float = 0.08
+    kp_ang_min: float = 1.10
+    kp_ang_max: float = 1.35
     ki_ang_min: float = 0.0
-    ki_ang_max: float = 0.05
-    kd_ang_min: float = 0.0
-    kd_ang_max: float = 0.8
+    ki_ang_max: float = 0.01
+    kd_ang_min: float = 0.07
+    kd_ang_max: float = 0.14
 
 
 class RealPidGainEnv(gym.Env):
@@ -48,7 +49,16 @@ class RealPidGainEnv(gym.Env):
         param_prefix: str = "RLController",
         desired_cmd_topic: str = "/controller_server/RLController/desired_cmd",
         desired_cmd_type: str = "auto",
-        step_dt: float = 0.1,
+        step_dt: float = 0.4,
+        gain_scale: float = 0.2,
+        gain_lpf_alpha: float = 0.18,
+        action_deadzone: float = 0.25,
+        straight_freeze_w_ref: float = 0.12,
+        straight_freeze_v_ref: float = 0.08,
+        stop_freeze_v_ref: float = 0.03,
+        stop_freeze_w_ref: float = 0.05,
+        rotate_freeze_w_ref: float = 0.20,
+        rotate_freeze_v_ref: float = 0.05,
         param_wait_sec: float = 15.0,
         use_sim_time: bool = False,
     ):
@@ -80,6 +90,15 @@ class RealPidGainEnv(gym.Env):
 
         self.param_prefix = param_prefix
         self.step_dt = step_dt
+        self.gain_scale = gain_scale
+        self.gain_lpf_alpha = gain_lpf_alpha
+        self.action_deadzone = action_deadzone
+        self.straight_freeze_w_ref = straight_freeze_w_ref
+        self.straight_freeze_v_ref = straight_freeze_v_ref
+        self.stop_freeze_v_ref = stop_freeze_v_ref
+        self.stop_freeze_w_ref = stop_freeze_w_ref
+        self.rotate_freeze_w_ref = rotate_freeze_w_ref
+        self.rotate_freeze_v_ref = rotate_freeze_v_ref
 
         # 상태(관측) = [v_ref, w_ref, v_meas, w_meas, e_v, e_w]
         self.observation_space = spaces.Box(low=-10.0, high=10.0, shape=(6,), dtype=float)
@@ -88,15 +107,15 @@ class RealPidGainEnv(gym.Env):
         self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(6,), dtype=float)
 
         # PID 게인 초기값(현재 설정과 동일하게 맞춤)
-        self.kp_lin = 1.0
+        self.kp_lin = 1.20
         self.ki_lin = 0.0
-        self.kd_lin = 0.1
-        self.kp_ang = 1.0
+        self.kd_lin = 0.03
+        self.kp_ang = 1.23
         self.ki_ang = 0.0
-        self.kd_ang = 0.1
+        self.kd_ang = 0.10
 
         self.bounds = PidBounds()
-        self.gain_steps = (0.05, 0.005, 0.02, 0.1, 0.005, 0.02)
+        self.gain_steps = (0.015, 0.001, 0.005, 0.02, 0.001, 0.005)
 
         self.v_ref = 0.0
         self.w_ref = 0.0
@@ -183,13 +202,46 @@ class RealPidGainEnv(gym.Env):
 
     def _apply_action(self, action):
         # 행동을 PID 게인 증감으로 적용
-        deltas = [a * s for a, s in zip(action, self.gain_steps)]
-        self.kp_lin = self._clamp(self.kp_lin + deltas[0], self.bounds.kp_lin_min, self.bounds.kp_lin_max)
-        self.ki_lin = self._clamp(self.ki_lin + deltas[1], self.bounds.ki_lin_min, self.bounds.ki_lin_max)
-        self.kd_lin = self._clamp(self.kd_lin + deltas[2], self.bounds.kd_lin_min, self.bounds.kd_lin_max)
-        self.kp_ang = self._clamp(self.kp_ang + deltas[3], self.bounds.kp_ang_min, self.bounds.kp_ang_max)
-        self.ki_ang = self._clamp(self.ki_ang + deltas[4], self.bounds.ki_ang_min, self.bounds.ki_ang_max)
-        self.kd_ang = self._clamp(self.kd_ang + deltas[5], self.bounds.kd_ang_min, self.bounds.kd_ang_max)
+        # 미세 잡음은 deadzone으로 무시
+        scaled = []
+        for a in action:
+            aa = float(a)
+            if abs(aa) < self.action_deadzone:
+                aa = 0.0
+            scaled.append(aa * self.gain_scale)
+
+        # 정지 구간에서는 게인을 갱신하지 않아 대기 중 흔들림을 억제
+        if abs(self.v_ref) < self.stop_freeze_v_ref and abs(self.w_ref) < self.stop_freeze_w_ref:
+            return
+
+        # 직진 구간에서는 각속도 PID를 고정해 좌우 헌팅을 줄임
+        if self.v_ref > self.straight_freeze_v_ref and abs(self.w_ref) < self.straight_freeze_w_ref:
+            scaled[3] = 0.0
+            scaled[4] = 0.0
+            scaled[5] = 0.0
+        # 제자리 회전에 가까운 구간에서는 선속도 PID를 고정
+        if abs(self.w_ref) > self.rotate_freeze_w_ref and abs(self.v_ref) < self.rotate_freeze_v_ref:
+            scaled[0] = 0.0
+            scaled[1] = 0.0
+            scaled[2] = 0.0
+
+        deltas = [a * s for a, s in zip(scaled, self.gain_steps)]
+
+        tgt_kp_lin = self._clamp(self.kp_lin + deltas[0], self.bounds.kp_lin_min, self.bounds.kp_lin_max)
+        tgt_ki_lin = self._clamp(self.ki_lin + deltas[1], self.bounds.ki_lin_min, self.bounds.ki_lin_max)
+        tgt_kd_lin = self._clamp(self.kd_lin + deltas[2], self.bounds.kd_lin_min, self.bounds.kd_lin_max)
+        tgt_kp_ang = self._clamp(self.kp_ang + deltas[3], self.bounds.kp_ang_min, self.bounds.kp_ang_max)
+        tgt_ki_ang = self._clamp(self.ki_ang + deltas[4], self.bounds.ki_ang_min, self.bounds.ki_ang_max)
+        tgt_kd_ang = self._clamp(self.kd_ang + deltas[5], self.bounds.kd_ang_min, self.bounds.kd_ang_max)
+
+        # 저역통과로 게인 급변을 완화
+        a = self.gain_lpf_alpha
+        self.kp_lin = self._clamp(self.kp_lin + a * (tgt_kp_lin - self.kp_lin), self.bounds.kp_lin_min, self.bounds.kp_lin_max)
+        self.ki_lin = self._clamp(self.ki_lin + a * (tgt_ki_lin - self.ki_lin), self.bounds.ki_lin_min, self.bounds.ki_lin_max)
+        self.kd_lin = self._clamp(self.kd_lin + a * (tgt_kd_lin - self.kd_lin), self.bounds.kd_lin_min, self.bounds.kd_lin_max)
+        self.kp_ang = self._clamp(self.kp_ang + a * (tgt_kp_ang - self.kp_ang), self.bounds.kp_ang_min, self.bounds.kp_ang_max)
+        self.ki_ang = self._clamp(self.ki_ang + a * (tgt_ki_ang - self.ki_ang), self.bounds.ki_ang_min, self.bounds.ki_ang_max)
+        self.kd_ang = self._clamp(self.kd_ang + a * (tgt_kd_ang - self.kd_ang), self.bounds.kd_ang_min, self.bounds.kd_ang_max)
         self._set_pid_params()
 
     def reset(self, *, seed=None, options=None):
@@ -231,4 +283,5 @@ class RealPidGainEnv(gym.Env):
 
     def close(self):
         self.node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()

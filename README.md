@@ -133,7 +133,8 @@ ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear:{x:0.3}, angular:{z:0.0
 source /opt/ros/humble/setup.bash
 source ~/to_ws/install/setup.bash
 source ~/to_ws/.venv/bin/activate
-python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py
+ros2 launch rl_pid_training agent_pid.launch.py \
+  python_exec:=/home/world/to_ws/.venv/bin/python3
 ```
 
 > 추론 중 PID 파라미터는 `ros2 param get /controller_server RLController.pid_kp_lin` 등으로 변화를 확인할 수 있습니다.
@@ -180,10 +181,11 @@ ros2 topic list | grep /controller_server/RLController/desired_cmd
 
 ```bash
 source ~/to_ws/.venv/bin/activate
-python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py \
-  --model /home/world/to_ws/rl_pid_model_new \
-  --odom-topic /odometry/filtered \
-  --desired-cmd-topic /controller_server/RLController/desired_cmd
+ros2 launch rl_pid_training agent_pid.launch.py \
+  python_exec:=/home/world/to_ws/.venv/bin/python3 \
+  model:=/home/world/to_ws/rl_pid_model_new \
+  odom_topic:=/odometry/filtered \
+  desired_cmd_topic:=/controller_server/RLController/desired_cmd
 ```
 
 6. 목표 주행은 기존 방식 그대로  
@@ -191,6 +193,44 @@ python3 ~/to_ws/src/rl_pid_training/rl_pid_training/run_pid_policy.py \
 
 > 요약: **run_pid_policy.py는 PID 게인만 실시간으로 갱신**합니다.  
 > 실제 이동/경로 생성은 기존 Nav2/RTAB-Map 흐름 그대로 유지됩니다.
+
+### 8) Agent PID 실차 안정화 (최신 기본값)
+
+- 아래 값들은 최근 실차 로그(`rl_pid_logs/pid_policy_*.csv`)에서 저오차 구간을 기준으로
+  **헌팅(좌우 덜덜) 억제**를 목표로 반영됨.
+
+- 실행 갱신 파라미터 (`agent_pid.launch.py` 기본값)
+  - `step_dt: 0.4` (게인 갱신 주기, 느리게)
+  - `gain_scale: 0.2` (모델 action 크기 축소)
+  - `gain_lpf_alpha: 0.18` (게인 저역통과)
+  - `action_deadzone: 0.25` (작은 action 무시)
+  - `straight_freeze_w_ref: 0.12`, `straight_freeze_v_ref: 0.08` (직진 시 yaw PID freeze)
+  - `stop_freeze_v_ref: 0.03`, `stop_freeze_w_ref: 0.05` (정지 시 게인 업데이트 중지)
+  - `rotate_freeze_w_ref: 0.20`, `rotate_freeze_v_ref: 0.05` (제자리 회전 시 lin PID freeze)
+
+- Agent 내부 PID 범위 (`rl_pid_env_real.py`)
+  - `kp_lin: 1.05 ~ 1.30`
+  - `ki_lin: 0.00 ~ 0.01`
+  - `kd_lin: 0.02 ~ 0.08`
+  - `kp_ang: 1.10 ~ 1.35`
+  - `ki_ang: 0.00 ~ 0.01`
+  - `kd_ang: 0.07 ~ 0.14`
+
+- Agent 초기 PID 값 (시작점)
+  - `kp_lin=1.20`, `ki_lin=0.0`, `kd_lin=0.03`
+  - `kp_ang=1.23`, `ki_ang=0.0`, `kd_ang=0.10`
+
+- RLController 기본 PID도 동일 기준으로 반영됨
+  - `src/rtabmap_ros/rtabmap_launch/launch/config/nav2_rtabmap_params.yaml`
+  - `src/rtabmap_ros/rtabmap_launch/launch/config/nav2_rtabmap_params_train.yaml`
+
+- 재빌드
+
+```bash
+cd ~/to_ws
+colcon build --packages-select rl_pid_training rtabmap_launch
+source ~/to_ws/install/setup.bash
+```
 
 ---
 
