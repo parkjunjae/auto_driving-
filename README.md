@@ -194,37 +194,58 @@ ros2 launch rl_pid_training agent_pid.launch.py \
 > 요약: **run_pid_policy.py는 PID 게인만 실시간으로 갱신**합니다.  
 > 실제 이동/경로 생성은 기존 Nav2/RTAB-Map 흐름 그대로 유지됩니다.
 
-### 8) Agent PID 실차 안정화 (최신 기본값)
+### 8) Agent PID 실차 안정화 (최신 기본값 + 적용 이유)
 
-- 아래 값들은 최근 실차 로그(`rl_pid_logs/pid_policy_*.csv`)에서 저오차 구간을 기준으로
-  **헌팅(좌우 덜덜) 억제**를 목표로 반영됨.
+- **왜 수정했는가**
+  - 기존에는 agent가 게인을 너무 자주/크게 바꿔 `kp/kd`가 경계값에 붙는 헌팅이 발생했고,
+    전진 중 좌우 떨림(`w_meas` 부호 전환)으로 이어짐.
+  - 목표는 **학습 모델은 유지**하면서, 실차에서 게인 변경을 보수화해 진동을 줄이는 것.
 
-- 실행 갱신 파라미터 (`agent_pid.launch.py` 기본값)
-  - `step_dt: 0.4` (게인 갱신 주기, 느리게)
-  - `gain_scale: 0.2` (모델 action 크기 축소)
-  - `gain_lpf_alpha: 0.18` (게인 저역통과)
-  - `action_deadzone: 0.25` (작은 action 무시)
-  - `straight_freeze_w_ref: 0.12`, `straight_freeze_v_ref: 0.08` (직진 시 yaw PID freeze)
-  - `stop_freeze_v_ref: 0.03`, `stop_freeze_w_ref: 0.05` (정지 시 게인 업데이트 중지)
-  - `rotate_freeze_w_ref: 0.20`, `rotate_freeze_v_ref: 0.05` (제자리 회전 시 lin PID freeze)
+- **수정 파일**
+  - `src/rl_pid_training/rl_pid_training/rl_pid_env_real.py`
+  - `src/rl_pid_training/rl_pid_training/run_pid_policy.py`
+  - `src/rl_pid_training/launch/agent_pid.launch.py`
 
-- Agent 내부 PID 범위 (`rl_pid_env_real.py`)
-  - `kp_lin: 1.05 ~ 1.30`
-  - `ki_lin: 0.00 ~ 0.01`
-  - `kd_lin: 0.02 ~ 0.08`
-  - `kp_ang: 1.10 ~ 1.35`
-  - `ki_ang: 0.00 ~ 0.01`
-  - `kd_ang: 0.07 ~ 0.14`
+- **무엇을 어떻게 바꿨는가**
+  - 게인 범위 축소(`PidBounds`): 모델이 과격한 영역으로 튀지 않도록 제한
+    - `kp_lin: 1.05~1.30`, `ki_lin: 0.00~0.01`, `kd_lin: 0.02~0.08`
+    - `kp_ang: 1.10~1.35`, `ki_ang: 0.00~0.01`, `kd_ang: 0.07~0.14`
+  - 초기값 고정: 실차 저오차 구간 중앙값 근처에서 시작
+    - `kp_lin=1.20`, `ki_lin=0.0`, `kd_lin=0.03`
+    - `kp_ang=1.23`, `ki_ang=0.0`, `kd_ang=0.10`
+  - 업데이트 완화: `step_dt=0.4`, `gain_scale=0.2`, `gain_steps` 축소
+  - 미세 잡음 제거: `action_deadzone=0.25` (작은 action 무시)
+  - 상황별 freeze:
+    - 정지: 게인 업데이트 중지 (`stop_freeze_*`)
+    - 직진: yaw PID 업데이트 중지 (`straight_freeze_*`)
+    - 제자리 회전: lin PID 업데이트 중지 (`rotate_freeze_*`)
 
-- Agent 초기 PID 값 (시작점)
-  - `kp_lin=1.20`, `ki_lin=0.0`, `kd_lin=0.03`
-  - `kp_ang=1.23`, `ki_ang=0.0`, `kd_ang=0.10`
+- **LPF 적용 방식 (핵심)**
+  - 목적: 모델 action이 순간적으로 커져도, 게인이 급점프하지 않게 완만하게 반영
+  - 처리 순서:
+    1. `action_raw` 수신
+    2. deadzone 적용 (`|action| < action_deadzone -> 0`)
+    3. `gain_scale` 곱해 증감량 축소
+    4. `gain_steps` 곱해 파라미터별 delta 생성
+    5. `target_gain = clamp(current_gain + delta, min, max)`
+    6. `applied_gain = current_gain + alpha * (target_gain - current_gain)` (`alpha=gain_lpf_alpha`)
+  - 해석:
+    - `alpha`가 작을수록 더 부드럽고 안정적(대신 반응 느림)
+    - 범위 제한 + LPF를 같이 써서 "급격한 게인 진동"을 억제
 
-- RLController 기본 PID도 동일 기준으로 반영됨
-  - `src/rtabmap_ros/rtabmap_launch/launch/config/nav2_rtabmap_params.yaml`
-  - `src/rtabmap_ros/rtabmap_launch/launch/config/nav2_rtabmap_params_train.yaml`
+- **런치 인자 확장 (`agent_pid.launch.py`)**
+  - 런타임에서 바로 조정 가능:
+    - `step_dt`, `gain_scale`, `gain_lpf_alpha`, `action_deadzone`
+    - `straight_freeze_*`, `stop_freeze_*`, `rotate_freeze_*`
+  - `python_exec` 인자로 가상환경 Python 강제 실행 가능
 
-- 재빌드
+- **Nav2 기본 PID 동기화**
+  - agent 시작 전 기본 PID도 같은 기준으로 맞춤:
+    - `src/rtabmap_ros/rtabmap_launch/launch/config/nav2_rtabmap_params.yaml`
+    - `src/rtabmap_ros/rtabmap_launch/launch/config/nav2_rtabmap_params_train.yaml`
+    - `pid_kp_lin=1.2`, `pid_kd_lin=0.03`, `pid_kp_ang=1.23`, `pid_kd_ang=0.10`
+
+- **재빌드**
 
 ```bash
 cd ~/to_ws
