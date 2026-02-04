@@ -318,9 +318,10 @@ global_costmap:
       transform_tolerance: 0.3 # 1.0 → 0.2초로 변경
       track_unknown_space: true
 
-      # 레이어 구성: 정적맵 + 안전거리
-      # plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
-      plugins: ["static_layer", "inflation_layer"]
+      # 레이어 구성: 정적맵 + 누적 장애물 + 안전거리
+      # - 지나온 구간 장애물은 남기고
+      # - 동적 장애물은 근거리 clearing으로 정리
+      plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
 
       # ========================================================================
       # 1. 정적 맵 레이어: 벽, 기둥 등 고정 구조물 (RTABMap SLAM 맵)
@@ -334,46 +335,37 @@ global_costmap:
         transform_tolerance: 0.2
 
       # ========================================================================
-      # 2. 동적 장애물 레이어: 글로벌 맵에서는 비활성화
-      #    (실시간 장애물은 로컬 코스트맵에서만 처리)
+      # 2. 글로벌 누적 장애물 레이어 (mark/clear 분리)
+      # - mark: 지나온 구간 장애물 누적
+      # - clear: 근거리 raytrace로 이동체 잔상 제거
       # ========================================================================
-      # obstacle_layer:
-      #   plugin: "nav2_costmap_2d::ObstacleLayer"
-      #   enabled: true
-      #   footprint_clearing_enabled: true
-      #   observation_sources: livox_deskew
-      #
-      #   livox_deskew:
-      #     topic: /livox/lidar/deskewed
-      #     data_type: "PointCloud2"
-      #     obstacle_max_range: 8.0
-      #     raytrace_max_range: 10.0
-      #     min_obstacle_height: 0.15
-      #     max_obstacle_height: 2.0
-      #     expected_update_rate: 10.0
-      #     clearing: true
-      #     marking: true
-      #     inf_is_valid: false
-      #     observation_persistence: 0.0
-      # ========================================================================
-      # 2.5. obstacle_layer 레이어: 안전거리 확보
-      # ========================================================================
-      # obstacle_layer:
-      #   plugin: "nav2_costmap_2d::ObstacleLayer"
-      #   enabled: true
-      #   footprint_clearing_enabled: true
-      #   observation_sources: livox
-      #   livox:
-      #     topic: /livox/lidar/deskewed
-      #     data_type: PointCloud2
-      #     sensor_frame: livox_frame
-      #     marking: true
-      #     clearing: true
-      #     obstacle_range: 5.0
-      #     raytrace_range: 8.0
-      #     min_obstacle_height: 0.15
-      #     max_obstacle_height: 2.0
-      #     expected_update_rate: 10.0
+      obstacle_layer:
+        plugin: "nav2_costmap_2d::ObstacleLayer"
+        enabled: true
+        footprint_clearing_enabled: true
+        observation_sources: lidar_mark lidar_clear
+
+        lidar_mark:
+          topic: /livox/lidar/filtered
+          data_type: PointCloud2
+          sensor_frame: livox_frame
+          marking: true
+          clearing: false
+          obstacle_range: 8.0
+          min_obstacle_height: 0.05
+          max_obstacle_height: 1.8
+          observation_persistence: 0.2
+          expected_update_rate: 0.0
+
+        lidar_clear:
+          topic: /livox/lidar/synced/deskewed
+          data_type: PointCloud2
+          marking: false
+          clearing: true
+          raytrace_range: 3.0
+          min_obstacle_height: 0.05
+          max_obstacle_height: 1.8
+          expected_update_rate: 0.0
 
       # ========================================================================
       # 3. Inflation 레이어: 안전거리 확보
