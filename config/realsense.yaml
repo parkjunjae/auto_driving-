@@ -1,2 +1,26 @@
+# RealSense low-latency preset for mapping/navigation.
+# Applied when launching: ros2 launch realsense2_camera rs_launch.py
+
+# Streams
+enable_color: true
+enable_depth: true
+enable_gyro: true
+enable_accel: true
+enable_sync: true
+align_depth.enable: true
+pointcloud.enable: true
+pointcloud.allow_no_texture_points: true
 pointcloud__neon_.enable: true
 pointcloud__neon_.allow_no_texture_points: true
+
+# Use a known stable profile pair for D4xx pointcloud pipeline
+depth_module.depth_profile: 640x480x15
+rgb_camera.color_profile: 640x480x15
+
+# Keep sensor transport real-time friendly
+depth_qos: SENSOR_DATA
+color_qos: SENSOR_DATA
+gyro_qos: SENSOR_DATA
+accel_qos: SENSOR_DATA
+pointcloud.pointcloud_qos: SENSOR_DATA
+pointcloud__neon_.pointcloud_qos: SENSOR_DATA

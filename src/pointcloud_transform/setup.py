@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'transform_node = pointcloud_transform.transform_node:main'
+            'transform_node = pointcloud_transform.transform_node:main',
+            'dynamic_object_filter_node = pointcloud_transform.dynamic_object_filter_node:main',
         ],
     },
 )

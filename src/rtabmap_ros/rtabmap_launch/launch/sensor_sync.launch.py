@@ -43,6 +43,7 @@ def generate_launch_description():
     camera_pitch = LaunchConfiguration('camera_pitch')
     camera_yaw = LaunchConfiguration('camera_yaw')
 
+
     # ==================== 1. LiDAR 타임스탬프 오프셋 ====================
     # Livox 타임스탬프가 시스템 시간과 다를 경우 보정
     # 측정 방법: ros2 topic echo /livox/lidar --field header.stamp 와 현재 시간 비교
@@ -176,7 +177,6 @@ def generate_launch_description():
         DeclareLaunchArgument('camera_roll', default_value='0.0'),
         DeclareLaunchArgument('camera_pitch', default_value='0.0'),
         DeclareLaunchArgument('camera_yaw', default_value='0.0'),
-
         # Nodes
         lidar_timestamp_offset_node,
         imu_bias_corrector_node,

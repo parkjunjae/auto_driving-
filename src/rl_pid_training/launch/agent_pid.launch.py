@@ -25,6 +25,12 @@ def generate_launch_description():
     stop_freeze_w_ref = LaunchConfiguration("stop_freeze_w_ref")
     rotate_freeze_w_ref = LaunchConfiguration("rotate_freeze_w_ref")
     rotate_freeze_v_ref = LaunchConfiguration("rotate_freeze_v_ref")
+    w_ref_lpf_alpha = LaunchConfiguration("w_ref_lpf_alpha")
+    w_ref_deadband = LaunchConfiguration("w_ref_deadband")
+    dither_v_ref_thresh = LaunchConfiguration("dither_v_ref_thresh")
+    dither_w_ref_thresh = LaunchConfiguration("dither_w_ref_thresh")
+    w_ref_sign_hold_sec = LaunchConfiguration("w_ref_sign_hold_sec")
+    w_ref_abs_max_low_speed = LaunchConfiguration("w_ref_abs_max_low_speed")
 
     base_args = [
         "--model",
@@ -57,6 +63,18 @@ def generate_launch_description():
         rotate_freeze_w_ref,
         "--rotate-freeze-v-ref",
         rotate_freeze_v_ref,
+        "--w-ref-lpf-alpha",
+        w_ref_lpf_alpha,
+        "--w-ref-deadband",
+        w_ref_deadband,
+        "--dither-v-ref-thresh",
+        dither_v_ref_thresh,
+        "--dither-w-ref-thresh",
+        dither_w_ref_thresh,
+        "--w-ref-sign-hold-sec",
+        w_ref_sign_hold_sec,
+        "--w-ref-abs-max-low-speed",
+        w_ref_abs_max_low_speed,
     ]
 
     node_no_sim = ExecuteProcess(
@@ -153,6 +171,41 @@ def generate_launch_description():
                 default_value="0.05",
                 description="제자리 회전 판정용 |v_ref| 임계값(m/s)",
             ),
+            #-----------------
+            DeclareLaunchArgument(
+                "w_ref_lpf_alpha",
+                default_value="0.25",
+                description="w_ref 저역통과 계수(작을수록 더 부드러움)",
+            ),
+            #-----------------
+            DeclareLaunchArgument(
+                "w_ref_deadband",
+                default_value="0.03",
+                description="|w_ref| deadband(rad/s): 이하면 0으로 처리",
+            ),
+            DeclareLaunchArgument(
+                "dither_v_ref_thresh",
+                default_value="0.06",
+                description="저속 anti-dither 활성화 v_ref 임계값(m/s)",
+            ),
+            DeclareLaunchArgument(
+                "dither_w_ref_thresh",
+                default_value="0.15",
+                description="anti-dither 대상 최소 |w_ref|(rad/s)",
+            ),
+            #-----------------
+            DeclareLaunchArgument(
+                "w_ref_sign_hold_sec",
+                default_value="0.35",
+                description="저속 회전 시 w_ref 부호 최소 유지 시간(s)",
+            ),
+            #-----------------
+            DeclareLaunchArgument(
+                "w_ref_abs_max_low_speed",
+                default_value="0.45",
+                description="저속 구간 |w_ref| 상한(rad/s)",
+            ),
+            #-----------------
             DeclareLaunchArgument(
                 "python_exec",
                 default_value="python3",

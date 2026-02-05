@@ -102,6 +102,42 @@ def main():
         default=0.05,
         help="제자리 회전 판정용 |v_ref| 임계값(m/s)",
     )
+    parser.add_argument(
+        "--w-ref-lpf-alpha",
+        type=float,
+        default=0.25,
+        help="w_ref 저역통과 계수(0~1), 작을수록 좌우 떨림 완화",
+    )
+    parser.add_argument(
+        "--w-ref-deadband",
+        type=float,
+        default=0.03,
+        help="|w_ref|가 이 값보다 작으면 0으로 처리",
+    )
+    parser.add_argument(
+        "--dither-v-ref-thresh",
+        type=float,
+        default=0.06,
+        help="저속 anti-dither 활성화 v_ref 임계값(m/s)",
+    )
+    parser.add_argument(
+        "--dither-w-ref-thresh",
+        type=float,
+        default=0.15,
+        help="anti-dither 대상 w_ref 최소 크기(rad/s)",
+    )
+    parser.add_argument(
+        "--w-ref-sign-hold-sec",
+        type=float,
+        default=0.35,
+        help="저속 회전 시 w_ref 부호 최소 유지 시간(s)",
+    )
+    parser.add_argument(
+        "--w-ref-abs-max-low-speed",
+        type=float,
+        default=0.45,
+        help="저속 구간 |w_ref| 상한(rad/s)",
+    )
     # ros2 launch adds ROS remap args (e.g. --ros-args ...), so ignore unknown CLI args.
     args, _ = parser.parse_known_args()
 
@@ -123,6 +159,12 @@ def main():
         stop_freeze_w_ref=args.stop_freeze_w_ref,
         rotate_freeze_w_ref=args.rotate_freeze_w_ref,
         rotate_freeze_v_ref=args.rotate_freeze_v_ref,
+        w_ref_lpf_alpha=args.w_ref_lpf_alpha,
+        w_ref_deadband=args.w_ref_deadband,
+        dither_v_ref_thresh=args.dither_v_ref_thresh,
+        dither_w_ref_thresh=args.dither_w_ref_thresh,
+        w_ref_sign_hold_sec=args.w_ref_sign_hold_sec,
+        w_ref_abs_max_low_speed=args.w_ref_abs_max_low_speed,
         use_sim_time=args.use_sim_time,
     )
 
@@ -144,6 +186,7 @@ def main():
         "ki_ang",
         "kd_ang",
         "v_ref",
+        "w_ref_raw",
         "w_ref",
         "v_meas",
         "w_meas",
@@ -172,6 +215,7 @@ def main():
                     env.ki_ang,
                     env.kd_ang,
                     env.v_ref,
+                    env.w_ref_raw,
                     env.w_ref,
                     env.v_meas,
                     env.w_meas,

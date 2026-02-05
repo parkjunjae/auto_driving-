@@ -82,10 +82,10 @@ controller_server:
       movement_time_allowance: 30.0
 
     general_goal_checker:
-      stateful: True
+      stateful: true
       plugin: "nav2_controller::SimpleGoalChecker"
-      xy_goal_tolerance: 0.25
-      yaw_goal_tolerance: 0.25
+      xy_goal_tolerance: 0.22
+      yaw_goal_tolerance: 0.35
 
     # 규칙 기반 로컬 컨트롤러(플러그인) 사용
     RLController:
@@ -213,7 +213,7 @@ local_costmap:
       height: 10
       resolution: 0.05
       footprint: "[[0.23, 0.23], [0.23, -0.23], [-0.23, -0.23], [-0.23, 0.23]]"
-      footprint_padding: 0.03
+      footprint_padding: 0.04
       update_frequency: 20.0
       publish_frequency: 10.0
       transform_tolerance: 0.3 # 0.2 → 0.3초로 완화(캐시 미스 감소)
@@ -229,6 +229,7 @@ local_costmap:
         observation_sources: lidar_mark lidar_clear depth_mark
 
         lidar_mark:
+          # Dynamic filter output: keep static obstacles, suppress short-lived moving objects
           topic: /livox/lidar/filtered
           data_type: PointCloud2
           sensor_frame: livox_frame
@@ -252,7 +253,6 @@ local_costmap:
 
         depth_mark:
           # RealSense pointcloud 토픽(환경에 맞게 수정)
-          # 예) /camera/camera/depth/color/points 또는 /camera/camera/depth/points
           topic: /camera/camera/depth/color/points
           data_type: PointCloud2
           marking: true
@@ -295,7 +295,7 @@ local_costmap:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: true
         cost_scaling_factor: 4.0
-        inflation_radius: 0.06
+        inflation_radius: 0.07
         footprint_clearing_enabled: true
 
       always_send_full_costmap: true
@@ -311,6 +311,11 @@ global_costmap:
       robot_base_frame: base_link
       rolling_window: false
       resolution: 0.03
+      # 전역 코스트맵을 로컬처럼 보이지 않게 충분히 크게 고정
+      width: 80
+      height: 80
+      origin_x: -40.0
+      origin_y: -40.0
       footprint: "[[0.23, 0.23], [0.23, -0.23], [-0.23, -0.23], [-0.23, 0.23]]"
       footprint_padding: 0.03
       update_frequency: 10.0 # 5.0 → 10.0Hz로 증가 (더 빠른 맵 업데이트)
@@ -318,9 +323,7 @@ global_costmap:
       transform_tolerance: 0.3 # 1.0 → 0.2초로 변경
       track_unknown_space: true
 
-      # 레이어 구성: 정적맵 + 누적 장애물 + 안전거리
-      # - 지나온 구간 장애물은 남기고
-      # - 동적 장애물은 근거리 clearing으로 정리
+      # 레이어 구성: 정적맵 + 시간 제한 누적 장애물 + 안전거리
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
 
       # ========================================================================
@@ -329,42 +332,34 @@ global_costmap:
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         map_topic: /rtabmap/map
-        map_subscribe_transient_local: false
+        map_subscribe_transient_local: true
         subscribe_to_updates: true
         enabled: true
         transform_tolerance: 0.2
 
       # ========================================================================
-      # 2. 글로벌 누적 장애물 레이어 (mark/clear 분리)
-      # - mark: 지나온 구간 장애물 누적
-      # - clear: 근거리 raytrace로 이동체 잔상 제거
+      # 2. 글로벌 장애물 레이어 (정적 위주 + 빠른 소거)
+      # - 동적 흔적이 오래 남지 않도록 clear를 활성화
+      # - mark는 dynamic filter 출력(/livox/lidar/static_filtered)만 사용
       # ========================================================================
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
-        footprint_clearing_enabled: true
-        observation_sources: lidar_mark lidar_clear
+        # footprint로 강제 소거하지 않고 센서 기반 mark/clear로 관리
+        footprint_clearing_enabled: false
+        observation_sources: lidar_mark
 
         lidar_mark:
-          topic: /livox/lidar/filtered
+          topic: /livox/lidar/static_filtered
           data_type: PointCloud2
           sensor_frame: livox_frame
           marking: true
           clearing: false
-          obstacle_range: 8.0
+          obstacle_range: 4.0
           min_obstacle_height: 0.05
           max_obstacle_height: 1.8
+          # 정적은 남기되 동적 잔상은 오래 끌지 않도록 짧게 유지
           observation_persistence: 0.2
-          expected_update_rate: 0.0
-
-        lidar_clear:
-          topic: /livox/lidar/synced/deskewed
-          data_type: PointCloud2
-          marking: false
-          clearing: true
-          raytrace_range: 3.0
-          min_obstacle_height: 0.05
-          max_obstacle_height: 1.8
           expected_update_rate: 0.0
 
       # ========================================================================

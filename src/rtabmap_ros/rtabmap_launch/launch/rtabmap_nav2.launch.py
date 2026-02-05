@@ -2,6 +2,7 @@ import os
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, TimerAction
+from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
@@ -22,6 +23,17 @@ def generate_launch_description():
     delete_db_on_start = LaunchConfiguration('delete_db_on_start')
     livox_deskewed_topic = LaunchConfiguration('livox_deskewed_topic')
     livox_filtered_topic = LaunchConfiguration('livox_filtered_topic')
+    use_dynamic_filter = LaunchConfiguration('use_dynamic_filter')
+    dynamic_filter_output = LaunchConfiguration('dynamic_filter_output')
+    dynamic_voxel_size = LaunchConfiguration('dynamic_voxel_size')
+    dynamic_min_hits = LaunchConfiguration('dynamic_min_hits')
+    dynamic_hit_window_sec = LaunchConfiguration('dynamic_hit_window_sec')
+    dynamic_max_stale_sec = LaunchConfiguration('dynamic_max_stale_sec')
+    dynamic_z_min = LaunchConfiguration('dynamic_z_min')
+    dynamic_z_max = LaunchConfiguration('dynamic_z_max')
+    dynamic_min_range = LaunchConfiguration('dynamic_min_range')
+    dynamic_target_frame = LaunchConfiguration('dynamic_target_frame')
+    dynamic_tf_timeout_sec = LaunchConfiguration('dynamic_tf_timeout_sec')
 
     rtabmap_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -43,6 +55,10 @@ def generate_launch_description():
             'odom_log_level': 'error',  # Odometry 로그도 error 레벨로
             'qos': '2',  # BEST_EFFORT QoS for Nav2 compatibility
             'latch': 'false',  # VOLATILE durability for Nav2 compatibility
+            'topic_queue_size': '30',  # RGB-D subscriber queue (for delayed camera streams)
+            'sync_queue_size': '30',   # Approx sync queue size
+            'approx_rgbd_sync': 'true',
+            'approx_sync_max_interval': '0.08',
             'rtabmap_args': rtabmap_args,  # Prefer ROS params in rtabmap.launch.py
             'database_path': database_path,
             'delete_db_on_start': delete_db_on_start,  # DB reset via ROS param
@@ -62,6 +78,26 @@ def generate_launch_description():
             'ror_min_neighbors': 2,                  # ROR 이웃 최소 개수
             'use_voxel': True,                       # VoxelGrid 다운샘플 사용 여부
             'use_ror': True,                         # ROR 노이즈 제거 사용 여부
+        }],
+    )
+    dynamic_filter_node = Node(
+        package='livox_pointcloud_filter',
+        executable='dynamic_object_filter_node',
+        name='dynamic_object_filter',
+        output='screen',
+        condition=IfCondition(use_dynamic_filter),
+        parameters=[{
+            'input_topic': livox_filtered_topic,          # 입력 포인트클라우드(전처리 LiDAR)
+            'output_topic': dynamic_filter_output,        # 출력 포인트클라우드(정적 위주)
+            'voxel_size': dynamic_voxel_size,             # 보셀 크기[m], 클수록 거칠고 빠름
+            'min_hits': dynamic_min_hits,                 # 정적으로 인정할 최소 관측 횟수
+            'hit_window_sec': dynamic_hit_window_sec,     # 관측 누적 시간 창[s]
+            'max_stale_sec': dynamic_max_stale_sec,       # 미관측 보셀 상태 제거 시간[s]
+            'z_min': dynamic_z_min,                       # 필터링 하한 높이[m]
+            'z_max': dynamic_z_max,                       # 필터링 상한 높이[m]
+            'min_range': dynamic_min_range,               # 센서 근접 노이즈 제거 거리[m]
+            'target_frame': dynamic_target_frame,         # 누적 기준 고정 프레임(odom/map)
+            'tf_timeout_sec': dynamic_tf_timeout_sec,     # TF 조회 타임아웃[s]
         }],
     )
     nav2_server_nodes = TimerAction(
@@ -156,6 +192,28 @@ def generate_launch_description():
                              description='Deskewed LiDAR topic used by RTAB-Map and Livox filter'),
         DeclareLaunchArgument('livox_filtered_topic', default_value='/livox/lidar/filtered',
                              description='Filtered LiDAR topic for Nav2 costmap marking'),
+        DeclareLaunchArgument('use_dynamic_filter', default_value='true',
+                             description='Enable dynamic object filter for global-map-friendly static cloud'),
+        DeclareLaunchArgument('dynamic_filter_output', default_value='/livox/lidar/static_filtered',
+                             description='Output topic of dynamic object filter'),
+        DeclareLaunchArgument('dynamic_voxel_size', default_value='0.12',
+                             description='[m] voxel size for temporal static/dynamic filtering'),
+        DeclareLaunchArgument('dynamic_min_hits', default_value='3',
+                             description='Minimum hits in window to classify voxel as static'),
+        DeclareLaunchArgument('dynamic_hit_window_sec', default_value='2.0',
+                             description='[s] temporal window for hit accumulation'),
+        DeclareLaunchArgument('dynamic_max_stale_sec', default_value='4.0',
+                             description='[s] remove stale voxel states not seen recently'),
+        DeclareLaunchArgument('dynamic_z_min', default_value='0.03',
+                             description='[m] minimum obstacle height to include'),
+        DeclareLaunchArgument('dynamic_z_max', default_value='1.8',
+                             description='[m] maximum obstacle height to include'),
+        DeclareLaunchArgument('dynamic_min_range', default_value='0.2',
+                             description='[m] remove near-range noisy returns'),
+        DeclareLaunchArgument('dynamic_target_frame', default_value='odom',
+                             description='Accumulation frame for dynamic filter (odom or map)'),
+        DeclareLaunchArgument('dynamic_tf_timeout_sec', default_value='0.05',
+                             description='TF lookup timeout for dynamic filter'),
         # Keep args empty to avoid overriding ROS params.
         DeclareLaunchArgument('rtabmap_args', default_value='', description='Extra CLI flags for rtabmap'),
         # Use ROS param to control DB reset from this launch file.
@@ -163,6 +221,7 @@ def generate_launch_description():
         DeclareLaunchArgument('database_path', default_value=os.path.expanduser('~/.ros/rtabmap_nav2.db'), description=''),
         rtabmap_launch,
         livox_filter_node,
+        dynamic_filter_node,
         nav2_server_nodes,
         lifecycle_manager_node
     ])

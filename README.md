@@ -334,3 +334,113 @@ python3 ~/to_ws/tf_jump_monitor.py --jump-trans 0.03 --jump-rot-deg 2 --output ~
 - **추가 미세조정 포인트**
   - 회전 시 아직 흔들리면 `twist.covariance[vx]`를 `0.01 -> 0.02`로 상향
   - 반응이 둔하면 `0.01 -> 0.005`로 하향
+
+### 3. 동적 장애물 제거(글로벌용 정적 후보 필터)
+
+- **목표**
+  - 사람/카트처럼 짧게 지나가는 동적 물체가 글로벌 맵에 궤적으로 누적되는 문제를 줄임.
+  - 정적 장애물(벽/가구)은 유지하고, 동적은 글로벌 반영을 약화.
+
+- **핵심 아이디어**
+  - LiDAR 포인트를 시간-보셀(temporal voxel) 기준으로 누적해
+    `반복 관측된 보셀만` 정적으로 인정.
+  - 결과적으로 동적 물체는 히트 수가 부족해 필터 출력에서 제외됨.
+
+- **수정 파일**
+  - `src/livox_pointcloud_filter/src/dynamic_object_filter_node.cpp`
+  - `src/livox_pointcloud_filter/CMakeLists.txt`
+  - `src/livox_pointcloud_filter/launch/dynamic_object_filter.launch.py`
+  - `src/rtabmap_ros/rtabmap_launch/launch/rtabmap_nav2.launch.py`
+  - `src/rtabmap_ros/rtabmap_launch/launch/config/nav2_rtabmap_params.yaml`
+
+- **토픽 체인(최종)**
+  - `/livox/lidar/synced/deskewed` (deskew 입력)
+  - -> `/livox/lidar/filtered` (기존 livox 필터 출력)
+  - -> `/livox/lidar/static_filtered` (동적 필터 출력, 정적 위주)
+  - 글로벌 코스트맵 `lidar_mark.topic`은 `/livox/lidar/static_filtered` 사용.
+
+- **런치 통합**
+  - 동적 필터 노드는 `rtabmap_nav2.launch.py`에 통합됨.
+  - `sensor_sync.launch.py`에는 의존성 꼬임 방지를 위해 포함하지 않음.
+
+- **동적 필터 파라미터 의미/튜닝**
+  - `voxel_size`:
+    - 보셀 크기[m]. 클수록 빠르지만 디테일 손실.
+  - `min_hits`:
+    - 정적 인정 최소 관측 횟수. 클수록 동적 제거 강함.
+  - `hit_window_sec`:
+    - 히트 누적 시간창[s]. 길수록 정적 판단이 보수적.
+  - `max_stale_sec`:
+    - 오래 미관측된 보셀 상태 제거 시간[s].
+  - `z_min`, `z_max`:
+    - 필터 대상 높이 범위[m].
+  - `min_range`:
+    - 근거리 노이즈 제거 거리[m].
+
+- **권장 시작값(실내)**
+  - `voxel_size=0.10`
+  - `min_hits=3`
+  - `hit_window_sec=3.0`
+  - `max_stale_sec=8.0`
+  - `z_min=0.03`, `z_max=1.8`
+  - `min_range=0.2`
+
+- **검증 명령**
+
+```bash
+ros2 topic info /livox/lidar/static_filtered -v
+ros2 topic hz /livox/lidar/static_filtered
+```
+
+---
+
+## Agent PID 저속 anti-dither 안전가드 (추가 반영)
+
+- **문제**
+  - 목표점 근처 저속 구간에서 `w_ref` 부호가 자주 반전되어 좌우 떨림(헌팅) 발생.
+  - 로그에서 마지막 구간에 `|w_ref|`는 크고 실제 `w_meas` 추종이 약한 패턴 확인.
+
+- **핵심 전략**
+  - RL이 PID 게인을 자동 조정하는 구조는 유지.
+  - 대신 저속 회전 구간에서 `desired_cmd(w_ref)`를 안정화하는 안전가드 추가.
+  - 즉, RL 대체가 아니라 RL 입력(참조 신호) 품질 개선 레이어.
+
+- **수정 파일**
+  - `src/rl_pid_training/rl_pid_training/rl_pid_env_real.py`
+  - `src/rl_pid_training/rl_pid_training/run_pid_policy.py`
+  - `src/rl_pid_training/launch/agent_pid.launch.py`
+
+- **추가된 가드 로직**
+  1. `w_ref` deadband:
+     - 매우 작은 각속도 지령을 0으로 처리해 미세 떨림 제거.
+  2. `w_ref` LPF:
+     - 목표 각속도 급변 완화.
+  3. 저속 회전 sign hold:
+     - 짧은 시간 내 좌/우 반전 시 기존 부호 유지.
+  4. 저속 각속도 상한:
+     - 저속 구간 과도한 회전 지령 제한.
+
+- **신규 파라미터**
+  - `w_ref_lpf_alpha` (기본 `0.25`)
+  - `w_ref_deadband` (기본 `0.03`)
+  - `dither_v_ref_thresh` (기본 `0.06`)
+  - `dither_w_ref_thresh` (기본 `0.15`)
+  - `w_ref_sign_hold_sec` (기본 `0.35`)
+  - `w_ref_abs_max_low_speed` (기본 `0.45`)
+
+- **로그 확장**
+  - CSV에 `w_ref_raw` 컬럼 추가.
+  - `w_ref_raw`(원본) vs `w_ref`(가드 후)를 비교해 반전/떨림 억제 효과를 확인 가능.
+
+- **실행 예시**
+
+```bash
+ros2 launch rl_pid_training agent_pid.launch.py \
+  python_exec:=/home/world/to_ws/.venv/bin/python3 \
+  w_ref_lpf_alpha:=0.25 \
+  w_ref_deadband:=0.03 \
+  dither_v_ref_thresh:=0.06 \
+  dither_w_ref_thresh:=0.15 \
+  w_ref_sign_hold_sec:=0.35 \
+  w_ref_abs_max_low_speed:=0.45
+```

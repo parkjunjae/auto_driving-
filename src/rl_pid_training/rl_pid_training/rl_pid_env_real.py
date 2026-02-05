@@ -59,6 +59,12 @@ class RealPidGainEnv(gym.Env):
         stop_freeze_w_ref: float = 0.05,
         rotate_freeze_w_ref: float = 0.20,
         rotate_freeze_v_ref: float = 0.05,
+        w_ref_lpf_alpha: float = 0.25,
+        w_ref_deadband: float = 0.03,
+        dither_v_ref_thresh: float = 0.06,
+        dither_w_ref_thresh: float = 0.15,
+        w_ref_sign_hold_sec: float = 0.35,
+        w_ref_abs_max_low_speed: float = 0.45,
         param_wait_sec: float = 15.0,
         use_sim_time: bool = False,
     ):
@@ -99,6 +105,13 @@ class RealPidGainEnv(gym.Env):
         self.stop_freeze_w_ref = stop_freeze_w_ref
         self.rotate_freeze_w_ref = rotate_freeze_w_ref
         self.rotate_freeze_v_ref = rotate_freeze_v_ref
+        # 저속 구간에서 desired_cmd의 좌/우 부호가 빠르게 뒤집히며 헌팅이 발생하는 것을 줄이기 위한 파라미터
+        self.w_ref_lpf_alpha = w_ref_lpf_alpha
+        self.w_ref_deadband = w_ref_deadband
+        self.dither_v_ref_thresh = dither_v_ref_thresh
+        self.dither_w_ref_thresh = dither_w_ref_thresh
+        self.w_ref_sign_hold_sec = w_ref_sign_hold_sec
+        self.w_ref_abs_max_low_speed = w_ref_abs_max_low_speed
 
         # 상태(관측) = [v_ref, w_ref, v_meas, w_meas, e_v, e_w]
         self.observation_space = spaces.Box(low=-10.0, high=10.0, shape=(6,), dtype=float)
@@ -119,6 +132,11 @@ class RealPidGainEnv(gym.Env):
 
         self.v_ref = 0.0
         self.w_ref = 0.0
+        self.v_ref_raw = 0.0
+        self.w_ref_raw = 0.0
+        self._w_ref_lpf = 0.0
+        self._turn_sign = 0
+        self._last_turn_sign_change_ts = 0.0
         self.v_meas = 0.0
         self.w_meas = 0.0
         self.last_w_meas = 0.0
@@ -136,13 +154,56 @@ class RealPidGainEnv(gym.Env):
         self.v_meas = msg.twist.twist.linear.x
         self.w_meas = msg.twist.twist.angular.z
 
+    def _update_desired(self, v_ref: float, w_ref: float):
+        """desired_cmd를 저속 anti-dither 규칙으로 안정화해 내부 참조값으로 사용."""
+        now = time.monotonic()
+        self.v_ref_raw = float(v_ref)
+        self.w_ref_raw = float(w_ref)
+
+        # 1) deadband: 매우 작은 각속도는 0으로 간주해 불필요한 흔들림을 제거
+        w_cmd = self.w_ref_raw
+        if abs(w_cmd) < self.w_ref_deadband:
+            w_cmd = 0.0
+
+        # 2) 저역통과: desired_cmd 자체의 급격한 변화(특히 목표점 근처)를 완화
+        a = self.w_ref_lpf_alpha
+        self._w_ref_lpf = self._w_ref_lpf + a * (w_cmd - self._w_ref_lpf)
+        w_cmd = self._w_ref_lpf
+
+        low_speed = abs(self.v_ref_raw) < self.dither_v_ref_thresh
+        turning = abs(w_cmd) > self.dither_w_ref_thresh
+
+        # 3) sign hold: 저속 회전에서 좌/우 부호가 짧은 시간에 뒤집히는 것을 억제
+        if low_speed and turning:
+            new_sign = 1 if w_cmd > 0.0 else -1
+            if (
+                self._turn_sign != 0 and
+                new_sign != self._turn_sign and
+                (now - self._last_turn_sign_change_ts) < self.w_ref_sign_hold_sec
+            ):
+                # hold 기간 내 반전은 무시하고 기존 부호 유지
+                w_cmd = abs(w_cmd) * float(self._turn_sign)
+                new_sign = self._turn_sign
+
+            if new_sign != self._turn_sign:
+                self._turn_sign = new_sign
+                self._last_turn_sign_change_ts = now
+
+            # 4) 저속 구간 과도한 각속도 지령 상한 제한
+            lim = self.w_ref_abs_max_low_speed
+            w_cmd = max(-lim, min(lim, w_cmd))
+        elif abs(w_cmd) <= self.dither_w_ref_thresh:
+            # 회전 요구가 사라지면 부호 상태를 초기화
+            self._turn_sign = 0
+
+        self.v_ref = self.v_ref_raw
+        self.w_ref = w_cmd
+
     def _cb_desired_stamped(self, msg: TwistStamped):
-        self.v_ref = msg.twist.linear.x
-        self.w_ref = msg.twist.angular.z
+        self._update_desired(msg.twist.linear.x, msg.twist.angular.z)
 
     def _cb_desired_plain(self, msg: Twist):
-        self.v_ref = msg.linear.x
-        self.w_ref = msg.angular.z
+        self._update_desired(msg.linear.x, msg.angular.z)
 
     def _subscribe_desired(self, topic: str, desired_type: str):
         # desired_type: "auto" | "twist" | "twist_stamped"
