@@ -1,6 +1,6 @@
 ekf_filter_node:
   ros__parameters:
-    frequency: 25.0 # EKF 출력/예측 주기(Hz)
+    frequency: 20.0 # EKF 출력/예측 주기(Hz)
     sensor_timeout: 0.2 # 이 시간(sec) 동안 센서 입력이 없으면 해당 센서를 일시적으로 무시
 
     two_d_mode: true # 평면 주행 모드( z, roll, pitch 축을 0으로 고정 )

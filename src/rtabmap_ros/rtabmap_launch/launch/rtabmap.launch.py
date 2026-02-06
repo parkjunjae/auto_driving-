@@ -564,7 +564,7 @@ def generate_launch_description():
         DeclareLaunchArgument('subscribe_scan',       default_value='false',       description=''),
         DeclareLaunchArgument('scan_topic',           default_value='/scan',       description=''),
         DeclareLaunchArgument('subscribe_scan_cloud', default_value='true',       description=''),
-        DeclareLaunchArgument('scan_cloud_topic',     default_value='/livox/lidar/deskewed', description=''),
+        DeclareLaunchArgument('scan_cloud_topic',     default_value='/livox/lidar/synced/deskewed', description=''),
         DeclareLaunchArgument('scan_normal_k',        default_value='0',           description=''),
         
         # Odometry

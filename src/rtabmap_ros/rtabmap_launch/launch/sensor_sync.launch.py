@@ -114,7 +114,7 @@ def generate_launch_description():
         }],
         remappings=[
             ('input_cloud', '/livox/lidar/synced'),  # 타임스탬프 보정된 것 사용
-            ('output_cloud', '/livox/lidar/deskewed'),
+            ('output_cloud', '/livox/lidar/synced/deskewed'),
         ],
     )
 
@@ -165,7 +165,7 @@ def generate_launch_description():
         # Livox 마운트 위치 (base_link 기준)
         DeclareLaunchArgument('livox_x', default_value='0.0'),
         DeclareLaunchArgument('livox_y', default_value='0.0'),
-        DeclareLaunchArgument('livox_z', default_value='0.95'),  # 로봇 위 95cm
+        DeclareLaunchArgument('livox_z', default_value='0.83'),  # 로봇 위 83cm (12cm 낮춤)
         DeclareLaunchArgument('livox_roll', default_value='0.0'),
         DeclareLaunchArgument('livox_pitch', default_value='0.0'),
         DeclareLaunchArgument('livox_yaw', default_value='0.0'),
@@ -173,7 +173,7 @@ def generate_launch_description():
         # Camera 마운트 위치 (base_link 기준)
         DeclareLaunchArgument('camera_x', default_value='0.2'),  # 전방 20cm
         DeclareLaunchArgument('camera_y', default_value='0.0'),
-        DeclareLaunchArgument('camera_z', default_value='0.7'),  # 로봇 위 70cm
+        DeclareLaunchArgument('camera_z', default_value='0.58'),  # 로봇 위 58cm (12cm 낮춤)
         DeclareLaunchArgument('camera_roll', default_value='0.0'),
         DeclareLaunchArgument('camera_pitch', default_value='0.0'),
         DeclareLaunchArgument('camera_yaw', default_value='0.0'),

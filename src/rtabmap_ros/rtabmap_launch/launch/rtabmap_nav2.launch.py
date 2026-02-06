@@ -55,10 +55,14 @@ def generate_launch_description():
             'odom_log_level': 'error',  # Odometry 로그도 error 레벨로
             'qos': '2',  # BEST_EFFORT QoS for Nav2 compatibility
             'latch': 'false',  # VOLATILE durability for Nav2 compatibility
-            'topic_queue_size': '30',  # RGB-D subscriber queue (for delayed camera streams)
-            'sync_queue_size': '30',   # Approx sync queue size
-            'approx_rgbd_sync': 'true',
+            'topic_queue_size': '10',  # RGB-D subscriber queue (for delayed camera streams)
+            'sync_queue_size': '10',   # Approx sync queue size
+            'approx_rgbd_sync': 'false',
             'approx_sync_max_interval': '0.08',
+            # Use pre-synchronized RGBD topic directly
+            'rgbd_sync': 'false',
+            'subscribe_rgbd': 'true',
+            'rgbd_topic': '/camera/camera/rgbd',
             'rtabmap_args': rtabmap_args,  # Prefer ROS params in rtabmap.launch.py
             'database_path': database_path,
             'delete_db_on_start': delete_db_on_start,  # DB reset via ROS param
@@ -198,11 +202,11 @@ def generate_launch_description():
                              description='Output topic of dynamic object filter'),
         DeclareLaunchArgument('dynamic_voxel_size', default_value='0.12',
                              description='[m] voxel size for temporal static/dynamic filtering'),
-        DeclareLaunchArgument('dynamic_min_hits', default_value='3',
+        DeclareLaunchArgument('dynamic_min_hits', default_value='2',
                              description='Minimum hits in window to classify voxel as static'),
-        DeclareLaunchArgument('dynamic_hit_window_sec', default_value='2.0',
+        DeclareLaunchArgument('dynamic_hit_window_sec', default_value='1.0',
                              description='[s] temporal window for hit accumulation'),
-        DeclareLaunchArgument('dynamic_max_stale_sec', default_value='4.0',
+        DeclareLaunchArgument('dynamic_max_stale_sec', default_value='1.5',
                              description='[s] remove stale voxel states not seen recently'),
         DeclareLaunchArgument('dynamic_z_min', default_value='0.03',
                              description='[m] minimum obstacle height to include'),
