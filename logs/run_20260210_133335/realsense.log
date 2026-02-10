@@ -1,0 +1,88 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-10-13-33-39-211598-world-243168
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [launch.user]: 🚀 Launching as Normal ROS Node
+[INFO] [realsense2_camera_node-1]: process started with pid [243208]
+[realsense2_camera_node-1] [0m[INFO] [1770698019.614403152] [camera.camera]: RealSense ROS v4.56.4[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698019.614657718] [camera.camera]: Built with LibRealSense v2.56.5[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698019.614699095] [camera.camera]: Running with LibRealSense v2.56.5[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.224892851] [camera.camera]: Device with serial number 336222300641 was found.
+[realsense2_camera_node-1] [0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.225090168] [camera.camera]: Device with physical ID 2-1.3-3 was found.[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.225130617] [camera.camera]: Device with name Intel RealSense D455 was found.[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.225554275] [camera.camera]: Device with port number 2-1.3 was found.[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.225603236] [camera.camera]: Device USB type: 3.2[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.225779240] [camera.camera]: getParameters...[0m
+[realsense2_camera_node-1] [33m[WARN] [1770698020.226228946] [camera.camera]: For the 'unite_imu_method' param update to take effect, re-enable either gyro or accel stream.[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.226276468] [camera.camera]: JSON file is not provided[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.226303412] [camera.camera]: Device Name: Intel RealSense D455[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.226321909] [camera.camera]: Device Serial No: 336222300641[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.226337301] [camera.camera]: Device physical port: 2-1.3-3[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.226350261] [camera.camera]: Device FW version: 5.17.0.10[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.226362262] [camera.camera]: Device Product ID: 0x0B5C[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698020.226373750] [camera.camera]: Sync Mode: On[0m
+[realsense2_camera_node-1] [33m[WARN] [1770698026.730835870] [camera.camera]: re-enable the stream for the change to take effect.[0m
+[realsense2_camera_node-1] [33m[WARN] [1770698026.745648825] [camera.camera]: re-enable the stream for the change to take effect.[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698026.751714952] [camera.camera]: Set ROS param depth_module.infra_profile to default: 848x480x30[0m
+[realsense2_camera_node-1] [33m[WARN] [1770698027.961868176] [camera.camera]: re-enable the stream for the change to take effect.[0m
+[realsense2_camera_node-1] [33m[WARN] [1770698027.971091272] [camera.camera]: re-enable the stream for the change to take effect.[0m
+[realsense2_camera_node-1] [33m[WARN] [1770698028.030902117] [camera.camera]: re-enable the stream for the change to take effect.[0m
+[realsense2_camera_node-1] [33m[WARN] [1770698028.063566212] [camera.camera]: re-enable the stream for the change to take effect.[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698028.072217424] [camera.camera]: Stopping Sensor: Depth Module[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698028.072648474] [camera.camera]: Stopping Sensor: RGB Camera[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698028.072730044] [camera.camera]: Stopping Sensor: Motion Module[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698028.227063813] [camera.camera]: Starting Sensor: Depth Module[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698028.362533107] [camera.camera]: Open profile: stream_type: Depth(0), Format: Z16, Width: 640, Height: 480, FPS: 15[0m
+[realsense2_camera_node-1]  10/02 13:33:48,369 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,381 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,394 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,405 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,416 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,427 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,438 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,449 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,460 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,471 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1] [0m[INFO] [1770698028.484563845] [camera.camera]: Starting Sensor: RGB Camera[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698028.502687182] [camera.camera]: Open profile: stream_type: Color(0), Format: RGB8, Width: 640, Height: 480, FPS: 15[0m
+[realsense2_camera_node-1]  10/02 13:33:48,509 WARNING [281472552331488] (ds-calib-parsers.cpp:36) IMU Calibration is not available, default intrinsic and extrinsic will be used.
+[realsense2_camera_node-1] [0m[INFO] [1770698028.517473962] [camera.camera]: Starting Sensor: Motion Module[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698028.529324224] [camera.camera]: Open profile: stream_type: Accel(0)Format: MOTION_XYZ32F, FPS: 200[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698028.529460323] [camera.camera]: Open profile: stream_type: Gyro(0)Format: MOTION_XYZ32F, FPS: 200[0m
+[realsense2_camera_node-1] [0m[INFO] [1770698028.603431373] [camera.camera]: RealSense Node Is Up![0m
+[realsense2_camera_node-1]  10/02 13:33:48,787 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,798 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,809 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,820 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,831 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,842 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,954 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,965 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,976 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,987 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:48,998 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:49,008 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:49,019 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:49,030 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:49,041 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:49,052 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:49,063 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:49,074 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:49,085 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:49,626 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:33:49,641 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:36:33,549 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:36:33,560 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:36:33,571 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:36:33,583 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:37:41,771 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:37:41,782 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:37:41,793 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:37:41,804 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:37:41,815 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:37:41,826 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:37:41,837 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:41:39,606 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:41:39,620 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:41:39,631 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 13:41:39,642 WARNING [281472526969056] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)

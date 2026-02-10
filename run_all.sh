@@ -3,7 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG_DIR="${ROOT}/logs/run_$(date +%Y%m%d_%H%M%S)"
-SLEEP_SEC=5
+SLEEP_SEC=1
 mkdir -p "$LOG_DIR"
 
 # 기본 환경 먼저 로드 (요청사항)
@@ -145,14 +145,14 @@ run_ros_with_nav2_env "rtabmap_nav2" "ros2 launch rtabmap_launch rtabmap_nav2.la
 sleep "$SLEEP_SEC"
 
 # 4.5) 핵심 토픽/TF가 준비된 뒤 agent PID 시작
-wait_for_topic "/odometry/filtered" 20
-wait_for_tf "odom" "base_link" 20
-wait_for_topic "/rtabmap/map" 60
-wait_for_tf "map" "odom" 30
-wait_for_topic "/global_costmap/costmap" 30
+wait_for_topic "/odometry/filtered" 10
+wait_for_tf "odom" "base_link" 10
+wait_for_topic "/rtabmap/map" 10
+wait_for_tf "map" "odom" 15
+wait_for_topic "/global_costmap/costmap" 15
 
 # Nav2 재활성화(맵/TF 준비 이후 플래너 타임아웃 방지)
-restart_nav2_core
+# restart_nav2_core
 
 # 5) Agent PID (venv)
 run_agent_pid "agent_pid" "ros2 launch rl_pid_training agent_pid.launch.py"

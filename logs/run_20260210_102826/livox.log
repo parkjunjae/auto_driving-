@@ -21,3 +21,6 @@
 [livox_ros_driver2_node-1] successfully enable Livox Lidar imu, ip: 192.168.1.148
 [livox_ros_driver2_node-1] [INFO] [1770686912.048772035] [livox_lidar_publisher]: livox/imu publish use imu format
 [livox_ros_driver2_node-1] [INFO] [1770686912.050427530] [livox_lidar_publisher]: livox/lidar publish use PointCloud2 format
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[livox_ros_driver2_node-1] [INFO] [1770696348.169000810] [rclcpp]: signal_handler(signum=2)
+[INFO] [livox_ros_driver2_node-1]: sending signal 'SIGINT' to process[livox_ros_driver2_node-1]

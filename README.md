@@ -392,6 +392,14 @@ python3 ~/to_ws/tf_jump_monitor.py --jump-trans 0.03 --jump-rot-deg 2 --output ~
   - `src/rtabmap_ros/rtabmap_launch/launch/rtabmap_nav2.launch.py`
   - `src/rtabmap_ros/rtabmap_launch/launch/config/nav2_rtabmap_params.yaml`
 
+- **노드 코드 변경 요약**
+  - `min_static_sec` 파라미터 추가:
+    - **연속 관측 시간이 `min_static_sec` 이상**일 때만 정적으로 인정
+    - 사람이 잠깐 멈춰도 global에 남는 문제를 줄이기 위한 핵심 조건
+  - 적용 위치:
+    - `dynamic_object_filter_node.cpp`에서 `VoxelState`에 `first_seen_sec` 추가
+    - `hits + (now - first_seen_sec) >= min_static_sec` 조건으로 정적 판정
+
 - **토픽 체인(최종)**
   - `/livox/lidar/synced/deskewed` (deskew 입력)
   - -> `/livox/lidar/filtered` (기존 livox 필터 출력)
@@ -411,24 +419,40 @@ python3 ~/to_ws/tf_jump_monitor.py --jump-trans 0.03 --jump-rot-deg 2 --output ~
     - 히트 누적 시간창[s]. 길수록 정적 판단이 보수적.
   - `max_stale_sec`:
     - 오래 미관측된 보셀 상태 제거 시간[s].
+  - `min_static_sec`:
+    - 정적으로 인정되기까지 필요한 **연속 유지 시간**[s]. (사람 잔상 억제 핵심)
   - `z_min`, `z_max`:
     - 필터 대상 높이 범위[m].
   - `min_range`:
     - 근거리 노이즈 제거 거리[m].
 
-- **권장 시작값(실내)**
+- **현재 적용값(사람 잔상 억제용)**
   - `voxel_size=0.10`
-  - `min_hits=3`
-  - `hit_window_sec=3.0`
-  - `max_stale_sec=8.0`
-  - `z_min=0.03`, `z_max=1.8`
-  - `min_range=0.2`
+  - `min_hits=6`
+  - `hit_window_sec=0.7`
+  - `max_stale_sec=1.0`
+  - `min_static_sec=1.0`
+  - `z_min=0.05`, `z_max=1.2`
+  - `min_range=0.8`
+
+- **튜닝 가이드**
+  - 사람 잔상이 남으면: `min_hits↑` 또는 `min_static_sec↑`
+  - 소파가 끊기면: `min_static_sec↓`, `hit_window_sec↑`
+  - 근거리 링(원형) 남으면: `min_range↑`
 
 - **검증 명령**
 
 ```bash
 ros2 topic info /livox/lidar/static_filtered -v
 ros2 topic hz /livox/lidar/static_filtered
+```
+
+- **재빌드**
+
+```bash
+cd ~/to_ws
+colcon build --packages-select livox_pointcloud_filter
+source ~/to_ws/install/setup.bash
 ```
 
 ---

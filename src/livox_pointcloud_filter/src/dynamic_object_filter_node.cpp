@@ -40,6 +40,7 @@ struct VoxelKeyHash
 struct VoxelState
 {
   int hits{0};
+  double first_seen_sec{0.0};
   double last_seen_sec{0.0};
 };
 
@@ -49,16 +50,27 @@ public:
   DynamicObjectFilterNode()
   : Node("dynamic_object_filter")
   {
+    // 입력/출력 토픽
     declare_parameter<std::string>("input_topic", "/livox/lidar/filtered");
     declare_parameter<std::string>("output_topic", "/livox/lidar/static_filtered");
+    // 보셀 크기: 작을수록 디테일↑, 잡음/연산량↑
     declare_parameter<double>("voxel_size", 0.10);
+    // 정적으로 인정할 최소 관측 횟수(보셀 히트 수)
     declare_parameter<int>("min_hits", 3);
+    // 히트 누적 시간 창: 이 시간 안에 반복 관측되어야 hits가 누적됨
     declare_parameter<double>("hit_window_sec", 3.0);
+    // 오래 안 보인 보셀 상태는 제거(메모리/유령 제거)
     declare_parameter<double>("max_stale_sec", 8.0);
+    // 정적으로 인정하기 위한 최소 유지 시간(연속 관측 유지 시간)
+    declare_parameter<double>("min_static_sec", 2.0);
+    // 높이 필터(지면/천장/노이즈 제거)
     declare_parameter<double>("z_min", -2.0);
     declare_parameter<double>("z_max", 2.0);
+    // 센서 근접 링 제거(로봇 주변 원형 잔상 방지)
     declare_parameter<double>("min_range", 0.2);
+    // 누적 기준 프레임(회전 시 도넛/휘어짐 방지용)
     declare_parameter<std::string>("target_frame", "odom");
+    // TF lookup 타임아웃(지연 시 드롭)
     declare_parameter<double>("tf_timeout_sec", 0.05);
 
     input_topic_ = get_parameter("input_topic").as_string();
@@ -67,6 +79,7 @@ public:
     min_hits_ = get_parameter("min_hits").as_int();
     hit_window_sec_ = get_parameter("hit_window_sec").as_double();
     max_stale_sec_ = get_parameter("max_stale_sec").as_double();
+    min_static_sec_ = get_parameter("min_static_sec").as_double();
     z_min_ = get_parameter("z_min").as_double();
     z_max_ = get_parameter("z_max").as_double();
     min_range_ = get_parameter("min_range").as_double();
@@ -85,8 +98,8 @@ public:
 
     RCLCPP_INFO(
       get_logger(),
-      "Dynamic filter: %s -> %s, voxel=%.3f, min_hits=%d, hit_window=%.2fs",
-      input_topic_.c_str(), output_topic_.c_str(), voxel_size_, min_hits_, hit_window_sec_);
+      "Dynamic filter: %s -> %s, voxel=%.3f, min_hits=%d, hit_window=%.2fs, min_static=%.2fs",
+      input_topic_.c_str(), output_topic_.c_str(), voxel_size_, min_hits_, hit_window_sec_, min_static_sec_);
   }
 
 private:
@@ -159,13 +172,15 @@ private:
       frame_voxels.insert(to_voxel(p));
     }
 
+    // 이번 프레임에서 관측된 보셀에 대해 히트 누적
     for (const auto & v : frame_voxels) {
       auto it = voxel_map_.find(v);
       if (it == voxel_map_.end()) {
-        voxel_map_[v] = VoxelState{1, now_sec};
+        voxel_map_[v] = VoxelState{1, now_sec, now_sec};
       } else {
         if (now_sec - it->second.last_seen_sec > hit_window_sec_) {
           it->second.hits = 1;
+          it->second.first_seen_sec = now_sec;
         } else {
           it->second.hits += 1;
         }
@@ -175,9 +190,12 @@ private:
 
     std::unordered_set<VoxelKey, VoxelKeyHash> static_voxels;
     static_voxels.reserve(frame_voxels.size());
+    // 정적 판정: hits + 연속 유지시간(min_static_sec) 조건 모두 만족
     for (const auto & v : frame_voxels) {
       auto it = voxel_map_.find(v);
-      if (it != voxel_map_.end() && it->second.hits >= min_hits_) {
+      if (it != voxel_map_.end() &&
+          it->second.hits >= min_hits_ &&
+          (now_sec - it->second.first_seen_sec) >= min_static_sec_) {
         static_voxels.insert(v);
       }
     }
@@ -210,6 +228,7 @@ private:
   int min_hits_{3};
   double hit_window_sec_{3.0};
   double max_stale_sec_{8.0};
+  double min_static_sec_{2.0};
   double z_min_{-2.0};
   double z_max_{2.0};
   double min_range_{0.2};

@@ -102,22 +102,23 @@ def main():
         default=0.05,
         help="제자리 회전 판정용 |v_ref| 임계값(m/s)",
     )
+    # 저속 좌우 떨림 억제용 w_ref 가드(로그 기반 기본값)
     parser.add_argument(
         "--w-ref-lpf-alpha",
         type=float,
-        default=0.25,
+        default=0.18,
         help="w_ref 저역통과 계수(0~1), 작을수록 좌우 떨림 완화",
     )
     parser.add_argument(
         "--w-ref-deadband",
         type=float,
-        default=0.03,
+        default=0.06,
         help="|w_ref|가 이 값보다 작으면 0으로 처리",
     )
     parser.add_argument(
         "--dither-v-ref-thresh",
         type=float,
-        default=0.06,
+        default=0.10,
         help="저속 anti-dither 활성화 v_ref 임계값(m/s)",
     )
     parser.add_argument(
@@ -129,13 +130,13 @@ def main():
     parser.add_argument(
         "--w-ref-sign-hold-sec",
         type=float,
-        default=0.35,
+        default=0.50,
         help="저속 회전 시 w_ref 부호 최소 유지 시간(s)",
     )
     parser.add_argument(
         "--w-ref-abs-max-low-speed",
         type=float,
-        default=0.45,
+        default=0.30,
         help="저속 구간 |w_ref| 상한(rad/s)",
     )
     # ros2 launch adds ROS remap args (e.g. --ros-args ...), so ignore unknown CLI args.

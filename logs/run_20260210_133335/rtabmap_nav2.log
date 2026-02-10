@@ -1,0 +1,941 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-10-13-33-44-183479-world-243538
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [rgbd_sync-1]: process started with pid [243929]
+[INFO] [rtabmap-2]: process started with pid [243932]
+[INFO] [livox_pointcloud_filter_node-3]: process started with pid [243935]
+[INFO] [dynamic_object_filter_node-4]: process started with pid [243937]
+[dynamic_object_filter_node-4] [INFO] [1770698024.576852029] [dynamic_object_filter]: Dynamic filter: /livox/lidar/filtered -> /livox/lidar/static_filtered, voxel=0.120, min_hits=2, hit_window=1.00s
+[rgbd_sync-1] [0m[INFO] [1770698025.732926927] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync = true[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.734593590] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync_max_interval = 0.080000[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.734678680] [rtabmap.rgbd_sync]: rgbd_sync: topic_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.734705305] [rtabmap.rgbd_sync]: rgbd_sync: sync_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.734734297] [rtabmap.rgbd_sync]: rgbd_sync: qos             = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.734757690] [rtabmap.rgbd_sync]: rgbd_sync: qos_camera_info = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.734781274] [rtabmap.rgbd_sync]: rgbd_sync: depth_scale = 1.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.734806523] [rtabmap.rgbd_sync]: rgbd_sync: decimation = 1[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.734828827] [rtabmap.rgbd_sync]: rgbd_sync: compressed_rate = 0.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.734851804] [rtabmap.rgbd_sync]: rgbd_sync: image_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.734885085] [rtabmap.rgbd_sync]: rgbd_sync: depth_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770698025.791457198] [rtabmap.rgbd_sync]: 
+[rgbd_sync-1] rgbd_sync subscribed to (approx sync, max interval=0.080000s):
+[rgbd_sync-1]    /camera/camera/color/image_raw,
+[rgbd_sync-1]    /camera/camera/aligned_depth_to_color/image_raw,
+[rgbd_sync-1]    /camera/camera/color/camera_info[0m
+[dynamic_object_filter_node-4] [WARN] [1770698026.444197009] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): "odom" passed to lookupTransform argument target_frame does not exist. 
+[INFO] [controller_server-5]: process started with pid [244439]
+[INFO] [planner_server-6]: process started with pid [244441]
+[INFO] [smoother_server-7]: process started with pid [244443]
+[INFO] [bt_navigator-8]: process started with pid [244445]
+[INFO] [behavior_server-9]: process started with pid [244447]
+[INFO] [waypoint_follower-10]: process started with pid [244449]
+[INFO] [velocity_smoother-11]: process started with pid [244457]
+[behavior_server-9] [INFO] [1770698029.666476565] [behavior_server]: 
+[behavior_server-9] 	behavior_server lifecycle node launched. 
+[behavior_server-9] 	Waiting on external lifecycle transitions to activate
+[behavior_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-8] [INFO] [1770698030.155690904] [bt_navigator]: 
+[bt_navigator-8] 	bt_navigator lifecycle node launched. 
+[bt_navigator-8] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-8] [INFO] [1770698030.156013856] [bt_navigator]: Creating
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:33:51.642) Transform.cpp:555::getTransform() No transform found for stamp 1770698031.606131! Latest is 1770698031.559590[0m
+[dynamic_object_filter_node-4] [WARN] [1770698032.665237272] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770698032.605661 but the latest data is at time 1770698032.580448, when looking up transform from frame [livox_frame] to frame [odom]
+[INFO] [lifecycle_manager-12]: process started with pid [244760]
+[lifecycle_manager-12] [INFO] [1770698039.538734555] [lifecycle_manager]: Creating
+[lifecycle_manager-12] [INFO] [1770698039.545499290] [lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-12] [INFO] [1770698041.602961248] [lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-12] [INFO] [1770698041.603110915] [lifecycle_manager]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-5] [ERROR] [1770698041.722810143] [local_costmap.local_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.270) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770698041.808700384] [lifecycle_manager]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-6] [ERROR] [1770698041.961622024] [global_costmap.global_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.260) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770698042.037721571] [lifecycle_manager]: [34m[1mConfiguring smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770698042.283660916] [lifecycle_manager]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770698042.286233584] [bt_navigator]: Configuring
+[lifecycle_manager-12] [INFO] [1770698042.656214082] [lifecycle_manager]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770698042.659827191] [behavior_server]: Configuring
+[behavior_server-9] [INFO] [1770698042.718437208] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin
+[behavior_server-9] [INFO] [1770698042.722601369] [behavior_server]: Configuring spin
+[behavior_server-9] [INFO] [1770698042.779881723] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[behavior_server-9] [INFO] [1770698042.782081935] [behavior_server]: Configuring backup
+[behavior_server-9] [INFO] [1770698042.815467903] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[behavior_server-9] [INFO] [1770698042.817766005] [behavior_server]: Configuring drive_on_heading
+[behavior_server-9] [INFO] [1770698042.849330746] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors/AssistedTeleop
+[behavior_server-9] [INFO] [1770698042.854161900] [behavior_server]: Configuring assisted_teleop
+[behavior_server-9] [INFO] [1770698042.886267262] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[behavior_server-9] [INFO] [1770698042.890189018] [behavior_server]: Configuring wait
+[lifecycle_manager-12] [INFO] [1770698042.909975306] [lifecycle_manager]: [34m[1mConfiguring waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770698042.983762448] [lifecycle_manager]: [34m[1mConfiguring velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770698043.009568110] [lifecycle_manager]: [34m[1mActivating controller_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770698043.181219981] [lifecycle_manager]: Server controller_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770698043.181590774] [lifecycle_manager]: [34m[1mActivating planner_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770698043.403463953] [lifecycle_manager]: Server planner_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770698043.403634133] [lifecycle_manager]: [34m[1mActivating smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770698043.524363785] [lifecycle_manager]: Server smoother_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770698043.524542509] [lifecycle_manager]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770698043.525406306] [bt_navigator]: Activating
+[bt_navigator-8] [INFO] [1770698043.761739761] [bt_navigator_navigate_to_pose_rclcpp_node]: Waiting on odometry
+[bt_navigator-8] [INFO] [1770698043.775465939] [bt_navigator_navigate_to_pose_rclcpp_node]: Got odometry
+[bt_navigator-8] [INFO] [1770698043.902616029] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770698044.016530193] [lifecycle_manager]: Server bt_navigator connected with bond.
+[lifecycle_manager-12] [INFO] [1770698044.016694357] [lifecycle_manager]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770698044.018379997] [behavior_server]: Activating
+[behavior_server-9] [INFO] [1770698044.018479007] [behavior_server]: Activating spin
+[behavior_server-9] [INFO] [1770698044.018515264] [behavior_server]: Activating backup
+[behavior_server-9] [INFO] [1770698044.018541568] [behavior_server]: Activating drive_on_heading
+[behavior_server-9] [INFO] [1770698044.018565185] [behavior_server]: Activating assisted_teleop
+[behavior_server-9] [INFO] [1770698044.018588097] [behavior_server]: Activating wait
+[behavior_server-9] [INFO] [1770698044.018620418] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770698044.131081492] [lifecycle_manager]: Server behavior_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770698044.131218263] [lifecycle_manager]: [34m[1mActivating waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770698044.250387110] [lifecycle_manager]: Server waypoint_follower connected with bond.
+[lifecycle_manager-12] [INFO] [1770698044.250514409] [lifecycle_manager]: [34m[1mActivating velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770698044.366497261] [lifecycle_manager]: Server velocity_smoother connected with bond.
+[lifecycle_manager-12] [INFO] [1770698044.366616688] [lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-12] [INFO] [1770698044.366645105] [lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[dynamic_object_filter_node-4] [WARN] [1770698053.688502039] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770698053.605594 but the latest data is at time 1770698053.584055, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770698068.707468850] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770698068.639004 but the latest data is at time 1770698068.630081, when looking up transform from frame [livox_frame] to frame [odom]
+[bt_navigator-8] [INFO] [1770698071.258915242] [bt_navigator]: Begin navigating from current location (-3.66, 0.14) to (-2.11, 0.30)
+[bt_navigator-8] [WARN] [1770698071.289437015] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698077.139704793] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770698080.288476447] [bt_navigator]: Begin navigating from current location (-2.23, 0.31) to (-0.98, -1.43)
+[bt_navigator-8] [WARN] [1770698086.411301667] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698087.501122336] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698094.885438082] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698096.150662231] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770698101.279079422] [bt_navigator]: Begin navigating from current location (-0.81, -1.31) to (-0.76, -5.17)
+[bt_navigator-8] [WARN] [1770698107.001251264] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698110.460884011] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698114.532869221] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698121.221132650] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698121.640576742] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770698128.903934415] [bt_navigator]: Begin navigating from current location (-0.79, -5.04) to (0.87, -6.49)
+[bt_navigator-8] [WARN] [1770698129.544871485] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698130.549419207] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698131.200824172] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698132.075407850] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698142.688752430] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698146.238091380] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698146.864524942] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698150.001235032] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698153.104396719] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698153.564537479] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770698163.409186308] [bt_navigator]: Begin navigating from current location (0.96, -6.62) to (1.56, -7.90)
+[bt_navigator-8] [WARN] [1770698163.446430543] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698163.474021687] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698166.586521897] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698168.229653963] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698168.568690374] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698169.140557118] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698169.790713605] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698170.180765198] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698170.358947047] [bt_navigator]: Received goal preemption request
+[bt_navigator-8] [INFO] [1770698170.359397810] [bt_navigator]: Begin navigating from current location (1.06, -6.70) to (1.33, -7.69)
+[bt_navigator-8] [WARN] [1770698171.541423077] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698171.848824537] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698172.079808362] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698173.540756661] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698181.390484298] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698184.036449294] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698185.874104745] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698188.956547384] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698189.929531998] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698199.137309005] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698199.756835236] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770698210.941429138] [bt_navigator]: Begin navigating from current location (1.41, -7.72) to (-0.57, -4.98)
+[bt_navigator-8] [WARN] [1770698220.844505964] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698224.964591088] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698234.545278005] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698235.745010760] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698238.134911982] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698238.656646156] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698242.917447449] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698244.427144637] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698248.364022418] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698248.365554454] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698252.714872738] [bt_navigator]: Received goal preemption request
+[bt_navigator-8] [INFO] [1770698252.715257931] [bt_navigator]: Begin navigating from current location (0.64, -7.43) to (1.60, -6.18)
+[bt_navigator-8] [WARN] [1770698256.544658979] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698259.944596116] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698264.692869307] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698264.695441111] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698269.836601930] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698273.205409984] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770698277.294787667] [bt_navigator]: Begin navigating from current location (1.61, -6.16) to (-0.71, -5.81)
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:02.458) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 429: Not enough inliers 0/20 (matches=68) between 74 and 429[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:03.103) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 430: Not enough inliers 0/20 (matches=67) between 74 and 430[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:04.453) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 432: Not enough inliers 0/20 (matches=65) between 76 and 432[0m
+[bt_navigator-8] [WARN] [1770698285.928709627] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698288.345294483] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698291.505544807] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698292.116534133] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:12.915) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 445: Not enough inliers 0/20 (matches=66) between 4 and 445[0m
+[bt_navigator-8] [WARN] [1770698293.485128519] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:13.640) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 446: Not enough inliers 0/20 (matches=73) between 74 and 446[0m
+[bt_navigator-8] [WARN] [1770698293.805909813] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698294.023943446] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698294.176679706] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698294.376577329] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:14.535) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 447: Not enough inliers 0/20 (matches=67) between 74 and 447[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:15.616) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 448: Not enough inliers 0/20 (matches=66) between 74 and 448[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:16.271) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 449: Not enough inliers 0/20 (matches=83) between 76 and 449[0m
+[bt_navigator-8] [WARN] [1770698296.564813846] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698296.736893088] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:16.913) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 450: Not enough inliers 0/20 (matches=71) between 74 and 450[0m
+[bt_navigator-8] [WARN] [1770698296.918783440] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:17.742) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 451: Not enough inliers 0/20 (matches=55) between 78 and 451[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:18.297) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 452: Not enough inliers 0/20 (matches=66) between 76 and 452[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:18.816) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 453: Not enough inliers 0/20 (matches=72) between 76 and 453[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:19.401) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 454: Not enough inliers 0/20 (matches=76) between 76 and 454[0m
+[bt_navigator-8] [WARN] [1770698299.524472866] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:19.913) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 455: Not enough inliers 0/20 (matches=67) between 74 and 455[0m
+[bt_navigator-8] [WARN] [1770698300.084763050] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698300.457195477] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:20.601) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 456: Not enough inliers 0/20 (matches=67) between 76 and 456[0m
+[bt_navigator-8] [WARN] [1770698300.725675479] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:21.238) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 457: Not enough inliers 0/20 (matches=79) between 76 and 457[0m
+[bt_navigator-8] [WARN] [1770698301.654069029] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:21.716) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 458: Not enough inliers 0/20 (matches=67) between 76 and 458[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:22.499) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 459: Not enough inliers 0/20 (matches=66) between 76 and 459[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:23.116) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 460: Not enough inliers 0/20 (matches=55) between 74 and 460[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:23.757) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 461: Not enough inliers 0/20 (matches=55) between 74 and 461[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:24.501) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 462: Not enough inliers 0/20 (matches=77) between 76 and 462[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:25.220) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 463: Not enough inliers 0/20 (matches=70) between 74 and 463[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:26.169) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 464: Not enough inliers 0/20 (matches=79) between 76 and 464[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:26.820) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 465: Not enough inliers 0/20 (matches=60) between 74 and 465[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:28.001) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 467: Not enough inliers 0/20 (matches=75) between 76 and 467[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:28.781) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 468: Not enough inliers 0/20 (matches=61) between 4 and 468[0m
+[controller_server-5] [ERROR] [1770698309.829417531] [controller_server]: Failed to make progress
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:31.358) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 472: Not enough inliers 0/20 (matches=64) between 76 and 472[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:31.791) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 473: Not enough inliers 0/20 (matches=65) between 74 and 473[0m
+[bt_navigator-8] [WARN] [1770698312.669306794] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:32.828) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 474: Not enough inliers 0/20 (matches=55) between 78 and 474[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:33.213) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 475: Not enough inliers 0/20 (matches=67) between 76 and 475[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:34.072) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 476: Not enough inliers 0/20 (matches=80) between 76 and 476[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:34.669) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 477: Not enough inliers 0/20 (matches=75) between 76 and 477[0m
+[bt_navigator-8] [WARN] [1770698315.216610528] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:35.573) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 478: Not enough inliers 0/20 (matches=66) between 76 and 478[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:35.885) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 479: Not enough inliers 0/20 (matches=68) between 74 and 479[0m
+[bt_navigator-8] [WARN] [1770698316.334636468] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698316.445249530] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698316.804977979] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:36.939) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 480: Not enough inliers 0/20 (matches=69) between 76 and 480[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:37.582) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 481: Not enough inliers 0/20 (matches=74) between 76 and 481[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:38.194) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 482: Not enough inliers 0/20 (matches=66) between 74 and 482[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:38.909) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 483: Not enough inliers 0/20 (matches=70) between 76 and 483[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:39.500) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 484: Not enough inliers 0/20 (matches=75) between 76 and 484[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:40.351) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 485: Not enough inliers 0/20 (matches=55) between 74 and 485[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:41.259) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 486: Not enough inliers 0/20 (matches=65) between 76 and 486[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:41.802) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 487: Not enough inliers 0/20 (matches=51) between 78 and 487[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:42.392) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 488: Not enough inliers 0/20 (matches=81) between 76 and 488[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:43.117) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 489: Not enough inliers 0/20 (matches=66) between 4 and 489[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:43.686) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 490: Not enough inliers 0/20 (matches=65) between 76 and 490[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:44.514) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 491: Not enough inliers 0/20 (matches=66) between 74 and 491[0m
+[bt_navigator-8] [WARN] [1770698325.055613721] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:45.106) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 492: Not enough inliers 0/20 (matches=46) between 78 and 492[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:45.783) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 493: Not enough inliers 0/20 (matches=79) between 76 and 493[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:46.474) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 494: Not enough inliers 0/20 (matches=56) between 76 and 494[0m
+[bt_navigator-8] [WARN] [1770698326.587859182] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:47.072) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 495: Not enough inliers 0/20 (matches=73) between 76 and 495[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:47.608) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 496: Not enough inliers 0/20 (matches=65) between 76 and 496[0m
+[bt_navigator-8] [WARN] [1770698328.114645251] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:48.223) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 497: Not enough inliers 0/20 (matches=67) between 74 and 497[0m
+[bt_navigator-8] [WARN] [1770698328.637168052] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:48.807) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 498: Not enough inliers 0/20 (matches=59) between 76 and 498[0m
+[bt_navigator-8] [WARN] [1770698328.946286513] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698329.188891027] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:49.794) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 499: Not enough inliers 0/20 (matches=66) between 74 and 499[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:50.306) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 500: Not enough inliers 0/20 (matches=58) between 74 and 500[0m
+[bt_navigator-8] [WARN] [1770698330.386063914] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:50.975) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 501: Not enough inliers 0/20 (matches=58) between 74 and 501[0m
+[bt_navigator-8] [WARN] [1770698331.097463951] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698331.114756965] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:51.559) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 502: Not enough inliers 0/20 (matches=70) between 74 and 502[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:52.226) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 503: Not enough inliers 0/20 (matches=65) between 76 and 503[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:53.055) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 504: Not enough inliers 0/20 (matches=60) between 76 and 504[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:53.627) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 505: Not enough inliers 0/20 (matches=85) between 76 and 505[0m
+[bt_navigator-8] [WARN] [1770698333.734807529] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:54.197) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 506: Not enough inliers 0/20 (matches=78) between 76 and 506[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:54.667) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 507: Not enough inliers 0/20 (matches=69) between 76 and 507[0m
+[bt_navigator-8] [WARN] [1770698335.124786544] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:55.307) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 508: Not enough inliers 0/20 (matches=78) between 76 and 508[0m
+[bt_navigator-8] [WARN] [1770698335.807147787] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698336.044645974] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:56.037) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 509: Not enough inliers 0/20 (matches=76) between 74 and 509[0m
+[bt_navigator-8] [WARN] [1770698336.408565785] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:56.504) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 510: Not enough inliers 0/20 (matches=66) between 76 and 510[0m
+[bt_navigator-8] [WARN] [1770698337.007311657] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:57.192) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 511: Not enough inliers 0/20 (matches=67) between 76 and 511[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:57.906) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 512: Not enough inliers 0/20 (matches=71) between 74 and 512[0m
+[bt_navigator-8] [WARN] [1770698337.925947793] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:58.607) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 513: Not enough inliers 0/20 (matches=63) between 74 and 513[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:59.287) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 514: Not enough inliers 0/20 (matches=71) between 76 and 514[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:38:59.821) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 515: Not enough inliers 0/20 (matches=70) between 74 and 515[0m
+[controller_server-5] [ERROR] [1770698339.947767794] [controller_server]: Failed to make progress
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:00.634) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 516: Not enough inliers 0/20 (matches=53) between 76 and 516[0m
+[bt_navigator-8] [WARN] [1770698341.325550299] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:01.498) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 517: Not enough inliers 0/20 (matches=67) between 76 and 517[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:02.154) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 518: Not enough inliers 0/20 (matches=62) between 76 and 518[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:02.601) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 519: Not enough inliers 0/20 (matches=62) between 76 and 519[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:03.305) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 520: Not enough inliers 0/20 (matches=66) between 76 and 520[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:03.898) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 521: Not enough inliers 0/20 (matches=61) between 74 and 521[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:04.610) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 522: Not enough inliers 0/20 (matches=64) between 76 and 522[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:05.166) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 523: Not enough inliers 0/20 (matches=73) between 76 and 523[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:05.934) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 524: Not enough inliers 0/20 (matches=64) between 76 and 524[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:06.554) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 525: Not enough inliers 0/20 (matches=57) between 76 and 525[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:07.350) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 526: Not enough inliers 0/20 (matches=75) between 4 and 526[0m
+[bt_navigator-8] [WARN] [1770698347.547157039] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:08.315) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 527: Not enough inliers 0/20 (matches=66) between 4 and 527[0m
+[bt_navigator-8] [WARN] [1770698348.853939764] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698348.854951340] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:09.228) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 528: Not enough inliers 0/20 (matches=55) between 74 and 528[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:09.813) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 529: Not enough inliers 0/20 (matches=58) between 76 and 529[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:10.471) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 530: Not enough inliers 0/20 (matches=76) between 74 and 530[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:11.366) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 531: Not enough inliers 0/20 (matches=81) between 76 and 531[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:12.026) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 532: Not enough inliers 0/20 (matches=75) between 76 and 532[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:12.679) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 533: Not enough inliers 0/20 (matches=70) between 74 and 533[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:13.649) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 534: Not enough inliers 0/20 (matches=77) between 74 and 534[0m
+[bt_navigator-8] [WARN] [1770698354.187555695] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:14.229) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 535: Not enough inliers 0/20 (matches=66) between 76 and 535[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:14.987) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 536: Not enough inliers 0/20 (matches=66) between 74 and 536[0m
+[bt_navigator-8] [WARN] [1770698355.394585166] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698355.394838260] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:15.515) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 537: Not enough inliers 0/20 (matches=81) between 76 and 537[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:16.332) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 538: Not enough inliers 0/20 (matches=58) between 74 and 538[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:16.780) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 539: Not enough inliers 0/20 (matches=69) between 76 and 539[0m
+[bt_navigator-8] [WARN] [1770698356.915405495] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698357.256311582] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:17.645) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 540: Not enough inliers 0/20 (matches=65) between 76 and 540[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:18.271) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 541: Not enough inliers 0/20 (matches=71) between 74 and 541[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:19.061) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 542: Not enough inliers 0/20 (matches=65) between 74 and 542[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:19.969) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 543: Not enough inliers 0/20 (matches=67) between 76 and 543[0m
+[bt_navigator-8] [WARN] [1770698360.268813763] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:20.464) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 544: Not enough inliers 0/20 (matches=61) between 76 and 544[0m
+[bt_navigator-8] [WARN] [1770698360.877251606] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:21.104) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 545: Not enough inliers 0/20 (matches=69) between 74 and 545[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:21.724) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 546: Not enough inliers 0/20 (matches=75) between 76 and 546[0m
+[bt_navigator-8] [WARN] [1770698361.896671998] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:22.254) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 547: Not enough inliers 0/20 (matches=75) between 76 and 547[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:22.912) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 548: Not enough inliers 0/20 (matches=74) between 76 and 548[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:23.628) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 549: Not enough inliers 0/20 (matches=72) between 76 and 549[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:24.189) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 550: Not enough inliers 0/20 (matches=68) between 74 and 550[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:24.755) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 551: Not enough inliers 0/20 (matches=67) between 74 and 551[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:25.571) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 552: Not enough inliers 0/20 (matches=70) between 76 and 552[0m
+[bt_navigator-8] [WARN] [1770698365.788527313] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:26.304) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 553: Not enough inliers 0/20 (matches=61) between 76 and 553[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:26.956) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 554: Not enough inliers 0/20 (matches=78) between 76 and 554[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:27.650) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 555: Not enough inliers 0/20 (matches=60) between 76 and 555[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:28.442) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 556: Not enough inliers 0/20 (matches=68) between 74 and 556[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:29.017) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 557: Not enough inliers 0/20 (matches=50) between 4 and 557[0m
+[bt_navigator-8] [WARN] [1770698369.619982234] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:29.721) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 558: Not enough inliers 0/20 (matches=66) between 4 and 558[0m
+[controller_server-5] [ERROR] [1770698370.081109769] [controller_server]: Failed to make progress
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:30.413) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 559: Not enough inliers 0/20 (matches=48) between 74 and 559[0m
+[bt_navigator-8] [WARN] [1770698371.270611531] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:31.353) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 560: Not enough inliers 0/20 (matches=74) between 76 and 560[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:31.927) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 561: Not enough inliers 0/20 (matches=60) between 76 and 561[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:32.700) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 562: Not enough inliers 0/20 (matches=72) between 76 and 562[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:33.237) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 563: Not enough inliers 0/20 (matches=77) between 76 and 563[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:33.900) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 564: Not enough inliers 0/20 (matches=78) between 76 and 564[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:34.641) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 565: Not enough inliers 0/20 (matches=60) between 76 and 565[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:35.393) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 566: Not enough inliers 0/20 (matches=65) between 76 and 566[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:36.186) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 567: Not enough inliers 0/20 (matches=68) between 74 and 567[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:36.862) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 568: Not enough inliers 0/20 (matches=67) between 74 and 568[0m
+[bt_navigator-8] [WARN] [1770698377.280027720] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:37.401) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 569: Not enough inliers 0/20 (matches=62) between 78 and 569[0m
+[bt_navigator-8] [WARN] [1770698377.694006467] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:37.911) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 570: Not enough inliers 0/20 (matches=63) between 4 and 570[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:38.380) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 571: Not enough inliers 0/20 (matches=58) between 76 and 571[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:39.197) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 572: Not enough inliers 0/20 (matches=59) between 74 and 572[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:39.755) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 573: Not enough inliers 0/20 (matches=51) between 74 and 573[0m
+[bt_navigator-8] [WARN] [1770698379.879899761] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698380.200518876] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:40.429) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 574: Not enough inliers 0/20 (matches=76) between 76 and 574[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:41.028) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 575: Not enough inliers 0/20 (matches=70) between 74 and 575[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:41.751) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 576: Not enough inliers 0/20 (matches=63) between 74 and 576[0m
+[bt_navigator-8] [WARN] [1770698382.100965433] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:42.526) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 577: Not enough inliers 0/20 (matches=64) between 74 and 577[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:43.179) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 578: Not enough inliers 0/20 (matches=76) between 4 and 578[0m
+[bt_navigator-8] [WARN] [1770698383.560690759] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698383.721606410] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:44.009) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 579: Not enough inliers 0/20 (matches=60) between 4 and 579[0m
+[bt_navigator-8] [WARN] [1770698384.091824738] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:44.608) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 580: Not enough inliers 0/20 (matches=68) between 76 and 580[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:45.244) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 581: Not enough inliers 0/20 (matches=70) between 74 and 581[0m
+[bt_navigator-8] [WARN] [1770698385.468446640] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698385.477180829] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698385.492398690] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698385.543691927] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:45.802) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 582: Not enough inliers 0/20 (matches=69) between 74 and 582[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:46.172) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 583: Not enough inliers 0/20 (matches=63) between 74 and 583[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:47.008) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 584: Not enough inliers 0/20 (matches=77) between 76 and 584[0m
+[bt_navigator-8] [WARN] [1770698387.238664026] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:47.620) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 585: Not enough inliers 0/20 (matches=72) between 76 and 585[0m
+[bt_navigator-8] [WARN] [1770698388.195465188] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:48.317) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 586: Not enough inliers 0/20 (matches=69) between 76 and 586[0m
+[bt_navigator-8] [WARN] [1770698388.935073919] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:49.055) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 587: Not enough inliers 0/20 (matches=50) between 78 and 587[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:49.812) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 588: Not enough inliers 0/20 (matches=62) between 76 and 588[0m
+[bt_navigator-8] [WARN] [1770698390.309491065] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698390.315334883] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:50.388) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 589: Not enough inliers 0/20 (matches=67) between 74 and 589[0m
+[bt_navigator-8] [WARN] [1770698390.649576877] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698390.656552945] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:51.066) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 590: Not enough inliers 0/20 (matches=66) between 76 and 590[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:52.372) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 591: Not enough inliers 0/20 (matches=84) between 76 and 591[0m
+[bt_navigator-8] [WARN] [1770698392.798171951] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:53.017) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 592: Not enough inliers 0/20 (matches=67) between 76 and 592[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:53.618) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 593: Not enough inliers 0/20 (matches=61) between 74 and 593[0m
+[bt_navigator-8] [WARN] [1770698393.682090697] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698393.685650780] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:54.227) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 594: Not enough inliers 0/20 (matches=63) between 76 and 594[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:54.651) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 595: Not enough inliers 0/20 (matches=80) between 76 and 595[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:55.445) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 596: Not enough inliers 0/20 (matches=61) between 76 and 596[0m
+[bt_navigator-8] [WARN] [1770698396.008799362] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:56.381) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 597: Not enough inliers 0/20 (matches=68) between 76 and 597[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:57.174) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 598: Not enough inliers 0/20 (matches=52) between 78 and 598[0m
+[bt_navigator-8] [WARN] [1770698397.376881223] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:57.731) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 599: Not enough inliers 0/20 (matches=62) between 4 and 599[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:58.373) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 600: Not enough inliers 0/20 (matches=69) between 4 and 600[0m
+[bt_navigator-8] [WARN] [1770698398.448886050] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:58.878) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 601: Not enough inliers 0/20 (matches=72) between 76 and 601[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:39:59.674) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 602: Not enough inliers 0/20 (matches=65) between 76 and 602[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:00.183) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 603: Not enough inliers 0/20 (matches=65) between 74 and 603[0m
+[controller_server-5] [ERROR] [1770698400.220609488] [controller_server]: Failed to make progress
+[bt_navigator-8] [INFO] [1770698400.235331050] [bt_navigator_navigate_to_pose_rclcpp_node]: Robot is free
+[behavior_server-9] [INFO] [1770698400.246939771] [behavior_server]: Running drive_on_heading
+[behavior_server-9] [INFO] [1770698400.247977555] [behavior_server]: DriveOnHeading: no acceleration or deceleration limits set
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:00.715) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 604: Not enough inliers 0/20 (matches=61) between 74 and 604[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:01.391) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 605: Not enough inliers 0/20 (matches=73) between 76 and 605[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:02.096) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 606: Not enough inliers 0/20 (matches=71) between 4 and 606[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:02.738) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 607: Not enough inliers 0/20 (matches=80) between 76 and 607[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:03.360) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 608: Not enough inliers 0/20 (matches=57) between 74 and 608[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:04.106) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 609: Not enough inliers 0/20 (matches=84) between 76 and 609[0m
+[behavior_server-9] [WARN] [1770698404.247909201] [behavior_server]: Exceeded time allowance before reaching the DriveOnHeading goal - Exiting DriveOnHeading
+[behavior_server-9] [WARN] [1770698404.248034676] [behavior_server]: drive_on_heading failed
+[behavior_server-9] [WARN] [1770698404.248074133] [behavior_server]: [drive_on_heading] [ActionServer] Aborting handle.
+[behavior_server-9] [INFO] [1770698404.266607528] [behavior_server]: Running spin
+[behavior_server-9] [INFO] [1770698404.266953840] [behavior_server]: Turning 1.57 for spin behavior.
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:04.798) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 610: Not enough inliers 0/20 (matches=83) between 76 and 610[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:05.332) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 611: Not enough inliers 0/20 (matches=60) between 76 and 611[0m
+[bt_navigator-8] [WARN] [1770698405.626081891] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:06.007) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 612: Not enough inliers 0/20 (matches=77) between 76 and 612[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:06.397) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 613: Not enough inliers 0/20 (matches=82) between 76 and 613[0m
+[bt_navigator-8] [WARN] [1770698406.466116982] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698406.736808748] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:07.528) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 614: Not enough inliers 0/20 (matches=73) between 76 and 614[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:08.229) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 615: Not enough inliers 0/20 (matches=77) between 74 and 615[0m
+[bt_navigator-8] [WARN] [1770698408.852808464] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698408.857510654] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:08.877) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 616: Not enough inliers 0/20 (matches=71) between 74 and 616[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:10.066) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 617: Not enough inliers 0/20 (matches=69) between 76 and 617[0m
+[bt_navigator-8] [WARN] [1770698410.076810749] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:10.771) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 618: Not enough inliers 0/20 (matches=68) between 76 and 618[0m
+[bt_navigator-8] [WARN] [1770698411.216679666] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:11.469) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 619: Not enough inliers 0/20 (matches=79) between 76 and 619[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:11.914) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 620: Not enough inliers 0/20 (matches=82) between 76 and 620[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:12.775) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 621: Not enough inliers 0/20 (matches=68) between 76 and 621[0m
+[bt_navigator-8] [WARN] [1770698413.427330245] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698413.515544573] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698413.585436263] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:13.643) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 622: Not enough inliers 0/20 (matches=76) between 76 and 622[0m
+[bt_navigator-8] [WARN] [1770698413.701186822] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698413.707898627] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698414.027061036] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:14.232) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 623: Not enough inliers 0/20 (matches=70) between 76 and 623[0m
+[bt_navigator-8] [WARN] [1770698414.266587782] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[behavior_server-9] [WARN] [1770698414.267395001] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-9] [WARN] [1770698414.267514652] [behavior_server]: spin failed
+[behavior_server-9] [WARN] [1770698414.267550524] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-9] [INFO] [1770698414.286510906] [behavior_server]: Running wait
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:14.816) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 624: Not enough inliers 0/20 (matches=58) between 76 and 624[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:15.372) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 625: Not enough inliers 0/20 (matches=71) between 74 and 625[0m
+[bt_navigator-8] [WARN] [1770698415.589089469] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:16.374) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 626: Not enough inliers 0/20 (matches=63) between 74 and 626[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:17.202) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 627: Not enough inliers 0/20 (matches=64) between 74 and 627[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:17.988) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 628: Not enough inliers 0/20 (matches=65) between 74 and 628[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:18.444) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 629: Not enough inliers 0/20 (matches=67) between 74 and 629[0m
+[bt_navigator-8] [WARN] [1770698419.177887106] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:19.214) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 630: Not enough inliers 0/20 (matches=75) between 4 and 630[0m
+[behavior_server-9] [INFO] [1770698419.287194089] [behavior_server]: wait completed successfully
+[bt_navigator-8] [WARN] [1770698419.586193784] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:19.915) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 631: Not enough inliers 0/20 (matches=74) between 74 and 631[0m
+[bt_navigator-8] [WARN] [1770698420.520721366] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:20.543) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 632: Not enough inliers 0/20 (matches=77) between 74 and 632[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:21.430) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 633: Not enough inliers 0/20 (matches=60) between 74 and 633[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:22.083) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 634: Not enough inliers 0/20 (matches=67) between 76 and 634[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:22.713) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 635: Not enough inliers 0/20 (matches=68) between 74 and 635[0m
+[bt_navigator-8] [WARN] [1770698422.915321706] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:23.440) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 636: Not enough inliers 0/20 (matches=57) between 74 and 636[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:23.951) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 637: Not enough inliers 0/20 (matches=69) between 76 and 637[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:24.637) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 638: Not enough inliers 0/20 (matches=66) between 74 and 638[0m
+[bt_navigator-8] [WARN] [1770698425.245550294] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:25.327) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 639: Not enough inliers 0/20 (matches=62) between 74 and 639[0m
+[bt_navigator-8] [WARN] [1770698425.729721666] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:26.123) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 640: Not enough inliers 0/20 (matches=70) between 76 and 640[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:26.710) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 641: Not enough inliers 0/20 (matches=67) between 76 and 641[0m
+[bt_navigator-8] [WARN] [1770698426.778016912] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698426.939012758] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:27.295) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 642: Not enough inliers 0/20 (matches=79) between 76 and 642[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:28.039) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 643: Not enough inliers 0/20 (matches=66) between 76 and 643[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:28.809) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 644: Not enough inliers 0/20 (matches=63) between 76 and 644[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:29.464) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 645: Not enough inliers 0/20 (matches=72) between 74 and 645[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:29.970) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 646: Not enough inliers 0/20 (matches=86) between 74 and 646[0m
+[bt_navigator-8] [WARN] [1770698429.980640359] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698430.180971752] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:31.099) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 647: Not enough inliers 0/20 (matches=63) between 76 and 647[0m
+[bt_navigator-8] [WARN] [1770698431.329127200] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:31.766) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 648: Not enough inliers 0/20 (matches=71) between 4 and 648[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:32.448) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 649: Not enough inliers 0/20 (matches=66) between 76 and 649[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:33.066) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 650: Not enough inliers 0/20 (matches=72) between 76 and 650[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:33.656) Rtabmap.cpp:3068::process() Rejected loop closure 80 -> 651: Not enough inliers 0/20 (matches=66) between 80 and 651[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:34.092) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 652: Not enough inliers 0/20 (matches=78) between 76 and 652[0m
+[bt_navigator-8] [WARN] [1770698434.376616347] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:34.982) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 653: Not enough inliers 0/20 (matches=65) between 74 and 653[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:35.558) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 654: Not enough inliers 0/20 (matches=67) between 76 and 654[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:35.986) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 655: Not enough inliers 0/20 (matches=72) between 74 and 655[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:36.583) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 656: Not enough inliers 0/20 (matches=57) between 74 and 656[0m
+[bt_navigator-8] [WARN] [1770698436.608612324] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:37.238) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 657: Not enough inliers 0/20 (matches=76) between 74 and 657[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:37.846) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 658: Not enough inliers 0/20 (matches=81) between 76 and 658[0m
+[bt_navigator-8] [WARN] [1770698437.955279954] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:38.779) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 659: Not enough inliers 0/20 (matches=76) between 76 and 659[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:39.468) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 660: Not enough inliers 0/20 (matches=75) between 76 and 660[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:40.126) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 661: Not enough inliers 0/20 (matches=64) between 76 and 661[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:41.267) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 662: Not enough inliers 0/20 (matches=67) between 78 and 662[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:41.732) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 663: Not enough inliers 0/20 (matches=72) between 74 and 663[0m
+[bt_navigator-8] [WARN] [1770698442.005297352] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:42.366) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 664: Not enough inliers 0/20 (matches=56) between 74 and 664[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:42.848) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 665: Not enough inliers 0/20 (matches=78) between 76 and 665[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:43.496) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 666: Not enough inliers 0/20 (matches=76) between 74 and 666[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:44.079) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 667: Not enough inliers 0/20 (matches=57) between 76 and 667[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:44.600) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 668: Not enough inliers 0/20 (matches=51) between 78 and 668[0m
+[bt_navigator-8] [WARN] [1770698445.176918183] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698445.368719648] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:45.573) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 669: Not enough inliers 0/20 (matches=67) between 76 and 669[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:46.303) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 670: Not enough inliers 0/20 (matches=66) between 74 and 670[0m
+[bt_navigator-8] [WARN] [1770698446.965075959] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:47.967) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 672: Not enough inliers 0/20 (matches=68) between 74 and 672[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:48.702) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 673: Not enough inliers 0/20 (matches=70) between 74 and 673[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:49.092) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 674: Not enough inliers 0/20 (matches=83) between 74 and 674[0m
+[controller_server-5] [ERROR] [1770698449.312948705] [controller_server]: Failed to make progress
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:49.771) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 675: Not enough inliers 0/20 (matches=67) between 74 and 675[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:50.244) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 676: Not enough inliers 0/20 (matches=59) between 76 and 676[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:50.899) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 677: Not enough inliers 0/20 (matches=62) between 74 and 677[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:51.530) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 678: Not enough inliers 0/20 (matches=59) between 74 and 678[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:52.378) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 679: Not enough inliers 0/20 (matches=66) between 74 and 679[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:52.888) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 680: Not enough inliers 0/20 (matches=62) between 76 and 680[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:53.623) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 681: Not enough inliers 0/20 (matches=79) between 76 and 681[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:54.274) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 682: Not enough inliers 0/20 (matches=59) between 78 and 682[0m
+[bt_navigator-8] [WARN] [1770698454.306898770] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698454.512582353] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:54.736) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 683: Not enough inliers 0/20 (matches=91) between 76 and 683[0m
+[bt_navigator-8] [WARN] [1770698455.356611106] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:55.418) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 684: Not enough inliers 0/20 (matches=62) between 74 and 684[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:56.039) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 685: Not enough inliers 0/20 (matches=69) between 74 and 685[0m
+[bt_navigator-8] [WARN] [1770698456.425345552] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:56.721) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 686: Not enough inliers 0/20 (matches=70) between 74 and 686[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:57.328) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 687: Not enough inliers 0/20 (matches=67) between 76 and 687[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:57.845) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 688: Not enough inliers 0/20 (matches=78) between 74 and 688[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:58.362) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 689: Not enough inliers 0/20 (matches=66) between 76 and 689[0m
+[bt_navigator-8] [WARN] [1770698458.395294222] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698459.148665549] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:59.211) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 690: Not enough inliers 0/20 (matches=65) between 76 and 690[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:40:59.826) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 691: Not enough inliers 0/20 (matches=71) between 74 and 691[0m
+[bt_navigator-8] [WARN] [1770698460.229172111] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698460.401694308] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:00.516) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 692: Not enough inliers 0/20 (matches=61) between 4 and 692[0m
+[bt_navigator-8] [WARN] [1770698460.579639511] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698461.076694834] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:01.128) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 693: Not enough inliers 0/20 (matches=75) between 76 and 693[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:01.606) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 694: Not enough inliers 0/20 (matches=78) between 76 and 694[0m
+[bt_navigator-8] [WARN] [1770698462.461179737] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:02.471) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 695: Not enough inliers 0/20 (matches=77) between 76 and 695[0m
+[bt_navigator-8] [WARN] [1770698462.780934479] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:02.881) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 696: Not enough inliers 0/20 (matches=61) between 76 and 696[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:03.881) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 697: Not enough inliers 0/20 (matches=69) between 76 and 697[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:04.469) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 698: Not enough inliers 0/20 (matches=66) between 74 and 698[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:05.185) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 699: Not enough inliers 0/20 (matches=78) between 76 and 699[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:05.638) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 700: Not enough inliers 0/20 (matches=77) between 74 and 700[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:06.213) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 701: Not enough inliers 0/20 (matches=64) between 74 and 701[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:07.016) Rtabmap.cpp:3068::process() Rejected loop closure 4 -> 702: Not enough inliers 0/20 (matches=67) between 4 and 702[0m
+[bt_navigator-8] [WARN] [1770698467.176162801] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698467.595416873] [bt_navigator]: Received goal preemption request
+[bt_navigator-8] [INFO] [1770698467.595788849] [bt_navigator]: Begin navigating from current location (1.51, -6.17) to (0.19, -6.02)
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:07.621) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 703: Not enough inliers 0/20 (matches=59) between 74 and 703[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:08.792) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 705: Not enough inliers 0/20 (matches=70) between 76 and 705[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:09.612) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 706: Not enough inliers 0/20 (matches=75) between 76 and 706[0m
+[bt_navigator-8] [WARN] [1770698469.705255548] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698470.125864499] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:10.449) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 707: Not enough inliers 0/20 (matches=61) between 74 and 707[0m
+[bt_navigator-8] [WARN] [1770698470.623512316] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698470.785406167] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:10.916) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 708: Not enough inliers 0/20 (matches=67) between 74 and 708[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:11.438) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 709: Not enough inliers 0/20 (matches=58) between 74 and 709[0m
+[bt_navigator-8] [WARN] [1770698471.816618836] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:12.059) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 710: Not enough inliers 0/20 (matches=60) between 74 and 710[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:13.056) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 712: Not enough inliers 0/20 (matches=64) between 74 and 712[0m
+[bt_navigator-8] [WARN] [1770698473.516738608] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698473.686449122] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:13.998) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 713: Not enough inliers 0/20 (matches=70) between 76 and 713[0m
+[bt_navigator-8] [WARN] [1770698474.069080349] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698474.074910406] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:14.596) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 714: Not enough inliers 0/20 (matches=62) between 76 and 714[0m
+[bt_navigator-8] [WARN] [1770698475.033874978] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:15.297) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 715: Not enough inliers 0/20 (matches=61) between 76 and 715[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:15.870) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 716: Not enough inliers 0/20 (matches=75) between 76 and 716[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:16.416) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 717: Not enough inliers 0/20 (matches=76) between 76 and 717[0m
+[bt_navigator-8] [WARN] [1770698476.540587967] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:17.005) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 718: Not enough inliers 0/20 (matches=62) between 76 and 718[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:17.808) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 719: Not enough inliers 0/20 (matches=58) between 74 and 719[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:18.375) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 720: Not enough inliers 0/20 (matches=60) between 74 and 720[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:19.094) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 721: Not enough inliers 0/20 (matches=78) between 76 and 721[0m
+[controller_server-5] [ERROR] [1770698479.437808881] [controller_server]: Failed to make progress
+[behavior_server-9] [INFO] [1770698479.462738362] [behavior_server]: Running backup
+[behavior_server-9] [INFO] [1770698479.466218636] [behavior_server]: DriveOnHeading: no acceleration or deceleration limits set
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:19.694) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 722: Not enough inliers 0/20 (matches=73) between 74 and 722[0m
+[bt_navigator-8] [WARN] [1770698479.976611520] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:20.231) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 723: Not enough inliers 0/20 (matches=73) between 76 and 723[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:20.816) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 724: Not enough inliers 9/20 (matches=71) between 76 and 724[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:21.299) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 725: Not enough inliers 0/20 (matches=74) between 76 and 725[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:21.825) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 726: Not enough inliers 0/20 (matches=63) between 76 and 726[0m
+[bt_navigator-8] [WARN] [1770698481.836999313] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698482.157071374] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:22.738) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 727: Not enough inliers 0/20 (matches=68) between 76 and 727[0m
+[bt_navigator-8] [WARN] [1770698482.977267727] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698483.446982984] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:23.608) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 728: Not enough inliers 0/20 (matches=61) between 74 and 728[0m
+[bt_navigator-8] [WARN] [1770698483.647119492] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698483.849071308] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:24.098) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 729: Not enough inliers 0/20 (matches=70) between 76 and 729[0m
+[bt_navigator-8] [WARN] [1770698484.157075374] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:24.795) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 730: Not enough inliers 0/20 (matches=53) between 76 and 730[0m
+[bt_navigator-8] [WARN] [1770698485.508540973] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:25.616) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 731: Not enough inliers 0/20 (matches=66) between 76 and 731[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:26.195) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 732: Not enough inliers 0/20 (matches=68) between 76 and 732[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:26.630) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 733: Not enough inliers 0/20 (matches=74) between 76 and 733[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:27.332) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 734: Not enough inliers 0/20 (matches=61) between 76 and 734[0m
+[bt_navigator-8] [WARN] [1770698487.838725176] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:27.962) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 735: Not enough inliers 0/20 (matches=85) between 76 and 735[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:28.671) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 736: Not enough inliers 0/20 (matches=57) between 74 and 736[0m
+[bt_navigator-8] [WARN] [1770698488.677735859] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:29.096) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 737: Not enough inliers 0/20 (matches=60) between 74 and 737[0m
+[behavior_server-9] [WARN] [1770698489.464900203] [behavior_server]: Exceeded time allowance before reaching the DriveOnHeading goal - Exiting DriveOnHeading
+[behavior_server-9] [WARN] [1770698489.465017294] [behavior_server]: backup failed
+[behavior_server-9] [WARN] [1770698489.465056111] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[bt_navigator-8] [WARN] [1770698489.487031475] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:29.809) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 738: Not enough inliers 0/20 (matches=53) between 74 and 738[0m
+[bt_navigator-8] [WARN] [1770698490.317219903] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:30.521) Rtabmap.cpp:3068::process() Rejected loop closure 74 -> 739: Not enough inliers 0/20 (matches=74) between 74 and 739[0m
+[bt_navigator-8] [WARN] [1770698491.048318643] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698491.061208481] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:31.189) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 740: Not enough inliers 0/20 (matches=65) between 76 and 740[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:31.757) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 741: Not enough inliers 0/20 (matches=70) between 76 and 741[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:32.540) Rtabmap.cpp:3068::process() Rejected loop closure 78 -> 742: Not enough inliers 0/20 (matches=66) between 78 and 742[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 13:41:33.175) Rtabmap.cpp:3068::process() Rejected loop closure 76 -> 743: Not enough inliers 0/20 (matches=74) between 76 and 743[0m
+[bt_navigator-8] [WARN] [1770698494.587305830] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698497.441632392] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698497.928639318] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698498.020518884] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698501.604898050] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698502.007874587] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698503.341130062] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698512.956714151] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698514.824291617] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698514.898908889] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698515.138013609] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698518.019155041] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698518.217578870] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698518.298140826] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698518.537648115] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698519.612235915] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[controller_server-5] [ERROR] [1770698519.621816748] [controller_server]: Failed to make progress
+[bt_navigator-8] [WARN] [1770698524.388968718] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698524.692410853] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698524.914608552] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698529.264559683] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698530.413474829] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698530.733468649] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698530.928522062] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698532.713519348] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698536.655905386] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698540.225029281] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698540.393192879] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698541.133181972] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698541.932844370] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698543.465761175] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698543.612986489] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698546.865323359] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698547.804165283] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698549.045921585] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[controller_server-5] [ERROR] [1770698549.742655390] [controller_server]: Failed to make progress
+[behavior_server-9] [INFO] [1770698549.768299736] [behavior_server]: Running drive_on_heading
+[bt_navigator-8] [WARN] [1770698549.966810702] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698551.473070657] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698551.637038796] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698551.984620912] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698552.884743302] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[behavior_server-9] [WARN] [1770698553.770264005] [behavior_server]: Exceeded time allowance before reaching the DriveOnHeading goal - Exiting DriveOnHeading
+[behavior_server-9] [WARN] [1770698553.770390408] [behavior_server]: drive_on_heading failed
+[behavior_server-9] [WARN] [1770698553.770423401] [behavior_server]: [drive_on_heading] [ActionServer] Aborting handle.
+[behavior_server-9] [INFO] [1770698553.807420590] [behavior_server]: Running spin
+[behavior_server-9] [INFO] [1770698553.811084868] [behavior_server]: Turning 1.57 for spin behavior.
+[bt_navigator-8] [WARN] [1770698557.493161944] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698557.596798458] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698559.073422869] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698559.769378160] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698559.774472039] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698560.593910262] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698560.756778887] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698563.413230018] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[behavior_server-9] [WARN] [1770698563.813351768] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-9] [WARN] [1770698563.813462650] [behavior_server]: spin failed
+[behavior_server-9] [WARN] [1770698563.813490715] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-9] [INFO] [1770698563.852307787] [behavior_server]: Running wait
+[bt_navigator-8] [WARN] [1770698565.773275978] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698566.464582647] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698566.633013643] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[behavior_server-9] [INFO] [1770698568.852806870] [behavior_server]: wait completed successfully
+[bt_navigator-8] [WARN] [1770698569.487117960] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698575.356717808] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698578.175879256] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698579.133484405] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698579.734845249] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698580.006375339] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698580.192858151] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698580.656938267] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698582.868833036] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698583.668575884] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698584.644529335] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698584.989268504] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698585.029279652] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698587.912170181] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698590.339670494] [bt_navigator]: Received goal preemption request
+[bt_navigator-8] [INFO] [1770698590.340105000] [bt_navigator]: Begin navigating from current location (1.51, -6.17) to (0.25, -5.07)
+[bt_navigator-8] [WARN] [1770698592.619240420] [bt_navigator_navigate_to_pose_rclcpp_node]: Timed out while waiting for action server to acknowledge goal request for follow_path
+[bt_navigator-8] [WARN] [1770698593.972568430] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698598.044463110] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698598.491197763] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698598.565273039] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[controller_server-5] [ERROR] [1770698598.911772058] [controller_server]: Failed to make progress
+[behavior_server-9] [INFO] [1770698598.936554528] [behavior_server]: Running backup
+[bt_navigator-8] [WARN] [1770698599.440572638] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698604.569611860] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698605.002811347] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698605.191232285] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698606.428661445] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698606.448619034] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698607.020730744] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[behavior_server-9] [WARN] [1770698608.936960648] [behavior_server]: Exceeded time allowance before reaching the DriveOnHeading goal - Exiting DriveOnHeading
+[behavior_server-9] [WARN] [1770698608.937086539] [behavior_server]: backup failed
+[behavior_server-9] [WARN] [1770698608.937119691] [behavior_server]: [backup] [ActionServer] Aborting handle.
+[bt_navigator-8] [WARN] [1770698608.969558341] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698610.521333477] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698611.651371283] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698612.146238619] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698613.576858333] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698613.744024979] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698615.060669472] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698616.432371867] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698617.249571221] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698617.308639392] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698618.352573512] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698620.220532330] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698620.760050666] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698621.842543452] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698621.970453784] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698622.437553523] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698622.876490169] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698627.043365416] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698627.050650451] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698629.480150171] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698629.615983889] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698629.640962812] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698629.691483423] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698629.776750129] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698629.879013459] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698629.915548493] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698629.922695925] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698629.932663807] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698629.986907417] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.037891559] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.049575865] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.103989623] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.113188751] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.295008926] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.355841523] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.447220501] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.488218040] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.553004490] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.565538128] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.771964705] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.779390127] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.800607873] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.829179969] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698630.948717304] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698631.250544265] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698631.468005181] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698631.469844040] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698631.886241789] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698631.899641207] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698633.525594821] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698634.810135681] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698635.806341639] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698635.810751215] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698637.788632967] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698637.848492357] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698637.948479793] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698638.349538077] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[controller_server-5] [ERROR] [1770698638.974695033] [controller_server]: Failed to make progress
+[bt_navigator-8] [WARN] [1770698639.578731173] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698641.732668164] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698643.471340778] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698646.115559621] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698647.732639554] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698648.753544333] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698653.895469042] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698653.960448616] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.002602854] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.011703100] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.035481226] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.070538914] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.076098820] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.098621909] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.134921002] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.222148779] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.273318749] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.414986268] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.461268219] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.467818709] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.518403993] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.570709894] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.585226875] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698654.626864845] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698655.292612930] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698655.494064317] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698657.436017290] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698657.964652746] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698657.969857732] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698662.308956768] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698662.705068952] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698664.573306369] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698664.580508074] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698664.791956849] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698666.559733474] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698667.305740564] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698668.034367694] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698668.463146213] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[controller_server-5] [ERROR] [1770698669.119428540] [controller_server]: Failed to make progress
+[behavior_server-9] [INFO] [1770698669.156418528] [behavior_server]: Running drive_on_heading
+[bt_navigator-8] [WARN] [1770698669.224631043] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698669.226173511] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698670.357791898] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698671.303514431] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698671.316366029] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698671.484857890] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698671.496089290] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698671.509844141] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698671.588715338] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698671.646424085] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698671.719396519] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698671.764528779] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698671.843828498] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698672.051106230] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698672.055691906] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698672.067509752] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698672.103823117] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698672.109447953] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698672.114845647] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698672.237639252] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[behavior_server-9] [WARN] [1770698673.157643133] [behavior_server]: Exceeded time allowance before reaching the DriveOnHeading goal - Exiting DriveOnHeading
+[behavior_server-9] [WARN] [1770698673.157772416] [behavior_server]: drive_on_heading failed
+[behavior_server-9] [WARN] [1770698673.157806240] [behavior_server]: [drive_on_heading] [ActionServer] Aborting handle.
+[behavior_server-9] [INFO] [1770698673.174830032] [behavior_server]: Running spin
+[behavior_server-9] [INFO] [1770698673.175011381] [behavior_server]: Turning 1.57 for spin behavior.
+[bt_navigator-8] [WARN] [1770698673.225840638] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698675.289975520] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698676.136087842] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[dynamic_object_filter_node-4] [WARN] [1770698676.238128350] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770698676.140998 but the latest data is at time 1770698676.138387, when looking up transform from frame [livox_frame] to frame [odom]
+[bt_navigator-8] [WARN] [1770698676.825106969] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698677.337394266] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698677.825503939] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698681.138865698] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698682.044699966] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698682.636144226] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698683.076730158] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698683.150343151] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[behavior_server-9] [WARN] [1770698683.175373467] [behavior_server]: Exceeded time allowance before reaching the Spin goal - Exiting Spin
+[behavior_server-9] [WARN] [1770698683.175494046] [behavior_server]: spin failed
+[behavior_server-9] [WARN] [1770698683.175524895] [behavior_server]: [spin] [ActionServer] Aborting handle.
+[behavior_server-9] [INFO] [1770698683.204155743] [behavior_server]: Running wait
+[bt_navigator-8] [WARN] [1770698683.470324779] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698684.024357056] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698686.244761369] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[behavior_server-9] [INFO] [1770698688.204790125] [behavior_server]: wait completed successfully
+[bt_navigator-8] [WARN] [1770698688.320908693] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698688.444689808] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698688.684593779] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698689.314266233] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698689.734276514] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698689.985245065] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698690.150221803] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698690.449870474] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698694.596668449] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698694.729511569] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698694.734584040] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698695.305250116] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698696.004040161] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698697.485110500] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698701.980752532] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698702.006415300] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698702.624924533] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698703.015633628] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698703.105474567] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698705.380521694] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698705.384810119] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698706.795748882] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698708.468661095] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698709.650174625] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698710.795459241] [bt_navigator]: Received goal preemption request
+[bt_navigator-8] [INFO] [1770698710.795819410] [bt_navigator]: Begin navigating from current location (1.51, -6.17) to (-1.21, -8.27)
+[bt_navigator-8] [WARN] [1770698714.496874851] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698717.525485315] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698717.796550377] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[controller_server-5] [ERROR] [1770698718.257165526] [controller_server]: Failed to make progress
+[bt_navigator-8] [WARN] [1770698718.334087751] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770698718.494055485] [bt_navigator]: Received goal preemption request
+[bt_navigator-8] [INFO] [1770698718.494555401] [bt_navigator]: Begin navigating from current location (1.51, -6.17) to (0.07, -5.76)
+[bt_navigator-8] [WARN] [1770698722.060550915] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698725.084017061] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698726.598713646] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698726.704716706] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698727.024229412] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698728.095939534] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698731.017476991] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698733.374365982] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698735.748288252] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698736.304256954] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698736.775542091] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698736.814367196] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698736.874865181] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698738.375136391] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698738.550667352] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698739.192050677] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698740.443260720] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698740.443841566] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698740.482274662] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698740.483950415] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698740.836491541] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698741.596559676] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698742.138097083] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698743.386972765] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698743.531699232] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698744.206966678] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698745.287923521] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698745.848751061] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698745.972135217] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698746.216687538] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770698748.166812355] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[controller_server-5] [ERROR] [1770698748.388504888] [controller_server]: Failed to make progress
+[bt_navigator-8] [WARN] [1770698748.416716999] [bt_navigator]: [navigate_to_pose] [ActionServer] Aborting handle.
+[bt_navigator-8] [ERROR] [1770698748.417010350] [bt_navigator]: Goal failed
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)

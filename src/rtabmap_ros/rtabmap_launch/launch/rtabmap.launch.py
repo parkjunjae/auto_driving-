@@ -322,16 +322,16 @@ def launch_setup(context, *args, **kwargs):
                 "Grid/Sensor": "0", # 0: Laser(라이다)만, 1: Depth만, 2: 둘 다 (타임싱크 문제로 0 권장)
                 "Grid/FromDepth": "false", # Depth 맵 생성 비활성화 (occupancy grid용)
                 "Cloud/FromDepth": "false", # Depth에서 클라우드 생성 비활성화 (라이다만 사용)
-                "Grid/MinObstacleHeight": "0.08",
+                "Grid/MinObstacleHeight": "0.10",  # 바닥 노이즈 억제용 최소 장애물 높이(소파는 0.83m라 영향 없음)
                 "Grid/MaxObstacleHeight": "2.0",  # 최대 장애물 높이 (2m)
                 # MaxGroundHeight=0이면 RTAB-Map이 자동으로 CellSize로 대체하며 경고를 출력한다.
-                "Grid/MaxGroundHeight": "0.03",  # 바닥으로 간주할 최대 높이(7cm, CellSize와 동일)
-                "Grid/MinGroundHeight": "-0.03",    # 최소 바닥 높이 (base_link 아래 -50cm까지 바닥)
+                "Grid/MaxGroundHeight": "0.05",  # 바닥으로 간주할 최대 높이(바닥 밴드 확장으로 링/잔상 억제)
+                "Grid/MinGroundHeight": "-0.05",  # 최소 바닥 높이(바닥 밴드 확장)
                 #---------------------------------------------------------
                 # 프레임마다 조금씩 다른 위치에 와도 같은 덩어리로 묶을 수 있게 도와줌 
                 "Grid/NormalsSegmentation": "false",  # 법선 기반 비활성화 (희소 라이다에 더 안정적)
                 "Grid/NoiseFilteringRadius": "0.1",  # 노이즈 필터 반경(너무 크면 포인트가 비어짐)
-                "Grid/NoiseFilteringMinNeighbors": "3",  # 이웃 수 완화(희소 라이다에서도 맵이 비지 않게)
+                "Grid/NoiseFilteringMinNeighbors": "5",  # 이웃 수 상향(산발적 점/잔상 감소)
                 "Grid/ClusterRadius": "0.2", # 클러스터링 반경(너무 작으면 같은 물체가 분리됨)
                 #---------------------------------------------------------
                 "Grid/FlatObstacleDetected": "true", # 평평한 장애물도 감지 (테이블 등)

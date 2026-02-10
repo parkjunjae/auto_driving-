@@ -14,3 +14,9 @@
 [tracer_base_node-1] Robot initialized, start running ...
 [tracer_base_node-1] Start listening to port: can1
 [tracer_base_node-1] Using CAN bus to talk with the robot
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [tracer_base_node-1]: sending signal 'SIGINT' to process[tracer_base_node-1]
+[tracer_base_node-1] [0m[INFO] [1770696348.167657067] [rclcpp]: signal_handler(signum=2)[0m
+[tracer_base_node-1] [0m[INFO] [1770696348.186843405] [rclcpp]: signal_handler(signum=2)[0m
+[tracer_base_node-1] terminate called after throwing an instance of 'rclcpp::exceptions::RCLError'
+[tracer_base_node-1]   what():  failed to create guard condition: the given context is not valid, either rcl_init() was not called or rcl_shutdown() was called., at ./src/rcl/guard_condition.c:67

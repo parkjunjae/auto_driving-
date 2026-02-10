@@ -166,3 +166,4 @@
 [lifecycle_manager-12] [INFO] [1770686962.076897304] [lifecycle_manager]: Server velocity_smoother connected with bond.
 [lifecycle_manager-12] [INFO] [1770686962.077026043] [lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
 [lifecycle_manager-12] [INFO] [1770686962.077052124] [lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)

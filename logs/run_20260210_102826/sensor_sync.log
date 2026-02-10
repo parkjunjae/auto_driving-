@@ -58,3 +58,4 @@
 [imu_filter_madgwick_node-3] [INFO] [1770686982.949114148] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
 [imu_filter_madgwick_node-3] [INFO] [1770686982.949173445] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
 [imu_filter_madgwick_node-3] [INFO] [1770686982.949244071] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100000
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)

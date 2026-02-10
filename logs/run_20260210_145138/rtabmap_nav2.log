@@ -1,0 +1,108 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-10-14-51-47-526478-world-312917
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [rgbd_sync-1]: process started with pid [313364]
+[INFO] [rtabmap-2]: process started with pid [313366]
+[INFO] [livox_pointcloud_filter_node-3]: process started with pid [313368]
+[INFO] [dynamic_object_filter_node-4]: process started with pid [313370]
+[dynamic_object_filter_node-4] [INFO] [1770702707.986842958] [dynamic_object_filter]: Dynamic filter: /livox/lidar/filtered -> /livox/lidar/static_filtered, voxel=0.120, min_hits=2, hit_window=1.00s
+[dynamic_object_filter_node-4] [WARN] [1770702708.116360605] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770702708.075870 but the latest data is at time 1770702708.054216, when looking up transform from frame [livox_frame] to frame [odom]
+[rgbd_sync-1] [0m[INFO] [1770702709.072298672] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync = true[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.072872349] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync_max_interval = 0.080000[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.072947967] [rtabmap.rgbd_sync]: rgbd_sync: topic_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.072975072] [rtabmap.rgbd_sync]: rgbd_sync: sync_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.073003648] [rtabmap.rgbd_sync]: rgbd_sync: qos             = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.073026721] [rtabmap.rgbd_sync]: rgbd_sync: qos_camera_info = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.073054369] [rtabmap.rgbd_sync]: rgbd_sync: depth_scale = 1.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.073080770] [rtabmap.rgbd_sync]: rgbd_sync: decimation = 1[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.073102499] [rtabmap.rgbd_sync]: rgbd_sync: compressed_rate = 0.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.073125059] [rtabmap.rgbd_sync]: rgbd_sync: image_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.073146148] [rtabmap.rgbd_sync]: rgbd_sync: depth_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770702709.119905395] [rtabmap.rgbd_sync]: 
+[rgbd_sync-1] rgbd_sync subscribed to (approx sync, max interval=0.080000s):
+[rgbd_sync-1]    /camera/camera/color/image_raw,
+[rgbd_sync-1]    /camera/camera/aligned_depth_to_color/image_raw,
+[rgbd_sync-1]    /camera/camera/color/camera_info[0m
+[INFO] [controller_server-5]: process started with pid [313896]
+[INFO] [planner_server-6]: process started with pid [313898]
+[INFO] [smoother_server-7]: process started with pid [313900]
+[INFO] [bt_navigator-8]: process started with pid [313902]
+[INFO] [behavior_server-9]: process started with pid [313904]
+[INFO] [waypoint_follower-10]: process started with pid [313906]
+[INFO] [velocity_smoother-11]: process started with pid [313908]
+[bt_navigator-8] [INFO] [1770702713.684041973] [bt_navigator]: 
+[bt_navigator-8] 	bt_navigator lifecycle node launched. 
+[bt_navigator-8] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-8] [INFO] [1770702713.684380221] [bt_navigator]: Creating
+[behavior_server-9] [INFO] [1770702713.755916660] [behavior_server]: 
+[behavior_server-9] 	behavior_server lifecycle node launched. 
+[behavior_server-9] 	Waiting on external lifecycle transitions to activate
+[behavior_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[INFO] [lifecycle_manager-12]: process started with pid [314242]
+[lifecycle_manager-12] [INFO] [1770702723.071315510] [lifecycle_manager]: Creating
+[lifecycle_manager-12] [INFO] [1770702723.093159961] [lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-12] [INFO] [1770702725.109329850] [lifecycle_manager]: Waiting for service controller_server/get_state...
+[lifecycle_manager-12] [INFO] [1770702725.970063528] [lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-12] [INFO] [1770702725.970205515] [lifecycle_manager]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-5] [ERROR] [1770702726.141586805] [local_costmap.local_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.270) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770702726.216858853] [lifecycle_manager]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-6] [ERROR] [1770702726.377664597] [global_costmap.global_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.260) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770702726.476857913] [lifecycle_manager]: [34m[1mConfiguring smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770702726.627278741] [lifecycle_manager]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770702726.627936580] [bt_navigator]: Configuring
+[lifecycle_manager-12] [INFO] [1770702727.153135464] [lifecycle_manager]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770702727.154081246] [behavior_server]: Configuring
+[behavior_server-9] [INFO] [1770702727.206418961] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin
+[behavior_server-9] [INFO] [1770702727.210454032] [behavior_server]: Configuring spin
+[behavior_server-9] [INFO] [1770702727.265372671] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[behavior_server-9] [INFO] [1770702727.268333061] [behavior_server]: Configuring backup
+[behavior_server-9] [INFO] [1770702727.300497979] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[behavior_server-9] [INFO] [1770702727.303001079] [behavior_server]: Configuring drive_on_heading
+[behavior_server-9] [INFO] [1770702727.336554510] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors/AssistedTeleop
+[behavior_server-9] [INFO] [1770702727.341345919] [behavior_server]: Configuring assisted_teleop
+[behavior_server-9] [INFO] [1770702727.381023463] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[behavior_server-9] [INFO] [1770702727.389029892] [behavior_server]: Configuring wait
+[lifecycle_manager-12] [INFO] [1770702727.420879571] [lifecycle_manager]: [34m[1mConfiguring waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770702727.517348342] [lifecycle_manager]: [34m[1mConfiguring velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770702727.546719019] [lifecycle_manager]: [34m[1mActivating controller_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770702727.737368700] [lifecycle_manager]: Server controller_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770702727.737538176] [lifecycle_manager]: [34m[1mActivating planner_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770702727.967187816] [lifecycle_manager]: Server planner_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770702727.967315787] [lifecycle_manager]: [34m[1mActivating smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770702728.082698317] [lifecycle_manager]: Server smoother_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770702728.082896273] [lifecycle_manager]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770702728.083743397] [bt_navigator]: Activating
+[bt_navigator-8] [INFO] [1770702730.014817776] [bt_navigator_navigate_to_pose_rclcpp_node]: Waiting on odometry
+[bt_navigator-8] [INFO] [1770702730.022654408] [bt_navigator_navigate_to_pose_rclcpp_node]: Got odometry
+[bt_navigator-8] [INFO] [1770702730.854388234] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770702730.974393560] [lifecycle_manager]: Server bt_navigator connected with bond.
+[lifecycle_manager-12] [INFO] [1770702730.974544092] [lifecycle_manager]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770702730.975500050] [behavior_server]: Activating
+[behavior_server-9] [INFO] [1770702730.975594581] [behavior_server]: Activating spin
+[behavior_server-9] [INFO] [1770702730.975630005] [behavior_server]: Activating backup
+[behavior_server-9] [INFO] [1770702730.975651446] [behavior_server]: Activating drive_on_heading
+[behavior_server-9] [INFO] [1770702730.975669686] [behavior_server]: Activating assisted_teleop
+[behavior_server-9] [INFO] [1770702730.975686263] [behavior_server]: Activating wait
+[behavior_server-9] [INFO] [1770702730.975713751] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770702731.093857914] [lifecycle_manager]: Server behavior_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770702731.094002717] [lifecycle_manager]: [34m[1mActivating waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770702731.212316388] [lifecycle_manager]: Server waypoint_follower connected with bond.
+[lifecycle_manager-12] [INFO] [1770702731.212456103] [lifecycle_manager]: [34m[1mActivating velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770702731.341434665] [lifecycle_manager]: Server velocity_smoother connected with bond.
+[lifecycle_manager-12] [INFO] [1770702731.341574125] [lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-12] [INFO] [1770702731.341603693] [lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 14:52:34.832) MapsManager.cpp:899::publishMaps() Graph has changed! The whole cloud is regenerated.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 14:53:09.653) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3353 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[dynamic_object_filter_node-4] [WARN] [1770702841.665433558] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770702841.603529 but the latest data is at time 1770702841.602799, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770702869.157773989] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770702869.103785 but the latest data is at time 1770702869.102358, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770702922.143392334] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770702922.070937 but the latest data is at time 1770702922.067301, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770702957.741255771] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770702957.670883 but the latest data is at time 1770702957.668794, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770703044.469716850] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770703044.403101 but the latest data is at time 1770703044.401028, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770703103.856050816] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770703103.807507 but the latest data is at time 1770703103.806300, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770703160.469372780] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770703160.423150 but the latest data is at time 1770703160.420848, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770703169.733310179] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770703169.670338 but the latest data is at time 1770703169.668389, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770703212.954958635] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770703212.904829 but the latest data is at time 1770703212.896493, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770703266.066775179] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770703266.003701 but the latest data is at time 1770703265.992573, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770703278.356969283] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770703278.303421 but the latest data is at time 1770703278.300846, when looking up transform from frame [livox_frame] to frame [odom]
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[rtabmap-2] [0m[INFO] [1770703328.480166509] [rclcpp]: signal_handler(signum=2)[0m

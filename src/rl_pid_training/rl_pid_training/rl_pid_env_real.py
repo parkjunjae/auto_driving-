@@ -59,12 +59,13 @@ class RealPidGainEnv(gym.Env):
         stop_freeze_w_ref: float = 0.05,
         rotate_freeze_w_ref: float = 0.20,
         rotate_freeze_v_ref: float = 0.05,
-        w_ref_lpf_alpha: float = 0.25,
-        w_ref_deadband: float = 0.03,
-        dither_v_ref_thresh: float = 0.06,
-        dither_w_ref_thresh: float = 0.15,
-        w_ref_sign_hold_sec: float = 0.35,
-        w_ref_abs_max_low_speed: float = 0.45,
+        # 저속 좌우 떨림 억제용 w_ref 가드(로그 기반 튜닝)
+        w_ref_lpf_alpha: float = 0.18,  # 작을수록 회전 지령이 부드럽게 변함
+        w_ref_deadband: float = 0.06,  # 작은 w_ref는 0으로 죽여 미세 떨림 제거
+        dither_v_ref_thresh: float = 0.10,  # 저속 구간을 더 넓게 잡아 흔들림 억제
+        dither_w_ref_thresh: float = 0.15,  # anti-dither 대상 최소 회전 크기
+        w_ref_sign_hold_sec: float = 0.50,  # 부호 유지 시간을 늘려 좌우 반전 억제
+        w_ref_abs_max_low_speed: float = 0.30,  # 저속 회전 상한을 낮춰 급회전 방지
         param_wait_sec: float = 15.0,
         use_sim_time: bool = False,
     ):

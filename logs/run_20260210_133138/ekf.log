@@ -1,0 +1,6 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-10-13-31-45-961212-world-240623
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [ekf_node-1]: process started with pid [240951]
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[ekf_node-1] [INFO] [1770697983.480129220] [rclcpp]: signal_handler(signum=2)
+[INFO] [ekf_node-1]: sending signal 'SIGINT' to process[ekf_node-1]

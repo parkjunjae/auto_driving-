@@ -1,0 +1,95 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-10-14-29-22-598894-world-285391
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [rgbd_sync-1]: process started with pid [285779]
+[INFO] [rtabmap-2]: process started with pid [285781]
+[INFO] [livox_pointcloud_filter_node-3]: process started with pid [285783]
+[INFO] [dynamic_object_filter_node-4]: process started with pid [285785]
+[dynamic_object_filter_node-4] [INFO] [1770701363.011412311] [dynamic_object_filter]: Dynamic filter: /livox/lidar/filtered -> /livox/lidar/static_filtered, voxel=0.120, min_hits=2, hit_window=1.00s
+[dynamic_object_filter_node-4] [WARN] [1770701363.088833243] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): "odom" passed to lookupTransform argument target_frame does not exist. 
+[rgbd_sync-1] [0m[INFO] [1770701364.209561333] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync = true[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.210037601] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync_max_interval = 0.080000[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.210093346] [rtabmap.rgbd_sync]: rgbd_sync: topic_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.210121730] [rtabmap.rgbd_sync]: rgbd_sync: sync_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.210147107] [rtabmap.rgbd_sync]: rgbd_sync: qos             = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.210177508] [rtabmap.rgbd_sync]: rgbd_sync: qos_camera_info = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.210205636] [rtabmap.rgbd_sync]: rgbd_sync: depth_scale = 1.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.210235973] [rtabmap.rgbd_sync]: rgbd_sync: decimation = 1[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.210261094] [rtabmap.rgbd_sync]: rgbd_sync: compressed_rate = 0.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.210289702] [rtabmap.rgbd_sync]: rgbd_sync: image_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.210313351] [rtabmap.rgbd_sync]: rgbd_sync: depth_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770701364.257069879] [rtabmap.rgbd_sync]: 
+[rgbd_sync-1] rgbd_sync subscribed to (approx sync, max interval=0.080000s):
+[rgbd_sync-1]    /camera/camera/color/image_raw,
+[rgbd_sync-1]    /camera/camera/aligned_depth_to_color/image_raw,
+[rgbd_sync-1]    /camera/camera/color/camera_info[0m
+[INFO] [controller_server-5]: process started with pid [286244]
+[INFO] [planner_server-6]: process started with pid [286246]
+[INFO] [smoother_server-7]: process started with pid [286248]
+[INFO] [bt_navigator-8]: process started with pid [286250]
+[INFO] [behavior_server-9]: process started with pid [286252]
+[INFO] [waypoint_follower-10]: process started with pid [286254]
+[INFO] [velocity_smoother-11]: process started with pid [286256]
+[behavior_server-9] [INFO] [1770701368.640924253] [behavior_server]: 
+[behavior_server-9] 	behavior_server lifecycle node launched. 
+[behavior_server-9] 	Waiting on external lifecycle transitions to activate
+[behavior_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-8] [INFO] [1770701368.802842155] [bt_navigator]: 
+[bt_navigator-8] 	bt_navigator lifecycle node launched. 
+[bt_navigator-8] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-8] [INFO] [1770701368.806864842] [bt_navigator]: Creating
+[INFO] [lifecycle_manager-12]: process started with pid [286555]
+[lifecycle_manager-12] [INFO] [1770701377.934294370] [lifecycle_manager]: Creating
+[lifecycle_manager-12] [INFO] [1770701377.941724242] [lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-12] [INFO] [1770701379.969031975] [lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-12] [INFO] [1770701379.969190826] [lifecycle_manager]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-5] [ERROR] [1770701380.082179222] [local_costmap.local_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.270) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770701380.158184120] [lifecycle_manager]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-6] [ERROR] [1770701380.376204531] [global_costmap.global_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.260) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[rtabmap-2] [33m[ WARN] (2026-02-10 14:29:40.401) MapsManager.cpp:899::publishMaps() Graph has changed! The whole cloud is regenerated.[0m
+[lifecycle_manager-12] [INFO] [1770701380.457643190] [lifecycle_manager]: [34m[1mConfiguring smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770701380.578792738] [lifecycle_manager]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770701380.579391824] [bt_navigator]: Configuring
+[lifecycle_manager-12] [INFO] [1770701380.958183646] [lifecycle_manager]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770701380.959109524] [behavior_server]: Configuring
+[behavior_server-9] [INFO] [1770701381.009957957] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin
+[behavior_server-9] [INFO] [1770701381.012499937] [behavior_server]: Configuring spin
+[behavior_server-9] [INFO] [1770701381.074772351] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[behavior_server-9] [INFO] [1770701381.077409245] [behavior_server]: Configuring backup
+[behavior_server-9] [INFO] [1770701381.140383020] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[behavior_server-9] [INFO] [1770701381.142677058] [behavior_server]: Configuring drive_on_heading
+[behavior_server-9] [INFO] [1770701381.185975072] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors/AssistedTeleop
+[behavior_server-9] [INFO] [1770701381.190786674] [behavior_server]: Configuring assisted_teleop
+[behavior_server-9] [INFO] [1770701381.241205560] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[behavior_server-9] [INFO] [1770701381.243318538] [behavior_server]: Configuring wait
+[lifecycle_manager-12] [INFO] [1770701381.282200416] [lifecycle_manager]: [34m[1mConfiguring waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770701381.371156692] [lifecycle_manager]: [34m[1mConfiguring velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770701381.392568493] [lifecycle_manager]: [34m[1mActivating controller_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770701381.614835309] [lifecycle_manager]: Server controller_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770701381.614971504] [lifecycle_manager]: [34m[1mActivating planner_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770701381.808108095] [lifecycle_manager]: Server planner_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770701381.808236802] [lifecycle_manager]: [34m[1mActivating smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770701382.224250848] [lifecycle_manager]: Server smoother_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770701382.224396067] [lifecycle_manager]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770701382.226291984] [bt_navigator]: Activating
+[bt_navigator-8] [INFO] [1770701382.840220909] [bt_navigator_navigate_to_pose_rclcpp_node]: Waiting on odometry
+[bt_navigator-8] [INFO] [1770701382.871397741] [bt_navigator_navigate_to_pose_rclcpp_node]: Got odometry
+[bt_navigator-8] [INFO] [1770701383.194104208] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770701383.322426981] [lifecycle_manager]: Server bt_navigator connected with bond.
+[lifecycle_manager-12] [INFO] [1770701383.322590249] [lifecycle_manager]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770701383.323626914] [behavior_server]: Activating
+[behavior_server-9] [INFO] [1770701383.323730692] [behavior_server]: Activating spin
+[behavior_server-9] [INFO] [1770701383.323764293] [behavior_server]: Activating backup
+[behavior_server-9] [INFO] [1770701383.323786789] [behavior_server]: Activating drive_on_heading
+[behavior_server-9] [INFO] [1770701383.323805190] [behavior_server]: Activating assisted_teleop
+[behavior_server-9] [INFO] [1770701383.323822822] [behavior_server]: Activating wait
+[behavior_server-9] [INFO] [1770701383.323850599] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770701383.446490454] [lifecycle_manager]: Server behavior_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770701383.446619417] [lifecycle_manager]: [34m[1mActivating waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770701383.566957842] [lifecycle_manager]: Server waypoint_follower connected with bond.
+[lifecycle_manager-12] [INFO] [1770701383.567091957] [lifecycle_manager]: [34m[1mActivating velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770701383.691506863] [lifecycle_manager]: Server velocity_smoother connected with bond.
+[lifecycle_manager-12] [INFO] [1770701383.691634290] [lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-12] [INFO] [1770701383.691713748] [lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 14:29:43.747) MapsManager.cpp:899::publishMaps() Graph has changed! The whole cloud is regenerated.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 14:44:17.467) MapsManager.cpp:899::publishMaps() Graph has changed! The whole cloud is regenerated.[0m

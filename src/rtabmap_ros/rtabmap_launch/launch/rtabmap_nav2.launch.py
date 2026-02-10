@@ -29,6 +29,7 @@ def generate_launch_description():
     dynamic_min_hits = LaunchConfiguration('dynamic_min_hits')
     dynamic_hit_window_sec = LaunchConfiguration('dynamic_hit_window_sec')
     dynamic_max_stale_sec = LaunchConfiguration('dynamic_max_stale_sec')
+    dynamic_min_static_sec = LaunchConfiguration('dynamic_min_static_sec')
     dynamic_z_min = LaunchConfiguration('dynamic_z_min')
     dynamic_z_max = LaunchConfiguration('dynamic_z_max')
     dynamic_min_range = LaunchConfiguration('dynamic_min_range')
@@ -68,7 +69,8 @@ def generate_launch_description():
             'rtabmap_args': rtabmap_args,  # Prefer ROS params in rtabmap.launch.py
             'database_path': database_path,
             'delete_db_on_start': delete_db_on_start,  # DB reset via ROS param
-            'scan_cloud_topic': livox_deskewed_topic,  # Use the same deskewed cloud everywhere
+            # RTAB-Map에는 동적 필터 전 단계인 filtered만 입력 (정적맵 품질 유지)
+            'scan_cloud_topic': livox_filtered_topic,
         }.items()
     )
     livox_filter_node = Node(
@@ -99,6 +101,7 @@ def generate_launch_description():
             'min_hits': dynamic_min_hits,                 # 정적으로 인정할 최소 관측 횟수
             'hit_window_sec': dynamic_hit_window_sec,     # 관측 누적 시간 창[s]
             'max_stale_sec': dynamic_max_stale_sec,       # 미관측 보셀 상태 제거 시간[s]
+            'min_static_sec': dynamic_min_static_sec,     # 정적으로 인정할 최소 유지시간[s]
             'z_min': dynamic_z_min,                       # 필터링 하한 높이[m]
             'z_max': dynamic_z_max,                       # 필터링 상한 높이[m]
             'min_range': dynamic_min_range,               # 센서 근접 노이즈 제거 거리[m]
@@ -202,19 +205,21 @@ def generate_launch_description():
                              description='Enable dynamic object filter for global-map-friendly static cloud'),
         DeclareLaunchArgument('dynamic_filter_output', default_value='/livox/lidar/static_filtered',
                              description='Output topic of dynamic object filter'),
-        DeclareLaunchArgument('dynamic_voxel_size', default_value='0.12',
+        DeclareLaunchArgument('dynamic_voxel_size', default_value='0.10',
                              description='[m] voxel size for temporal static/dynamic filtering'),
-        DeclareLaunchArgument('dynamic_min_hits', default_value='2',
+        DeclareLaunchArgument('dynamic_min_hits', default_value='6',
                              description='Minimum hits in window to classify voxel as static'),
-        DeclareLaunchArgument('dynamic_hit_window_sec', default_value='1.0',
+        DeclareLaunchArgument('dynamic_hit_window_sec', default_value='0.7',
                              description='[s] temporal window for hit accumulation'),
-        DeclareLaunchArgument('dynamic_max_stale_sec', default_value='1.5',
+        DeclareLaunchArgument('dynamic_max_stale_sec', default_value='1.0',
                              description='[s] remove stale voxel states not seen recently'),
-        DeclareLaunchArgument('dynamic_z_min', default_value='0.03',
+        DeclareLaunchArgument('dynamic_min_static_sec', default_value='1.0',
+                             description='[s] minimum continuous time to accept voxel as static'),
+        DeclareLaunchArgument('dynamic_z_min', default_value='0.05',
                              description='[m] minimum obstacle height to include'),
-        DeclareLaunchArgument('dynamic_z_max', default_value='1.8',
+        DeclareLaunchArgument('dynamic_z_max', default_value='1.2',
                              description='[m] maximum obstacle height to include'),
-        DeclareLaunchArgument('dynamic_min_range', default_value='0.2',
+        DeclareLaunchArgument('dynamic_min_range', default_value='0.8',
                              description='[m] remove near-range noisy returns'),
         DeclareLaunchArgument('dynamic_target_frame', default_value='odom',
                              description='Accumulation frame for dynamic filter (odom or map)'),

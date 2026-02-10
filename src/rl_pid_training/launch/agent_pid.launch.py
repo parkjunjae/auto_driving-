@@ -172,20 +172,21 @@ def generate_launch_description():
                 description="제자리 회전 판정용 |v_ref| 임계값(m/s)",
             ),
             #-----------------
+            # 저속 좌우 떨림 억제용 w_ref 가드(로그 기반 기본값)
             DeclareLaunchArgument(
                 "w_ref_lpf_alpha",
-                default_value="0.25",
+                default_value="0.18",
                 description="w_ref 저역통과 계수(작을수록 더 부드러움)",
             ),
             #-----------------
             DeclareLaunchArgument(
                 "w_ref_deadband",
-                default_value="0.03",
+                default_value="0.06",
                 description="|w_ref| deadband(rad/s): 이하면 0으로 처리",
             ),
             DeclareLaunchArgument(
                 "dither_v_ref_thresh",
-                default_value="0.06",
+                default_value="0.10",
                 description="저속 anti-dither 활성화 v_ref 임계값(m/s)",
             ),
             DeclareLaunchArgument(
@@ -196,13 +197,13 @@ def generate_launch_description():
             #-----------------
             DeclareLaunchArgument(
                 "w_ref_sign_hold_sec",
-                default_value="0.35",
+                default_value="0.50",
                 description="저속 회전 시 w_ref 부호 최소 유지 시간(s)",
             ),
             #-----------------
             DeclareLaunchArgument(
                 "w_ref_abs_max_low_speed",
-                default_value="0.45",
+                default_value="0.30",
                 description="저속 구간 |w_ref| 상한(rad/s)",
             ),
             #-----------------

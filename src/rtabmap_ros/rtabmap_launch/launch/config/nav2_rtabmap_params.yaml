@@ -345,9 +345,9 @@ global_costmap:
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
-        # 센서 기반 mark/clear로 동적 잔상 빠르게 제거
+        # 글로벌은 정적 위주로 유지: mark만 사용 (동적은 static_filtered에서 이미 제거)
         footprint_clearing_enabled: true
-        observation_sources: lidar_mark lidar_clear
+        observation_sources: lidar_mark
 
         lidar_mark:
           topic: /livox/lidar/static_filtered
@@ -359,17 +359,6 @@ global_costmap:
           max_obstacle_height: 1.8
           # 정적은 static_layer에 남기고, 동적 잔상은 오래 끌지 않도록 0으로 유지
           observation_persistence: 0.5
-          expected_update_rate: 0.0
-
-        lidar_clear:
-          # 글로벌 잔상 제거용 clear (mark는 하지 않음)
-          topic: /livox/lidar/synced/deskewed
-          data_type: PointCloud2
-          marking: false
-          clearing: true
-          raytrace_range: 3.5
-          min_obstacle_height: 0.05
-          max_obstacle_height: 1.8
           expected_update_rate: 0.0
 
       # ========================================================================

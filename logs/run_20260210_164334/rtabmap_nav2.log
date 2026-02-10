@@ -1,0 +1,130 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-10-16-43-53-378282-world-42526
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [rgbd_sync-1]: process started with pid [42926]
+[INFO] [rtabmap-2]: process started with pid [42928]
+[INFO] [livox_pointcloud_filter_node-3]: process started with pid [42930]
+[INFO] [dynamic_object_filter_node-4]: process started with pid [42932]
+[dynamic_object_filter_node-4] [INFO] [1770709433.745701142] [dynamic_object_filter]: Dynamic filter: /livox/lidar/filtered -> /livox/lidar/static_filtered, voxel=0.100, min_hits=8, hit_window=0.40s, min_static=2.00s
+[rgbd_sync-1] [0m[INFO] [1770709434.954356857] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync = true[0m
+[rgbd_sync-1] [0m[INFO] [1770709434.955247851] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync_max_interval = 0.080000[0m
+[rgbd_sync-1] [0m[INFO] [1770709434.955312300] [rtabmap.rgbd_sync]: rgbd_sync: topic_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770709434.955340141] [rtabmap.rgbd_sync]: rgbd_sync: sync_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770709434.955366158] [rtabmap.rgbd_sync]: rgbd_sync: qos             = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770709434.955390094] [rtabmap.rgbd_sync]: rgbd_sync: qos_camera_info = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770709434.955413071] [rtabmap.rgbd_sync]: rgbd_sync: depth_scale = 1.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770709434.955438639] [rtabmap.rgbd_sync]: rgbd_sync: decimation = 1[0m
+[rgbd_sync-1] [0m[INFO] [1770709434.955460976] [rtabmap.rgbd_sync]: rgbd_sync: compressed_rate = 0.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770709434.955485200] [rtabmap.rgbd_sync]: rgbd_sync: image_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770709434.955507888] [rtabmap.rgbd_sync]: rgbd_sync: depth_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770709435.014194035] [rtabmap.rgbd_sync]: 
+[rgbd_sync-1] rgbd_sync subscribed to (approx sync, max interval=0.080000s):
+[rgbd_sync-1]    /camera/camera/color/image_raw,
+[rgbd_sync-1]    /camera/camera/aligned_depth_to_color/image_raw,
+[rgbd_sync-1]    /camera/camera/color/camera_info[0m
+[INFO] [controller_server-5]: process started with pid [43431]
+[INFO] [planner_server-6]: process started with pid [43433]
+[INFO] [smoother_server-7]: process started with pid [43435]
+[INFO] [bt_navigator-8]: process started with pid [43437]
+[INFO] [behavior_server-9]: process started with pid [43439]
+[INFO] [waypoint_follower-10]: process started with pid [43441]
+[INFO] [velocity_smoother-11]: process started with pid [43443]
+[behavior_server-9] [INFO] [1770709438.957581495] [behavior_server]: 
+[behavior_server-9] 	behavior_server lifecycle node launched. 
+[behavior_server-9] 	Waiting on external lifecycle transitions to activate
+[behavior_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-8] [INFO] [1770709439.687941841] [bt_navigator]: 
+[bt_navigator-8] 	bt_navigator lifecycle node launched. 
+[bt_navigator-8] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-8] [INFO] [1770709439.688285880] [bt_navigator]: Creating
+[INFO] [lifecycle_manager-12]: process started with pid [43757]
+[lifecycle_manager-12] [INFO] [1770709449.077799068] [lifecycle_manager]: Creating
+[lifecycle_manager-12] [INFO] [1770709449.084007197] [lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[dynamic_object_filter_node-4] [WARN] [1770709450.154095299] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770709450.059548 but the latest data is at time 1770709450.053709, when looking up transform from frame [livox_frame] to frame [odom]
+[lifecycle_manager-12] [INFO] [1770709451.150363180] [lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-12] [INFO] [1770709451.150827478] [lifecycle_manager]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-5] [ERROR] [1770709451.330820622] [local_costmap.local_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.270) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770709451.470457377] [lifecycle_manager]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-6] [ERROR] [1770709451.631550225] [global_costmap.global_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.260) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770709451.718918151] [lifecycle_manager]: [34m[1mConfiguring smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770709451.819506031] [lifecycle_manager]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770709451.820286079] [bt_navigator]: Configuring
+[lifecycle_manager-12] [INFO] [1770709452.231400597] [lifecycle_manager]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770709452.232289768] [behavior_server]: Configuring
+[behavior_server-9] [INFO] [1770709452.292658413] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin
+[behavior_server-9] [INFO] [1770709452.295708428] [behavior_server]: Configuring spin
+[behavior_server-9] [INFO] [1770709452.352906832] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[behavior_server-9] [INFO] [1770709452.355545159] [behavior_server]: Configuring backup
+[behavior_server-9] [INFO] [1770709452.394899607] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[behavior_server-9] [INFO] [1770709452.397216232] [behavior_server]: Configuring drive_on_heading
+[behavior_server-9] [INFO] [1770709452.437023490] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors/AssistedTeleop
+[behavior_server-9] [INFO] [1770709452.442868827] [behavior_server]: Configuring assisted_teleop
+[behavior_server-9] [INFO] [1770709452.501024178] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[behavior_server-9] [INFO] [1770709452.505211337] [behavior_server]: Configuring wait
+[lifecycle_manager-12] [INFO] [1770709452.541446394] [lifecycle_manager]: [34m[1mConfiguring waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770709452.787440652] [lifecycle_manager]: [34m[1mConfiguring velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770709452.807176550] [lifecycle_manager]: [34m[1mActivating controller_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770709452.976239739] [lifecycle_manager]: Server controller_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770709452.976390111] [lifecycle_manager]: [34m[1mActivating planner_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770709453.221527519] [lifecycle_manager]: Server planner_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770709453.221680099] [lifecycle_manager]: [34m[1mActivating smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770709453.344701788] [lifecycle_manager]: Server smoother_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770709453.344843199] [lifecycle_manager]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770709453.345691153] [bt_navigator]: Activating
+[bt_navigator-8] [INFO] [1770709453.750347745] [bt_navigator_navigate_to_pose_rclcpp_node]: Waiting on odometry
+[bt_navigator-8] [INFO] [1770709453.767515653] [bt_navigator_navigate_to_pose_rclcpp_node]: Got odometry
+[bt_navigator-8] [INFO] [1770709453.932197856] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770709454.052699078] [lifecycle_manager]: Server bt_navigator connected with bond.
+[lifecycle_manager-12] [INFO] [1770709454.052875689] [lifecycle_manager]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770709454.053794876] [behavior_server]: Activating
+[behavior_server-9] [INFO] [1770709454.053905215] [behavior_server]: Activating spin
+[behavior_server-9] [INFO] [1770709454.053943391] [behavior_server]: Activating backup
+[behavior_server-9] [INFO] [1770709454.053967552] [behavior_server]: Activating drive_on_heading
+[behavior_server-9] [INFO] [1770709454.053989568] [behavior_server]: Activating assisted_teleop
+[behavior_server-9] [INFO] [1770709454.054009985] [behavior_server]: Activating wait
+[behavior_server-9] [INFO] [1770709454.054043554] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770709454.171929873] [lifecycle_manager]: Server behavior_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770709454.172052339] [lifecycle_manager]: [34m[1mActivating waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770709454.290392140] [lifecycle_manager]: Server waypoint_follower connected with bond.
+[lifecycle_manager-12] [INFO] [1770709454.290569872] [lifecycle_manager]: [34m[1mActivating velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770709454.421023172] [lifecycle_manager]: Server velocity_smoother connected with bond.
+[lifecycle_manager-12] [INFO] [1770709454.421150054] [lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-12] [INFO] [1770709454.421179175] [lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 16:44:25.336) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3437 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 16:44:29.081) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 2868 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[bt_navigator-8] [INFO] [1770709478.485803211] [bt_navigator]: Begin navigating from current location (0.00, 0.00) to (-1.14, 0.08)
+[bt_navigator-8] [WARN] [1770709486.578430629] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709491.677790982] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709495.593837459] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709498.096070267] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709499.366100119] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770709502.254280414] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770709511.534378676] [bt_navigator]: Begin navigating from current location (-1.10, 0.07) to (-2.12, 0.38)
+[bt_navigator-8] [WARN] [1770709511.590638274] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709525.663480970] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709535.719389533] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770709539.841052401] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770709547.118858825] [bt_navigator]: Begin navigating from current location (-2.07, 0.31) to (-1.65, 2.71)
+[bt_navigator-8] [WARN] [1770709549.239309462] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709551.309922005] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770709562.279276479] [bt_navigator]: Goal succeeded
+[dynamic_object_filter_node-4] [WARN] [1770709568.151594397] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770709568.106476 but the latest data is at time 1770709568.104278, when looking up transform from frame [livox_frame] to frame [odom]
+[bt_navigator-8] [INFO] [1770709570.566368218] [bt_navigator]: Begin navigating from current location (-1.67, 2.58) to (-1.47, 4.50)
+[bt_navigator-8] [WARN] [1770709570.598481313] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709577.278352254] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770709578.448521966] [bt_navigator]: Goal succeeded
+[dynamic_object_filter_node-4] [WARN] [1770709629.763851430] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770709629.713624 but the latest data is at time 1770709629.712107, when looking up transform from frame [livox_frame] to frame [odom]
+[dynamic_object_filter_node-4] [WARN] [1770709638.358773458] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770709638.292903 but the latest data is at time 1770709638.288563, when looking up transform from frame [livox_frame] to frame [odom]
+[bt_navigator-8] [INFO] [1770709738.703557601] [bt_navigator]: Begin navigating from current location (-1.52, 4.37) to (-2.04, 1.93)
+[bt_navigator-8] [WARN] [1770709738.771127457] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709738.908228201] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709740.137895929] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[dynamic_object_filter_node-4] [WARN] [1770709742.451246268] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770709742.410592 but the latest data is at time 1770709742.409005, when looking up transform from frame [livox_frame] to frame [odom]
+[bt_navigator-8] [WARN] [1770709749.753873661] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709755.958170436] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770709760.058609014] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770709767.553440781] [bt_navigator]: Begin navigating from current location (-1.96, 2.07) to (-1.52, 0.15)
+[bt_navigator-8] [WARN] [1770709767.597639603] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770709775.785804627] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770709777.713964560] [bt_navigator]: Goal succeeded
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
