@@ -111,3 +111,8 @@
 [realsense2_camera_node-1]  10/02 17:19:29,092 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
 [realsense2_camera_node-1]  10/02 17:19:29,103 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
 [realsense2_camera_node-1]  10/02 17:19:29,114 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 17:42:52,866 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 17:42:52,877 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 17:42:52,888 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 17:42:52,900 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[realsense2_camera_node-1]  10/02 17:42:52,911 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11

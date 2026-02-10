@@ -219,3 +219,4 @@
 [dynamic_object_filter_node-4] [WARN] [1770710893.770410441] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770710893.712441 but the latest data is at time 1770710893.708914, when looking up transform from frame [livox_frame] to frame [odom]
 [rtabmap-2] [33m[ WARN] (2026-02-10 17:11:42.569) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 1715 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
 [rtabmap-2] [33m[ WARN] (2026-02-10 17:22:32.599) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 2593 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 17:41:28.426) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 2496 points) is empty after noise filtering. Occupancy grid cannot be created.[0m

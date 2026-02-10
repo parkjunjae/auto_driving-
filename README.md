@@ -405,6 +405,13 @@ python3 ~/to_ws/tf_jump_monitor.py --jump-trans 0.03 --jump-rot-deg 2 --output ~
   - -> `/livox/lidar/filtered` (기존 livox 필터 출력)
   - -> `/livox/lidar/static_filtered` (동적 필터 출력, 정적 위주)
   - 글로벌 코스트맵 `lidar_mark.topic`은 `/livox/lidar/static_filtered` 사용.
+  - **RTAB-Map 입력은 `/livox/lidar/filtered` 유지**
+    - 이유: `static_filtered`는 동적 제거용이라 디테일이 손실될 수 있음.
+    - 정적맵 품질(루프클로저/정합) 유지를 위해 **RTAB-Map은 원본 필터링 결과를 사용**.
+  - **`deskewed → filtered` 변경 이유**
+    - `deskewed`는 보정은 됐지만 노이즈/외란이 많아 정합 불안정(고스팅/번짐)을 유발.
+    - `filtered`는 `deskewed`를 입력으로 **보정 효과는 유지**하면서 Voxel+ROR로 노이즈 제거.
+    - 결과적으로 **RTAB-Map의 루프클로저/정합 안정성**이 더 좋아짐.
 
 - **런치 통합**
   - 동적 필터 노드는 `rtabmap_nav2.launch.py`에 통합됨.
