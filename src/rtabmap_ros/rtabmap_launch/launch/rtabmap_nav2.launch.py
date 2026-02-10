@@ -57,12 +57,14 @@ def generate_launch_description():
             'latch': 'false',  # VOLATILE durability for Nav2 compatibility
             'topic_queue_size': '10',  # RGB-D subscriber queue (for delayed camera streams)
             'sync_queue_size': '10',   # Approx sync queue size
-            'approx_rgbd_sync': 'false',
+            # Let RTAB-Map sync RGB + Depth directly (more reliable than /camera/camera/rgbd)
+            'approx_rgbd_sync': 'true',
             'approx_sync_max_interval': '0.08',
-            # Use pre-synchronized RGBD topic directly
-            'rgbd_sync': 'false',
-            'subscribe_rgbd': 'true',
-            'rgbd_topic': '/camera/camera/rgbd',
+            'rgbd_sync': 'true',
+            'subscribe_rgbd': 'false',
+            'rgb_topic': '/camera/camera/color/image_raw',
+            'depth_topic': '/camera/camera/aligned_depth_to_color/image_raw',
+            'camera_info_topic': '/camera/camera/color/camera_info',
             'rtabmap_args': rtabmap_args,  # Prefer ROS params in rtabmap.launch.py
             'database_path': database_path,
             'delete_db_on_start': delete_db_on_start,  # DB reset via ROS param

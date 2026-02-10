@@ -322,10 +322,11 @@ def launch_setup(context, *args, **kwargs):
                 "Grid/Sensor": "0", # 0: Laser(라이다)만, 1: Depth만, 2: 둘 다 (타임싱크 문제로 0 권장)
                 "Grid/FromDepth": "false", # Depth 맵 생성 비활성화 (occupancy grid용)
                 "Cloud/FromDepth": "false", # Depth에서 클라우드 생성 비활성화 (라이다만 사용)
+                "Grid/MinObstacleHeight": "0.08",
                 "Grid/MaxObstacleHeight": "2.0",  # 최대 장애물 높이 (2m)
                 # MaxGroundHeight=0이면 RTAB-Map이 자동으로 CellSize로 대체하며 경고를 출력한다.
-                "Grid/MaxGroundHeight": "0.07",  # 바닥으로 간주할 최대 높이(7cm, CellSize와 동일)
-                "Grid/MinGroundHeight": "-0.5",    # 최소 바닥 높이 (base_link 아래 -50cm까지 바닥)
+                "Grid/MaxGroundHeight": "0.03",  # 바닥으로 간주할 최대 높이(7cm, CellSize와 동일)
+                "Grid/MinGroundHeight": "-0.03",    # 최소 바닥 높이 (base_link 아래 -50cm까지 바닥)
                 #---------------------------------------------------------
                 # 프레임마다 조금씩 다른 위치에 와도 같은 덩어리로 묶을 수 있게 도와줌 
                 "Grid/NormalsSegmentation": "false",  # 법선 기반 비활성화 (희소 라이다에 더 안정적)

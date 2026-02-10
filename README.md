@@ -303,6 +303,45 @@ python3 ~/to_ws/tf_jump_monitor.py --jump-trans 0.03 --jump-rot-deg 2 --output ~
   - `/odometry/filtered` delay 평균 `~0.003s` (max `~0.010s`)
   - TF `MISSING` 1회는 시작 시점(`0.00s`) transient로 확인됨
 
+### 1-1. 센서 높이 변경(12cm 하향) 후 Grid Ground 재설정
+
+- **배경**
+  - LiDAR 높이를 12cm 낮춘 뒤, 소파가 `/rtabmap/map`에서 사라짐.
+  - `/rtabmap/cloud_obstacles`의 `frame_id=map` 이므로 **Grid/Min/MaxGroundHeight는 map 좌표계 기준**이어야 함.
+  - `map -> livox_frame`의 z가 `0.83` → **바닥은 map z=0** 기준으로 잡아야 정상.
+
+- **계산 방법**
+  - `map -> livox_frame` 변환 확인:
+    ```bash
+    ros2 run tf2_ros tf2_echo map livox_frame
+    ```
+  - `z=0.83`이면 바닥은 map `z≈0`
+
+- **적용값(권장 시작값)**
+
+  ```yaml
+  Grid/MinGroundHeight: -0.03
+  Grid/MaxGroundHeight: 0.03
+  Grid/MinObstacleHeight: 0.08
+  Grid/MaxObstacleHeight: 2.0
+  ```
+
+- **런타임 적용**
+
+  ```bash
+  ros2 param set /rtabmap/rtabmap Grid/MinGroundHeight "-0.05"
+  ros2 param set /rtabmap/rtabmap Grid/MaxGroundHeight "0.05"
+  ros2 param set /rtabmap/rtabmap Grid/MinObstacleHeight "0.10"
+  ros2 param set /rtabmap/rtabmap Grid/MaxObstacleHeight "2.0"
+  ```
+
+- **검증**
+  - 바닥은 `/rtabmap/cloud_ground`에만, 소파는 `/rtabmap/cloud_obstacles`로 분리되는지 확인:
+    ```bash
+    ros2 topic echo /rtabmap/cloud_ground --once | grep frame_id
+    ros2 topic echo /rtabmap/cloud_obstacles --once | grep frame_id
+    ```
+
 ### 2. EKF 튜닝 (odom->base_link 안정화)
 
 - **문제**

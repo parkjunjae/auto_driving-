@@ -6,6 +6,13 @@ LOG_DIR="${ROOT}/logs/run_$(date +%Y%m%d_%H%M%S)"
 SLEEP_SEC=5
 mkdir -p "$LOG_DIR"
 
+# 기본 환경 먼저 로드 (요청사항)
+# set -u 상태에서 ROS setup.bash가 unset 변수 접근할 수 있어 잠시 완화
+set +u
+source /opt/ros/humble/setup.bash
+source "${ROOT}/install/setup.bash"
+set -u
+
 pids=()
 
 run_cmd() {
@@ -42,7 +49,7 @@ wait_for_topic() {
   local topic="$1"
   local timeout_sec="$2"
   echo "[WAIT] topic ${topic} (timeout ${timeout_sec}s)"
-  if ! timeout "${timeout_sec}" bash -lc "source /opt/ros/humble/setup.bash && source ${ROOT}/install/setup.bash && ros2 topic echo ${topic} --once >/dev/null 2>&1"; then
+  if ! timeout "${timeout_sec}" ros2 topic echo "${topic}" --once >/dev/null 2>&1; then
     echo "[WARN] timeout waiting for ${topic}"
   else
     echo "[OK] ${topic} ready"
@@ -55,7 +62,7 @@ wait_for_tf() {
   local source="$2"
   local timeout_sec="$3"
   echo "[WAIT] TF ${target} -> ${source} (timeout ${timeout_sec}s)"
-  if ! timeout "${timeout_sec}" bash -lc "source /opt/ros/humble/setup.bash && source ${ROOT}/install/setup.bash && python3 - <<'PY'
+  if ! timeout "${timeout_sec}" python3 - "${target}" "${source}" "${timeout_sec}" <<'PY'
 import sys, time
 import rclpy
 from tf2_ros import Buffer, TransformListener
@@ -81,11 +88,26 @@ node.destroy_node()
 rclpy.shutdown()
 if not ok:
     sys.exit(1)
-PY ${target} ${source} ${timeout_sec}"; then
+PY
+  then
     echo "[WARN] timeout waiting for TF ${target} -> ${source}"
   else
     echo "[OK] TF ${target} -> ${source} ready"
   fi
+}
+
+# Nav2 주요 노드를 재활성화(초기 타이밍 문제로 플래너가 멈추는 현상 방지)
+restart_nav2_core() {
+  echo "[RESET] Nav2 core nodes (planner/controller/bt_navigator)"
+  set +e
+  ros2 lifecycle set /planner_server deactivate
+  ros2 lifecycle set /controller_server deactivate
+  ros2 lifecycle set /bt_navigator deactivate
+  sleep 1
+  ros2 lifecycle set /planner_server activate
+  ros2 lifecycle set /controller_server activate
+  ros2 lifecycle set /bt_navigator activate
+  set -e
 }
 
 cleanup() {
@@ -128,6 +150,9 @@ wait_for_tf "odom" "base_link" 20
 wait_for_topic "/rtabmap/map" 60
 wait_for_tf "map" "odom" 30
 wait_for_topic "/global_costmap/costmap" 30
+
+# Nav2 재활성화(맵/TF 준비 이후 플래너 타임아웃 방지)
+restart_nav2_core
 
 # 5) Agent PID (venv)
 run_agent_pid "agent_pid" "ros2 launch rl_pid_training agent_pid.launch.py"

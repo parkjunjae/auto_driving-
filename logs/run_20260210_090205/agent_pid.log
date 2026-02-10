@@ -1,0 +1,6 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-10-09-03-48-867307-world-9513
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python3-1]: process started with pid [9540]
+[python3-1] [WARN] [1770681840.388147342] [rl_pid_env_real]: could not detect type for /controller_server/RLController/desired_cmd, fallback to TwistStamped
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python3-1]: sending signal 'SIGINT' to process[python3-1]

@@ -1,0 +1,60 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-10-09-02-23-409559-world-8706
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [livox_timestamp_offset_node-1]: process started with pid [8822]
+[INFO] [camera_imu_bias_corrector_cpp-2]: process started with pid [8824]
+[INFO] [imu_filter_madgwick_node-3]: process started with pid [8826]
+[INFO] [lidar_deskewing-4]: process started with pid [8828]
+[INFO] [static_transform_publisher-5]: process started with pid [8830]
+[INFO] [static_transform_publisher-6]: process started with pid [8832]
+[imu_filter_madgwick_node-3] [INFO] [1770681743.646601560] [imu_filter]: Starting ImuFilter
+[static_transform_publisher-6] [INFO] [1770681743.646835932] [camera_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-6] translation: ('0.200000', '0.000000', '0.580000')
+[static_transform_publisher-6] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-6] from 'base_link' to 'camera_link'
+[imu_filter_madgwick_node-3] [INFO] [1770681743.647546697] [imu_filter]: Using dt computed from message headers
+[imu_filter_madgwick_node-3] [INFO] [1770681743.647596874] [imu_filter]: The gravity vector is kept in the IMU message.
+[imu_filter_madgwick_node-3] [INFO] [1770681743.648096659] [imu_filter]: Imu filter gain set to 0.100000
+[imu_filter_madgwick_node-3] [INFO] [1770681743.648142676] [imu_filter]: Gyro drift bias set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1770681743.648159412] [imu_filter]: Magnetometer bias values: 0.000000 0.000000 0.000000
+[static_transform_publisher-5] [INFO] [1770681743.999062890] [livox_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-5] translation: ('0.000000', '0.000000', '0.830000')
+[static_transform_publisher-5] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-5] from 'base_link' to 'livox_frame'
+[camera_imu_bias_corrector_cpp-2] [INFO] [1770681744.008941881] [camera_imu_bias_corrector]: IMU bias corrector started: input=/camera/camera/imu output=/camera/camera/imu_bias_corrected
+[camera_imu_bias_corrector_cpp-2] [INFO] [1770681744.009546788] [camera_imu_bias_corrector]: Calibrating IMU bias... keep robot still.
+[imu_filter_madgwick_node-3] [INFO] [1770681744.024829363] [imu_filter]: First IMU message received.
+[livox_timestamp_offset_node-1] [INFO] [1770681744.339847788] [livox_timestamp_offset]: input_topic=/livox/lidar output_topic=/livox/lidar/synced offset_sec=0.036
+[lidar_deskewing-4] [INFO] [1770681745.109664272] [lidar_deskewing]:   fixed_frame_id:  base_link
+[lidar_deskewing-4] [INFO] [1770681745.110135544] [lidar_deskewing]:   wait_for_transform:  0.200000s
+[lidar_deskewing-4] [INFO] [1770681745.110176729] [lidar_deskewing]:   slerp:  true
+[lidar_deskewing-4] [WARN] [1770681745.371072817] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [WARN] [1770681745.575750563] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [WARN] [1770681745.779354146] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [WARN] [1770681745.982666235] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [WARN] [1770681746.186312059] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [WARN] [1770681746.389799928] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [WARN] [1770681746.593215699] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [WARN] [1770681746.796368778] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [WARN] [1770681746.999365502] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [WARN] [1770681747.202700760] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [WARN] [1770681747.406153652] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:25.370) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681745.155754 and 1770681745.188859! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.202621 timeout was 0.2.)[0m
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:25.575) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681745.221748 and 1770681745.256136! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.20273 timeout was 0.2.)[0m
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:25.779) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681745.421678 and 1770681745.456102! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.202467 timeout was 0.2.)[0m
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:25.982) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681745.621877 and 1770681745.656376! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.202444 timeout was 0.2.)[0m
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:26.186) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681745.821719 and 1770681745.856161! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.202767 timeout was 0.2.)[0m
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:26.389) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681746.021873 and 1770681746.056346! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.202542 timeout was 0.2.)[0m
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:26.593) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681746.222633 and 1770681746.256142! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.202465 timeout was 0.2.)[0m
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:26.796) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681746.455884 and 1770681746.488871! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.202372 timeout was 0.2.)[0m
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:26.999) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681746.655856 and 1770681746.688546! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.202254 timeout was 0.2.)[0m
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:27.202) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681746.856019 and 1770681746.888872! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.202483 timeout was 0.2.)[0m
+[lidar_deskewing-4] [31m[ERROR] (2026-02-10 09:02:27.406) MsgConversion.cpp:3121::deskew_impl() Could not estimate motion of livox_frame accordingly to fixed frame base_link between stamps 1770681747.056492 and 1770681747.088887! (Invalid frame ID "livox_frame" passed to canTransform argument target_frame - frame does not exist. canTransform returned after 0.202218 timeout was 0.2.)[0m
+[lidar_deskewing-4] [WARN] [1770681747.609670897] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[camera_imu_bias_corrector_cpp-2] [INFO] [1770681749.993692808] [camera_imu_bias_corrector]: IMU bias calibrated: x=-0.000841 y=0.001886 z=-0.004476
+[imu_filter_madgwick_node-3] [INFO] [1770681841.187280753] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.200000
+[imu_filter_madgwick_node-3] [INFO] [1770681841.187652663] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1770681841.187800378] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030000
+[imu_filter_madgwick_node-3] [INFO] [1770681841.187918844] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1770681841.188032318] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1770681841.188139520] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100000
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)

@@ -1,0 +1,7 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-10-10-07-08-744946-world-46468
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [ekf_node-1]: process started with pid [46488]
+[ekf_node-1] Failed to meet update rate! Took 0.32691558999999997814seconds. Try decreasing the rate, limiting sensor output frequency, or limiting the number of sensors.
+[ekf_node-1] Failed to meet update rate! Took 0.059459519000000002342seconds. Try decreasing the rate, limiting sensor output frequency, or limiting the number of sensors.
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [ekf_node-1]: sending signal 'SIGINT' to process[ekf_node-1]

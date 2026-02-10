@@ -1,0 +1,728 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-10-09-36-04-835123-world-25769
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [rgbd_sync-1]: process started with pid [25798]
+[INFO] [rtabmap-2]: process started with pid [25800]
+[INFO] [livox_pointcloud_filter_node-3]: process started with pid [25802]
+[INFO] [dynamic_object_filter_node-4]: process started with pid [25804]
+[dynamic_object_filter_node-4] [INFO] [1770683765.151063883] [dynamic_object_filter]: Dynamic filter: /livox/lidar/filtered -> /livox/lidar/static_filtered, voxel=0.120, min_hits=2, hit_window=1.00s
+[dynamic_object_filter_node-4] [WARN] [1770683765.706287947] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): "livox_frame" passed to lookupTransform argument source_frame does not exist. 
+[rgbd_sync-1] [0m[INFO] [1770683766.283890109] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync = true[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.284488907] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync_max_interval = 0.080000[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.284549549] [rtabmap.rgbd_sync]: rgbd_sync: topic_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.284577933] [rtabmap.rgbd_sync]: rgbd_sync: sync_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.284604654] [rtabmap.rgbd_sync]: rgbd_sync: qos             = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.284634735] [rtabmap.rgbd_sync]: rgbd_sync: qos_camera_info = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.284661999] [rtabmap.rgbd_sync]: rgbd_sync: depth_scale = 1.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.284689808] [rtabmap.rgbd_sync]: rgbd_sync: decimation = 1[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.284718705] [rtabmap.rgbd_sync]: rgbd_sync: compressed_rate = 0.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.284743921] [rtabmap.rgbd_sync]: rgbd_sync: image_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.284767282] [rtabmap.rgbd_sync]: rgbd_sync: depth_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770683766.335268670] [rtabmap.rgbd_sync]: 
+[rgbd_sync-1] rgbd_sync subscribed to (approx sync, max interval=0.080000s):
+[rgbd_sync-1]    /camera/camera/color/image_raw,
+[rgbd_sync-1]    /camera/camera/aligned_depth_to_color/image_raw,
+[rgbd_sync-1]    /camera/camera/color/camera_info[0m
+[INFO] [controller_server-5]: process started with pid [25974]
+[INFO] [planner_server-6]: process started with pid [25976]
+[INFO] [smoother_server-7]: process started with pid [25978]
+[INFO] [bt_navigator-8]: process started with pid [25980]
+[INFO] [behavior_server-9]: process started with pid [25982]
+[INFO] [waypoint_follower-10]: process started with pid [25984]
+[INFO] [velocity_smoother-11]: process started with pid [25997]
+[behavior_server-9] [INFO] [1770683771.110899584] [behavior_server]: 
+[behavior_server-9] 	behavior_server lifecycle node launched. 
+[behavior_server-9] 	Waiting on external lifecycle transitions to activate
+[behavior_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-8] [INFO] [1770683771.176433329] [bt_navigator]: 
+[bt_navigator-8] 	bt_navigator lifecycle node launched. 
+[bt_navigator-8] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-8] [INFO] [1770683771.180544274] [bt_navigator]: Creating
+[INFO] [lifecycle_manager-12]: process started with pid [26347]
+[lifecycle_manager-12] [INFO] [1770683780.166365701] [lifecycle_manager]: Creating
+[lifecycle_manager-12] [INFO] [1770683780.170284482] [lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[dynamic_object_filter_node-4] [WARN] [1770683781.638623039] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770683781.562582 but the latest data is at time 1770683781.538829, when looking up transform from frame [livox_frame] to frame [odom]
+[lifecycle_manager-12] [INFO] [1770683782.172309440] [lifecycle_manager]: Waiting for service controller_server/get_state...
+[lifecycle_manager-12] [INFO] [1770683783.573221088] [lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-12] [INFO] [1770683783.573382052] [lifecycle_manager]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-5] [ERROR] [1770683783.675536600] [local_costmap.local_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.270) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770683783.749420430] [lifecycle_manager]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-6] [ERROR] [1770683783.906177711] [global_costmap.global_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.260) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770683784.000577739] [lifecycle_manager]: [34m[1mConfiguring smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683784.101905516] [lifecycle_manager]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770683784.102515546] [bt_navigator]: Configuring
+[lifecycle_manager-12] [INFO] [1770683784.382571140] [lifecycle_manager]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770683784.383292245] [behavior_server]: Configuring
+[behavior_server-9] [INFO] [1770683784.423706930] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin
+[behavior_server-9] [INFO] [1770683784.425963624] [behavior_server]: Configuring spin
+[behavior_server-9] [INFO] [1770683784.465913850] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[behavior_server-9] [INFO] [1770683784.467999979] [behavior_server]: Configuring backup
+[behavior_server-9] [INFO] [1770683784.510246644] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[behavior_server-9] [INFO] [1770683784.512577579] [behavior_server]: Configuring drive_on_heading
+[behavior_server-9] [INFO] [1770683784.554954455] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors/AssistedTeleop
+[behavior_server-9] [INFO] [1770683784.560157202] [behavior_server]: Configuring assisted_teleop
+[behavior_server-9] [INFO] [1770683784.606069906] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[behavior_server-9] [INFO] [1770683784.608113346] [behavior_server]: Configuring wait
+[lifecycle_manager-12] [INFO] [1770683784.642064135] [lifecycle_manager]: [34m[1mConfiguring waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770683784.727534223] [lifecycle_manager]: [34m[1mConfiguring velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770683784.745333909] [lifecycle_manager]: [34m[1mActivating controller_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683784.910332825] [lifecycle_manager]: Server controller_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770683784.910453308] [lifecycle_manager]: [34m[1mActivating planner_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683785.178077855] [lifecycle_manager]: Server planner_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770683785.178211555] [lifecycle_manager]: [34m[1mActivating smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683785.286050557] [lifecycle_manager]: Server smoother_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770683785.286183040] [lifecycle_manager]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770683785.287050581] [bt_navigator]: Activating
+[bt_navigator-8] [INFO] [1770683785.524149637] [bt_navigator_navigate_to_pose_rclcpp_node]: Waiting on odometry
+[bt_navigator-8] [INFO] [1770683785.525119388] [bt_navigator_navigate_to_pose_rclcpp_node]: Got odometry
+[bt_navigator-8] [INFO] [1770683785.716844665] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770683785.838085041] [lifecycle_manager]: Server bt_navigator connected with bond.
+[lifecycle_manager-12] [INFO] [1770683785.838213588] [lifecycle_manager]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770683785.839081481] [behavior_server]: Activating
+[behavior_server-9] [INFO] [1770683785.839170411] [behavior_server]: Activating spin
+[behavior_server-9] [INFO] [1770683785.839204588] [behavior_server]: Activating backup
+[behavior_server-9] [INFO] [1770683785.839230508] [behavior_server]: Activating drive_on_heading
+[behavior_server-9] [INFO] [1770683785.839253453] [behavior_server]: Activating assisted_teleop
+[behavior_server-9] [INFO] [1770683785.839274925] [behavior_server]: Activating wait
+[behavior_server-9] [INFO] [1770683785.839305742] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770683785.956215295] [lifecycle_manager]: Server behavior_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770683785.956345890] [lifecycle_manager]: [34m[1mActivating waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770683786.070834522] [lifecycle_manager]: Server waypoint_follower connected with bond.
+[lifecycle_manager-12] [INFO] [1770683786.071002014] [lifecycle_manager]: [34m[1mActivating velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770683786.211636962] [lifecycle_manager]: Server velocity_smoother connected with bond.
+[lifecycle_manager-12] [INFO] [1770683786.211743300] [lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-12] [INFO] [1770683786.211772677] [lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[bt_navigator-8] [INFO] [1770683786.917848506] [bt_navigator]: Deactivating
+[bt_navigator-8] [INFO] [1770683786.917977917] [bt_navigator]: Destroying bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770683787.012169364] [lifecycle_manager]: [34m[1mHave not received a heartbeat from bt_navigator.[0m[0m
+[lifecycle_manager-12] [ERROR] [1770683787.012318872] [lifecycle_manager]: CRITICAL FAILURE: SERVER bt_navigator IS DOWN after not receiving a heartbeat for 10000 ms. Shutting down related nodes.
+[lifecycle_manager-12] [INFO] [1770683787.012415546] [lifecycle_manager]: [34m[1mTerminating bond timer...[0m[0m
+[lifecycle_manager-12] [INFO] [1770683787.012436507] [lifecycle_manager]: [34m[1mResetting managed nodes...[0m[0m
+[lifecycle_manager-12] [INFO] [1770683787.012452283] [lifecycle_manager]: [34m[1mDeactivating velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770683787.130666507] [lifecycle_manager]: [34m[1mDeactivating waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770683787.248341391] [lifecycle_manager]: [34m[1mDeactivating behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770683787.249487722] [behavior_server]: Deactivating
+[behavior_server-9] [INFO] [1770683787.249621837] [behavior_server]: Destroying bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770683787.366062003] [lifecycle_manager]: [34m[1mDeactivating bt_navigator[0m[0m
+[bt_navigator-8] [WARN] [1770683787.367150381] [rcl_lifecycle]: No transition matching 4 found for current state inactive
+[bt_navigator-8] [WARN] [1770683787.367229871] [rcl_lifecycle]: No transition matching 4 found for current state inactive
+[bt_navigator-8] [ERROR] [1770683787.367256239] [bt_navigator]: Unable to start transition 4 from current state inactive: Transition is not registered., at ./src/rcl_lifecycle.c:355
+[lifecycle_manager-12] [INFO] [1770683787.380980404] [lifecycle_manager]: [34m[1mDeactivating smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683787.501724193] [lifecycle_manager]: [34m[1mDeactivating planner_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683787.630118114] [lifecycle_manager]: [34m[1mDeactivating controller_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683787.771475670] [lifecycle_manager]: [34m[1mCleaning up velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770683787.778843877] [lifecycle_manager]: [34m[1mCleaning up waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770683787.809794434] [lifecycle_manager]: [34m[1mCleaning up behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770683787.810341039] [behavior_server]: Cleaning up
+[lifecycle_manager-12] [INFO] [1770683787.941648693] [lifecycle_manager]: [34m[1mCleaning up bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770683787.942381383] [bt_navigator]: Cleaning up
+[bt_navigator-8] [INFO] [1770683788.352678045] [bt_navigator]: Completed Cleaning up
+[lifecycle_manager-12] [INFO] [1770683788.361299242] [lifecycle_manager]: [34m[1mCleaning up smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683788.396926198] [lifecycle_manager]: [34m[1mCleaning up planner_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683788.486809735] [lifecycle_manager]: [34m[1mCleaning up controller_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683788.573285511] [lifecycle_manager]: [34m[1mManaged nodes have been reset[0m[0m
+[lifecycle_manager-12] [INFO] [1770683789.580735391] [lifecycle_manager]: [34m[1mSuccessfully re-established connections from server respawns, starting back up.[0m[0m
+[lifecycle_manager-12] [INFO] [1770683789.580868546] [lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-12] [INFO] [1770683789.580894563] [lifecycle_manager]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-5] [ERROR] [1770683789.662214793] [local_costmap.local_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.270) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770683789.741756677] [lifecycle_manager]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-6] [ERROR] [1770683789.825232350] [global_costmap.global_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.260) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770683789.871240416] [lifecycle_manager]: [34m[1mConfiguring smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683789.952941327] [lifecycle_manager]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770683789.953551198] [bt_navigator]: Configuring
+[lifecycle_manager-12] [INFO] [1770683790.154917280] [lifecycle_manager]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770683790.155811093] [behavior_server]: Configuring
+[behavior_server-9] [INFO] [1770683790.177072077] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin
+[behavior_server-9] [INFO] [1770683790.177309266] [behavior_server]: Configuring spin
+[behavior_server-9] [INFO] [1770683790.217205507] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[behavior_server-9] [INFO] [1770683790.217440105] [behavior_server]: Configuring backup
+[behavior_server-9] [INFO] [1770683790.243156586] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[behavior_server-9] [INFO] [1770683790.243550739] [behavior_server]: Configuring drive_on_heading
+[behavior_server-9] [INFO] [1770683790.267266981] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors/AssistedTeleop
+[behavior_server-9] [INFO] [1770683790.267428809] [behavior_server]: Configuring assisted_teleop
+[behavior_server-9] [INFO] [1770683790.296455416] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[behavior_server-9] [INFO] [1770683790.296779296] [behavior_server]: Configuring wait
+[lifecycle_manager-12] [INFO] [1770683790.322875306] [lifecycle_manager]: [34m[1mConfiguring waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770683790.407671907] [lifecycle_manager]: [34m[1mConfiguring velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770683790.416794075] [lifecycle_manager]: [34m[1mActivating controller_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683790.629745423] [lifecycle_manager]: Server controller_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770683790.629910387] [lifecycle_manager]: [34m[1mActivating planner_server[0m[0m
+[planner_server-6] [ERROR] [1770683790.634160600] [planner_server]: Unable to start transition 3 from current state active: Transition is not registered., at ./src/rcl_lifecycle.c:355
+[lifecycle_manager-12] [INFO] [1770683790.719813765] [lifecycle_manager]: Server planner_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770683790.719924167] [lifecycle_manager]: [34m[1mActivating smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770683790.837186817] [lifecycle_manager]: Server smoother_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770683790.837325700] [lifecycle_manager]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770683790.838194873] [bt_navigator]: Activating
+[bt_navigator-8] [INFO] [1770683791.270123632] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770683791.381588288] [lifecycle_manager]: Server bt_navigator connected with bond.
+[lifecycle_manager-12] [INFO] [1770683791.381721668] [lifecycle_manager]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770683791.383839414] [behavior_server]: Activating
+[behavior_server-9] [INFO] [1770683791.383935288] [behavior_server]: Activating spin
+[behavior_server-9] [INFO] [1770683791.383960153] [behavior_server]: Activating backup
+[behavior_server-9] [INFO] [1770683791.383979257] [behavior_server]: Activating drive_on_heading
+[behavior_server-9] [INFO] [1770683791.383998490] [behavior_server]: Activating assisted_teleop
+[behavior_server-9] [INFO] [1770683791.384016186] [behavior_server]: Activating wait
+[behavior_server-9] [INFO] [1770683791.384038042] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770683791.497242068] [lifecycle_manager]: Server behavior_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770683791.497374391] [lifecycle_manager]: [34m[1mActivating waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770683791.613017994] [lifecycle_manager]: Server waypoint_follower connected with bond.
+[lifecycle_manager-12] [INFO] [1770683791.613151726] [lifecycle_manager]: [34m[1mActivating velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770683791.720774211] [lifecycle_manager]: Server velocity_smoother connected with bond.
+[lifecycle_manager-12] [INFO] [1770683791.720893670] [lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-12] [INFO] [1770683791.720920774] [lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[dynamic_object_filter_node-4] [WARN] [1770683792.576424879] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770683792.496257 but the latest data is at time 1770683792.490248, when looking up transform from frame [livox_frame] to frame [odom]
+[bt_navigator-8] [INFO] [1770683819.762121478] [bt_navigator]: Begin navigating from current location (0.00, 0.00) to (1.03, -0.02)
+[bt_navigator-8] [WARN] [1770683819.965784350] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770683822.684988505] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770683823.622901858] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770683834.977101497] [bt_navigator]: Begin navigating from current location (0.94, 0.02) to (0.07, -0.00)
+[bt_navigator-8] [WARN] [1770683841.320532557] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770683851.568592779] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770683862.588736698] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770683864.282144837] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770683866.069237618] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770683866.237689487] [bt_navigator]: Goal succeeded
+[dynamic_object_filter_node-4] [WARN] [1770684476.357375103] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770684476.276499 but the latest data is at time 1770684476.275745, when looking up transform from frame [livox_frame] to frame [odom]
+[bt_navigator-8] [INFO] [1770684622.076109575] [bt_navigator]: Begin navigating from current location (0.10, 0.05) to (-0.29, 1.92)
+[bt_navigator-8] [WARN] [1770684622.116913062] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684623.727946799] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684626.370189881] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684628.010527530] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770684634.247284479] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770684638.763964626] [bt_navigator]: Begin navigating from current location (-0.40, 1.78) to (-0.12, 4.01)
+[bt_navigator-8] [WARN] [1770684638.821371173] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684638.828808282] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684639.984679183] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684641.106670765] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684642.036497390] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684646.004520110] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684648.066552485] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770684650.724451307] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770684655.318157518] [bt_navigator]: Begin navigating from current location (-0.18, 3.88) to (-0.02, 5.29)
+[bt_navigator-8] [INFO] [1770684660.491750234] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770684664.947342305] [bt_navigator]: Begin navigating from current location (0.02, 5.11) to (-0.50, 1.66)
+[bt_navigator-8] [WARN] [1770684671.609568440] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684672.458645135] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684674.082330924] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684676.728800284] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684677.409597882] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684678.351360221] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684678.478824310] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684678.508482407] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684678.859610523] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684679.432536572] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684679.455656845] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770684692.808626737] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770684696.990113396] [bt_navigator]: Begin navigating from current location (-0.42, 1.82) to (0.62, -0.15)
+[bt_navigator-8] [WARN] [1770684697.880694907] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684701.222148834] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684704.560535142] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684704.757156678] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684704.762252349] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684706.250436123] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:51:46.355) Rtabmap.cpp:3068::process() Rejected loop closure 141 -> 1563: Not enough inliers 19/20 (matches=109) between 141 and 1563[0m
+[bt_navigator-8] [INFO] [1770684707.440582735] [bt_navigator]: Goal succeeded
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:51:47.733) Rtabmap.cpp:3068::process() Rejected loop closure 143 -> 1565: Not enough inliers 15/20 (matches=109) between 143 and 1565[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:51:48.259) Rtabmap.cpp:3068::process() Rejected loop closure 143 -> 1566: Not enough inliers 17/20 (matches=110) between 143 and 1566[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:51:49.158) Rtabmap.cpp:3068::process() Rejected loop closure 143 -> 1567: Cannot compute transform (cor=260 corrRatio=0.050534/0.100000 maxLaserScans=5145)[0m
+[bt_navigator-8] [INFO] [1770684715.876299765] [bt_navigator]: Begin navigating from current location (0.60, -0.19) to (1.93, -0.37)
+[bt_navigator-8] [WARN] [1770684715.927782987] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684717.010272453] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:51:57.306) Rtabmap.cpp:3068::process() Rejected loop closure 143 -> 1581: Not enough inliers 15/20 (matches=87) between 143 and 1581[0m
+[bt_navigator-8] [WARN] [1770684718.997444592] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:51:59.954) Rtabmap.cpp:3068::process() Rejected loop closure 94 -> 1585: Not enough inliers 11/20 (matches=75) between 94 and 1585[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:52:00.647) Rtabmap.cpp:3068::process() Rejected loop closure 94 -> 1586: Not enough inliers 6/20 (matches=67) between 94 and 1586[0m
+[bt_navigator-8] [INFO] [1770684720.736930959] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770684723.683974651] [bt_navigator]: Begin navigating from current location (1.77, -0.39) to (2.39, -4.17)
+[bt_navigator-8] [WARN] [1770684723.766348965] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684724.787532354] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684726.914975237] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684726.984593989] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684727.428095551] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684729.018686396] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684730.108926187] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684732.905896666] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684733.715488919] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684740.680466584] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684742.211329438] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684742.257912993] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684743.266288530] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684743.296731867] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[dynamic_object_filter_node-4] [WARN] [1770684744.636296094] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770684744.596751 but the latest data is at time 1770684744.587067, when looking up transform from frame [livox_frame] to frame [odom]
+[bt_navigator-8] [WARN] [1770684747.545749144] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684748.054432554] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684749.268728308] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770684750.044584763] [bt_navigator]: Goal succeeded
+[bt_navigator-8] [INFO] [1770684754.686027013] [bt_navigator]: Begin navigating from current location (2.46, -4.08) to (1.47, 0.05)
+[bt_navigator-8] [WARN] [1770684754.743096863] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684754.770641380] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684755.261144940] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[dynamic_object_filter_node-4] [WARN] [1770684755.935030877] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770684755.886204 but the latest data is at time 1770684755.884722, when looking up transform from frame [livox_frame] to frame [odom]
+[bt_navigator-8] [WARN] [1770684756.900682788] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684758.414528027] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684760.013864229] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684761.223574085] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684761.506885236] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684761.654880097] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684761.753025149] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684764.264745038] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684769.152240587] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684776.320686020] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684780.011111086] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684780.423656254] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684781.943712757] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684786.613777194] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684788.660741421] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770684789.792537805] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770684790.242207813] [bt_navigator]: Goal succeeded
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:12.874) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3448 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:18.643) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=102) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:19.580) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:20.140) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:20.818) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:21.471) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 16/20 (matches=104) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:22.075) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:22.538) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:23.094) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=99) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:23.735) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=112 corrRatio=0.019270/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:24.395) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:25.091) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:25.809) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:26.823) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:27.413) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 6/20 (matches=96) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:27.993) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:28.813) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=113 corrRatio=0.019443/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:29.524) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:30.190) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:30.800) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:31.599) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:32.402) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:33.015) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:33.887) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:34.390) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:35.182) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:46.761) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:47.608) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:48.361) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:49.087) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:49.616) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:50.000) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3849 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:50.102) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=98) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:51.182) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:51.782) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:52.307) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:52.860) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=96) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:53.728) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=101) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:54.237) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=117 corrRatio=0.020131/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:54.770) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:55.411) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:56.044) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:56.331) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3190 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:56.558) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=114 corrRatio=0.019615/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:57.382) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:58.046) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:58.679) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:53:59.268) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:00.016) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:00.799) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:01.599) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:02.271) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:03.131) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:03.854) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:04.559) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:05.167) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:05.763) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:06.425) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:07.069) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 9/20 (matches=84) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:07.869) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:08.594) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:09.308) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:10.082) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:10.625) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:11.147) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=117 corrRatio=0.020131/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:11.642) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: libpointmatcher has failed: limit out of bounds: rot: 0.0840415/0.78 tr: 0.223186/0.2[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:12.134) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 15/20 (matches=96) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:12.920) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:13.600) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:14.321) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:14.931) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:15.465) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:16.300) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:16.894) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:17.357) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:18.352) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 8/20 (matches=96) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:19.041) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:19.405) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 8/20 (matches=95) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:20.472) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:20.987) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 7/20 (matches=95) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:21.844) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:22.653) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:23.415) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:24.184) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:24.960) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:25.440) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:26.361) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:26.883) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:27.548) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:28.398) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:29.109) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:30.023) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:30.617) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:31.350) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:32.224) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:33.248) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:33.785) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:34.148) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=99) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:35.219) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:35.854) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=93) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:36.606) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:37.265) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:38.088) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:38.791) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:39.392) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=105) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:40.092) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:40.944) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:41.715) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:42.769) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:43.298) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 10/20 (matches=94) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:44.089) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:45.112) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:45.533) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=93) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:46.664) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:47.309) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:48.124) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:48.790) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:49.538) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:50.090) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:50.724) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:51.364) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:51.938) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:52.893) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:53.419) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:53.989) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:54.896) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=116 corrRatio=0.019959/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:55.267) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:56.178) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:56.797) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:57.538) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:58.423) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:59.175) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:54:59.732) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:00.354) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:00.943) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:01.571) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=113 corrRatio=0.019443/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:02.217) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:02.858) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:03.548) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:04.135) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:04.737) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:05.533) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:06.331) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:07.022) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:07.542) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:08.276) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=113 corrRatio=0.019443/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:08.938) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:09.537) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:10.395) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:10.887) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:11.949) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=112 corrRatio=0.019270/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:12.638) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:13.205) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:13.883) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:14.718) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:15.256) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 6/20 (matches=90) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:16.024) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:16.831) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:17.354) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:17.987) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:18.668) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:18.945) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3850 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:19.189) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:19.466) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 2768 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:19.698) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:20.683) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:21.260) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:21.819) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:22.687) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:23.235) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 6/20 (matches=95) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:24.226) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:24.976) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:25.734) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:26.633) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:27.286) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:27.905) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:28.671) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:29.322) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:30.479) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:31.283) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:32.390) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:33.263) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:34.049) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:34.914) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:35.395) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:36.133) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 12/20 (matches=115) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:36.889) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:37.535) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:38.278) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:38.791) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:39.386) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:40.133) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 7/20 (matches=96) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:40.815) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:41.382) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:42.262) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 8/20 (matches=93) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:43.117) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:43.659) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:44.328) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:44.963) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:45.465) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=117 corrRatio=0.020131/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:46.405) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:47.273) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:47.983) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:48.605) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:49.338) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:49.900) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=104) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:50.386) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:51.011) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:51.625) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:52.151) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:53.087) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:53.831) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:54.414) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:54.910) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:55.740) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:56.404) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:57.091) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:57.801) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=117 corrRatio=0.020131/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:58.521) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:59.230) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:55:59.741) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:00.373) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:01.006) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:01.548) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:02.487) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:03.347) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:03.973) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:04.569) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:05.235) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:05.909) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 12/20 (matches=110) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:06.749) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:07.465) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:08.172) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:08.803) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:09.475) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:10.131) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=114 corrRatio=0.019615/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:10.877) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:11.401) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:12.079) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:12.627) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:13.314) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:14.023) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:14.951) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:15.508) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:16.298) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:16.938) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:17.566) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:18.158) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:19.005) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 6/20 (matches=101) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:19.760) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:20.508) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:21.113) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:22.005) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:22.433) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=99) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:23.540) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:24.329) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:24.997) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:25.760) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:26.499) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:27.166) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:27.780) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 6/20 (matches=90) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:28.577) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 16/20 (matches=97) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:29.285) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:29.901) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:30.428) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:31.071) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:31.557) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:32.356) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:33.044) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:33.728) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:34.520) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:35.455) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:36.156) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:36.794) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:37.349) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:37.830) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:38.553) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:39.681) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:40.391) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:40.915) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:41.740) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:42.601) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 6/20 (matches=93) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:43.345) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:44.034) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:44.595) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:45.435) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:46.018) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:46.377) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 6/20 (matches=94) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:47.152) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:47.971) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=113 corrRatio=0.019443/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:48.549) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:49.121) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:49.677) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:50.199) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:50.725) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:51.706) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:52.157) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=99) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:52.727) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:53.430) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:54.171) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:54.605) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 6/20 (matches=95) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:55.238) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:55.845) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=115 corrRatio=0.019787/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:56.355) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3474 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:56.667) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:57.302) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 7/20 (matches=108) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:57.959) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:59.053) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:59.348) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 2918 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:56:59.663) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:00.199) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:00.788) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:01.335) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:02.030) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:02.677) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:03.453) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=98) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:03.947) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:04.695) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:05.091) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 8/20 (matches=99) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:06.117) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:06.533) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=95) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:07.260) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:08.009) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 9/20 (matches=104) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:08.683) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:09.791) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:10.216) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=101) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:11.206) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=117 corrRatio=0.020131/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:11.993) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:12.549) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:13.254) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:14.096) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:15.064) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:15.952) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:16.555) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:17.356) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:18.006) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:18.678) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:19.231) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 11/20 (matches=110) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:19.862) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:20.634) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=113 corrRatio=0.019443/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:21.332) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:21.798) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:22.618) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 9/20 (matches=97) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:23.267) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:24.040) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:24.436) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 6/20 (matches=104) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:25.288) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:25.753) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=105) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:26.508) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 7/20 (matches=105) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:27.429) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:28.082) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=107) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:28.693) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:29.313) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:30.152) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:30.709) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:31.225) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:31.861) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:32.383) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:33.306) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:34.109) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:34.658) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:35.671) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:36.047) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 7/20 (matches=93) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:36.746) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=114 corrRatio=0.019615/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:37.286) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:37.816) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:38.665) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:39.277) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:39.875) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: libpointmatcher has failed: limit out of bounds: rot: 0.0254445/0.78 tr: 0.216935/0.2[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:40.527) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:41.215) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:41.881) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=95) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:42.695) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:43.249) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=116 corrRatio=0.019959/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:44.084) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:44.683) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:45.562) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:46.297) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:47.027) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:47.557) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: libpointmatcher has failed: limit out of bounds: rot: 0.0254006/0.78 tr: 0.207372/0.2[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:48.083) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:48.628) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=90) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:49.372) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:50.082) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:51.090) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:51.992) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:52.661) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:53.511) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=113 corrRatio=0.019443/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:54.367) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=114 corrRatio=0.019615/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:55.057) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:55.504) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:56.443) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:56.956) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:57.896) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:58.632) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:57:59.507) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:00.107) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:00.736) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:01.339) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:01.845) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:02.557) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:03.187) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:03.683) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:04.474) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:05.018) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=106) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:05.726) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:06.604) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:07.355) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:07.880) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:08.548) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:09.101) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:09.803) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=113 corrRatio=0.019443/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:10.430) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:11.072) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:11.588) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:12.112) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=115 corrRatio=0.019787/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:12.873) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:13.727) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:14.304) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:14.930) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:15.492) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:15.869) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=95) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:16.924) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:17.731) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=112 corrRatio=0.019270/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:18.329) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:18.897) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:19.770) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:20.439) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:21.079) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:21.904) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:22.598) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:23.276) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:23.814) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 0/20 (matches=98) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:24.585) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:25.196) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:25.925) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:26.651) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:27.295) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:28.209) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:28.950) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:29.477) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:30.031) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Not enough inliers 8/20 (matches=107) between 125 and 1704[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:30.680) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:31.267) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:31.861) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=114 corrRatio=0.019615/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:32.624) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:33.183) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3609 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:33.524) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=112 corrRatio=0.019270/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:34.133) Rtabmap.cpp:3068::process() Rejected loop closure 125 -> 1704: Cannot compute transform (cor=147 corrRatio=0.025292/0.100000 maxLaserScans=5812)[0m
+[rtabmap-2] [33m[ WARN] (2026-02-10 09:58:42.729) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3265 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
