@@ -37,11 +37,17 @@ void RlLocalController::configure(
   nav2_util::declare_parameter_if_not_declared(
     node_, name_ + ".in_place_heading", rclcpp::ParameterValue(in_place_heading_));
   nav2_util::declare_parameter_if_not_declared(
+    node_, name_ + ".in_place_dist", rclcpp::ParameterValue(in_place_dist_));
+  nav2_util::declare_parameter_if_not_declared(
     node_, name_ + ".min_turn_rate", rclcpp::ParameterValue(min_turn_rate_));
   nav2_util::declare_parameter_if_not_declared(
     node_, name_ + ".slow_dist", rclcpp::ParameterValue(slow_dist_));
   nav2_util::declare_parameter_if_not_declared(
     node_, name_ + ".heading_gain", rclcpp::ParameterValue(heading_gain_));
+  nav2_util::declare_parameter_if_not_declared(
+    node_, name_ + ".heading_slow_angle", rclcpp::ParameterValue(heading_slow_angle_));
+  nav2_util::declare_parameter_if_not_declared(
+    node_, name_ + ".heading_slow_min_scale", rclcpp::ParameterValue(heading_slow_min_scale_));
   nav2_util::declare_parameter_if_not_declared(
     node_, name_ + ".avoid_gain", rclcpp::ParameterValue(avoid_gain_));
   nav2_util::declare_parameter_if_not_declared(
@@ -91,8 +97,12 @@ void RlLocalController::configure(
   node_->get_parameter(name_ + ".stop_dist", stop_dist_);
   node_->get_parameter(name_ + ".hard_stop_dist", hard_stop_dist_);
   node_->get_parameter(name_ + ".creep_speed", creep_speed_);
+  node_->get_parameter(name_ + ".in_place_heading", in_place_heading_);
+  node_->get_parameter(name_ + ".in_place_dist", in_place_dist_);
   node_->get_parameter(name_ + ".slow_dist", slow_dist_);
   node_->get_parameter(name_ + ".heading_gain", heading_gain_);
+  node_->get_parameter(name_ + ".heading_slow_angle", heading_slow_angle_);
+  node_->get_parameter(name_ + ".heading_slow_min_scale", heading_slow_min_scale_);
   node_->get_parameter(name_ + ".avoid_gain", avoid_gain_);
   node_->get_parameter(name_ + ".turn_gain", turn_gain_);
   node_->get_parameter(name_ + ".turn_deadband", turn_deadband_);
@@ -196,6 +206,11 @@ geometry_msgs::msg::TwistStamped RlLocalController::computeVelocityCommands(
   const double dx = target_x - pose.pose.position.x;
   const double dy = target_y - pose.pose.position.y;
   const double heading_error = normalizeAngle(std::atan2(dy, dx) - yaw);
+  // 목표(경로 끝점)까지의 거리: 제자리 회전을 목표 근처에서만 허용하기 위함
+  const auto & goal_pose = plan_.poses.back().pose.position;
+  const double goal_dx = goal_pose.x - pose.pose.position.x;
+  const double goal_dy = goal_pose.y - pose.pose.position.y;
+  const double dist_to_goal = std::hypot(goal_dx, goal_dy);
 
   double front = range_max_;
   double left = range_max_;
@@ -208,8 +223,11 @@ geometry_msgs::msg::TwistStamped RlLocalController::computeVelocityCommands(
   // 좌우 차이 데드밴드로 진동을 줄인다.
   const double lr_diff = left - right;
 
-  // 목표 방향 오차가 크면 전진하지 않고 제자리 회전으로 정렬한다.
-  if (std::abs(heading_error) > in_place_heading_ && front > hard_stop_dist_) {
+  // 목표 방향 오차가 크더라도 "목표 근처"에서만 제자리 회전으로 정렬한다.
+  // (멀리 있을 때는 전진하면서 방향을 맞춰 자연스럽게 주행)
+  if (std::abs(heading_error) > in_place_heading_ &&
+      front > hard_stop_dist_ &&
+      dist_to_goal <= in_place_dist_) {
     v_des = 0.0;
     const double turn_dir = heading_error >= 0.0 ? 1.0 : -1.0;
     w_des = turn_dir * std::max(min_turn_rate_, turn_gain_ * max_ang_ * 0.5);
@@ -245,6 +263,16 @@ geometry_msgs::msg::TwistStamped RlLocalController::computeVelocityCommands(
     // 전방 여유에 따라 전진 속도를 조절한다.
     const double speed_scale = clamp(front / slow_dist_, 0.0, 1.0);
     v_des = max_lin_ * speed_scale;
+
+    // heading 오차가 큰 경우에는 전진 속도를 추가로 줄여 회전 중심을 만들고
+    // 짧은 거리 목표에서 "원형으로 도는" 현상을 완화한다.
+    const double heading_abs = std::abs(heading_error);
+    if (heading_abs > heading_slow_angle_) {
+      const double over = clamp((heading_abs - heading_slow_angle_) /
+        std::max(1e-3, M_PI - heading_slow_angle_), 0.0, 1.0);
+      const double heading_scale = clamp(1.0 - over, heading_slow_min_scale_, 1.0);
+      v_des *= heading_scale;
+    }
 
     // 목표 방향과 장애물 회피를 합쳐 회전 속도를 만든다.
     const double heading_term = heading_gain_ * clamp(heading_error / M_PI, -1.0, 1.0);

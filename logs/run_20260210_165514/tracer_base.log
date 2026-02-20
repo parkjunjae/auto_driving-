@@ -14,3 +14,5 @@
 [tracer_base_node-1] Robot initialized, start running ...
 [tracer_base_node-1] Start listening to port: can1
 [tracer_base_node-1] Using CAN bus to talk with the robot
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [tracer_base_node-1]: sending signal 'SIGINT' to process[tracer_base_node-1]

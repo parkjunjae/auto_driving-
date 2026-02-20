@@ -116,3 +116,5 @@
 [realsense2_camera_node-1]  10/02 17:42:52,888 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
 [realsense2_camera_node-1]  10/02 17:42:52,900 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
 [realsense2_camera_node-1]  10/02 17:42:52,911 WARNING [281472283896032] (messenger-libusb.cpp:42) control_transfer returned error, index: 768, error: Resource temporarily unavailable, number: 11
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [realsense2_camera_node-1]: sending signal 'SIGINT' to process[realsense2_camera_node-1]

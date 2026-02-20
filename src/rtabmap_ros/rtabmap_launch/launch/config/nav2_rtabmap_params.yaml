@@ -85,7 +85,7 @@ controller_server:
       stateful: true
       plugin: "nav2_controller::SimpleGoalChecker"
       xy_goal_tolerance: 0.22
-      yaw_goal_tolerance: 0.35
+      yaw_goal_tolerance: 0.7  # 방향 정렬 강제 완화(자연스럽게 접근)
 
     # 규칙 기반 로컬 컨트롤러(플러그인) 사용
     RLController:
@@ -101,19 +101,23 @@ controller_server:
       # 막힘 상태에서 천천히 전진하며 재탐색
       creep_speed: 0.02
       # 제자리 회전으로 정렬할 heading 오차(rad)
-      in_place_heading: 0.7
+      in_place_heading: 0.8  # 가까운 목표에서 더 빨리 제자리 회전
+      # 목표 근처에서만 제자리 회전을 허용할 거리(m)
+      in_place_dist: 0.5  # 가까운 목표에서 제자리 회전 유도
       # 제자리 회전 최소 각속도(rad/s)
-      min_turn_rate: 0.2
+      min_turn_rate: 0.15  # 근거리 회전 진입을 조금 빠르게
       slow_dist: 1.2
       #------------------------------
-      heading_gain: 0.6
+      heading_gain: 0.5  # 과한 방향 보정 감소
+      heading_slow_angle: 0.8  # heading 오차가 큰 경우 전진 속도 감소 시작(rad)
+      heading_slow_min_scale: 0.2  # heading 오차가 커도 유지할 최소 전진 비율
       avoid_gain: 0.1
       turn_gain: 1.0
       # 좌우 여유 차이가 작을 때 회전 방향 흔들림을 줄임
-      turn_deadband: 0.5
+      turn_deadband: 0.6  # 미세 좌우 흔들림 완화
       range_max: 6.0
       # ---- 경로 추종 룩어헤드-------
-      lookahead_dist: 1.2
+      lookahead_dist: 1.5  # 부드러운 곡선 주행
       #------------------------------
       front_angle: 0.35
       side_angle: 1.2

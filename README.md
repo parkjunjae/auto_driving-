@@ -464,6 +464,72 @@ source ~/to_ws/install/setup.bash
 
 ---
 
+## RLController 근거리 목표 접근 로직 개선 (제자리 회전 과다/원형 궤적 완화)
+
+- **배경 문제**
+  - 짧은 거리 목표에서 시작 직후 좌/우 회전이 먼저 나오거나, 목표 주변을 원형으로 도는 현상 발생.
+  - 원인: heading 오차가 큰데 전진 속도(`v_des`)가 충분히 유지되면 회전 반경이 커져 원형 궤적이 만들어짐.
+
+- **코드 수정 파일**
+  - `src/rl_local_controller/src/rl_local_controller.cpp`
+  - `src/rl_local_controller/include/rl_local_controller/rl_local_controller.hpp`
+  - `src/rtabmap_ros/rtabmap_launch/launch/config/nav2_rtabmap_params.yaml`
+
+- **핵심 로직 변경**
+  1. 제자리 회전 조건을 목표 근처로 제한
+     - 기존: `abs(heading_error) > in_place_heading`이면 제자리 회전
+     - 변경: `dist_to_goal <= in_place_dist`일 때만 제자리 회전 허용
+  2. heading 오차 기반 전진 감속 추가
+     - `heading_slow_angle` 이상이면 `v_des`를 단계적으로 낮춤
+     - `heading_slow_min_scale` 아래로는 떨어지지 않게 하여 완전 정지는 방지
+
+- **추가/적용 파라미터**
+  - `in_place_dist=0.5`
+  - `in_place_heading=0.8`
+  - `min_turn_rate=0.15`
+  - `heading_slow_angle=0.8`
+  - `heading_slow_min_scale=0.2`
+  - `yaw_goal_tolerance=0.7`
+  - `lookahead_dist=1.5`
+
+- **변수 의미(코드 기준)**
+  - `heading_error`: 현재 로봇 heading과 로컬 타겟 heading의 각도 오차(rad)
+  - `dist_to_goal`: 현재 위치와 최종 goal pose 사이 거리(m)
+  - `v_des`: RLController가 계산한 목표 선속도(m/s)
+  - `w_des`: RLController가 계산한 목표 각속도(rad/s)
+  - `in_place_heading`: 제자리 회전을 고려하기 시작하는 heading 오차 임계값(rad)
+  - `in_place_dist`: 제자리 회전을 허용하는 goal 근접 거리 임계값(m)
+  - `min_turn_rate`: 제자리 회전 시 보장할 최소 각속도(rad/s)
+  - `heading_slow_angle`: 전진 감속을 시작하는 heading 오차 임계값(rad)
+  - `heading_slow_min_scale`: heading 오차가 커도 유지할 최소 전진 비율(0~1)
+  - `heading_abs`: `abs(heading_error)`로 계산한 절대 오차(rad)
+  - `over`: `heading_slow_angle` 초과분을 0~1로 정규화한 값
+  - `heading_scale`: heading 오차에 따라 `v_des`에 곱하는 감속 계수
+  - `yaw_goal_tolerance`: goal 도달로 판정할 yaw 오차 허용치(rad)
+  - `lookahead_dist`: 경로 추종 시 앞쪽 타겟을 잡는 거리(m)
+
+- **기대 효과**
+  - 멀리 있는 목표: 전진하면서 부드럽게 heading 정렬
+  - 가까운 목표: 필요 시 제자리 회전으로 빠른 정렬
+  - 짧은 거리 목표에서 원형 궤적/불필요 회전 감소
+
+- **재빌드**
+
+```bash
+cd ~/to_ws
+colcon build --packages-select rl_local_controller rtabmap_launch
+source ~/to_ws/install/setup.bash
+```
+
+## 원복 메모 (1/2/4/5 항목)
+
+- 아래 항목은 실주행 품질 저하(도착 지점 제자리 회전 증가, 글로벌맵 가시성 저하)로 **원복 완료**:
+  - 1) `last_turn_dir_` 스코프 변경(클래스 멤버화)
+  - 2) `controller_server.odom_topic=/odometry/filtered` 강제
+  - 4) dynamic filter `min_range`를 센서 프레임에서 선적용
+  - 5) global costmap 부하 완화(축소 크기/partial update 중심 설정)
+- 현재 워크스페이스 기준으로는 위 4개는 적용하지 않고, 기존 설정으로 복귀한 상태에서 튜닝 진행.
+
 ## Agent PID 저속 anti-dither 안전가드 (추가 반영)
 
 - **문제**
@@ -514,3 +580,5 @@ ros2 launch rl_pid_training agent_pid.launch.py \
   w_ref_sign_hold_sec:=0.35 \
   w_ref_abs_max_low_speed:=0.45
 ```
+
+---

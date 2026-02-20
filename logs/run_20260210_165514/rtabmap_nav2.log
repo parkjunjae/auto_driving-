@@ -220,3 +220,4 @@
 [rtabmap-2] [33m[ WARN] (2026-02-10 17:11:42.569) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 1715 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
 [rtabmap-2] [33m[ WARN] (2026-02-10 17:22:32.599) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 2593 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
 [rtabmap-2] [33m[ WARN] (2026-02-10 17:41:28.426) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 2496 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)

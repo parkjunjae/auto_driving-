@@ -1,0 +1,125 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-11-15-56-12-194484-world-56437
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [rgbd_sync-1]: process started with pid [56831]
+[INFO] [rtabmap-2]: process started with pid [56834]
+[INFO] [livox_pointcloud_filter_node-3]: process started with pid [56836]
+[INFO] [dynamic_object_filter_node-4]: process started with pid [56838]
+[dynamic_object_filter_node-4] [INFO] [1770792972.886914276] [dynamic_object_filter]: Dynamic filter: /livox/lidar/filtered -> /livox/lidar/static_filtered, voxel=0.100, min_hits=6, hit_window=0.70s, min_static=1.00s
+[rgbd_sync-1] [0m[INFO] [1770792973.675277677] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync = true[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.675811351] [rtabmap.rgbd_sync]: rgbd_sync: approx_sync_max_interval = 0.080000[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.675889272] [rtabmap.rgbd_sync]: rgbd_sync: topic_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.675914104] [rtabmap.rgbd_sync]: rgbd_sync: sync_queue_size  = 10[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.675932185] [rtabmap.rgbd_sync]: rgbd_sync: qos             = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.675956153] [rtabmap.rgbd_sync]: rgbd_sync: qos_camera_info = 2[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.675977306] [rtabmap.rgbd_sync]: rgbd_sync: depth_scale = 1.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.675998234] [rtabmap.rgbd_sync]: rgbd_sync: decimation = 1[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.676016954] [rtabmap.rgbd_sync]: rgbd_sync: compressed_rate = 0.000000[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.676036763] [rtabmap.rgbd_sync]: rgbd_sync: image_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.676055931] [rtabmap.rgbd_sync]: rgbd_sync: depth_transport = raw[0m
+[rgbd_sync-1] [0m[INFO] [1770792973.722677376] [rtabmap.rgbd_sync]: 
+[rgbd_sync-1] rgbd_sync subscribed to (approx sync, max interval=0.080000s):
+[rgbd_sync-1]    /camera/camera/color/image_raw,
+[rgbd_sync-1]    /camera/camera/aligned_depth_to_color/image_raw,
+[rgbd_sync-1]    /camera/camera/color/camera_info[0m
+[INFO] [controller_server-5]: process started with pid [57335]
+[INFO] [planner_server-6]: process started with pid [57337]
+[INFO] [smoother_server-7]: process started with pid [57340]
+[INFO] [bt_navigator-8]: process started with pid [57342]
+[INFO] [behavior_server-9]: process started with pid [57344]
+[INFO] [waypoint_follower-10]: process started with pid [57346]
+[INFO] [velocity_smoother-11]: process started with pid [57348]
+[dynamic_object_filter_node-4] [WARN] [1770792977.601456341] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770792977.542053 but the latest data is at time 1770792977.484801, when looking up transform from frame [livox_frame] to frame [odom]
+[bt_navigator-8] [INFO] [1770792978.180766597] [bt_navigator]: 
+[bt_navigator-8] 	bt_navigator lifecycle node launched. 
+[bt_navigator-8] 	Waiting on external lifecycle transitions to activate
+[bt_navigator-8] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[bt_navigator-8] [INFO] [1770792978.181811160] [bt_navigator]: Creating
+[behavior_server-9] [INFO] [1770792978.429458753] [behavior_server]: 
+[behavior_server-9] 	behavior_server lifecycle node launched. 
+[behavior_server-9] 	Waiting on external lifecycle transitions to activate
+[behavior_server-9] 	See https://design.ros2.org/articles/node_lifecycle.html for more information.
+[dynamic_object_filter_node-4] [WARN] [1770792980.585577700] [dynamic_object_filter]: TF transform failed (livox_frame -> odom): Lookup would require extrapolation into the future.  Requested time 1770792980.508972 but the latest data is at time 1770792980.488903, when looking up transform from frame [livox_frame] to frame [odom]
+[INFO] [lifecycle_manager-12]: process started with pid [57640]
+[lifecycle_manager-12] [INFO] [1770792987.544724682] [lifecycle_manager]: Creating
+[lifecycle_manager-12] [INFO] [1770792987.578503071] [lifecycle_manager]: [34m[1mCreating and initializing lifecycle service clients[0m[0m
+[lifecycle_manager-12] [INFO] [1770792989.605635518] [lifecycle_manager]: [34m[1mStarting managed nodes bringup...[0m[0m
+[lifecycle_manager-12] [INFO] [1770792989.605812417] [lifecycle_manager]: [34m[1mConfiguring controller_server[0m[0m
+[controller_server-5] [ERROR] [1770792989.733738962] [local_costmap.local_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.270) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770792989.835650845] [lifecycle_manager]: [34m[1mConfiguring planner_server[0m[0m
+[planner_server-6] [ERROR] [1770792989.972708089] [global_costmap.global_costmap]: The configured inflation radius (0.070) is smaller than the computed inscribed radius (0.260) of your footprint, it is highly recommended to set inflation radius to be at least as big as the inscribed radius to avoid collisions
+[lifecycle_manager-12] [INFO] [1770792990.066935125] [lifecycle_manager]: [34m[1mConfiguring smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770792990.163229176] [lifecycle_manager]: [34m[1mConfiguring bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770792990.163907397] [bt_navigator]: Configuring
+[lifecycle_manager-12] [INFO] [1770792990.475303186] [lifecycle_manager]: [34m[1mConfiguring behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770792990.476195811] [behavior_server]: Configuring
+[behavior_server-9] [INFO] [1770792990.522609796] [behavior_server]: Creating behavior plugin spin of type nav2_behaviors/Spin
+[behavior_server-9] [INFO] [1770792990.525502362] [behavior_server]: Configuring spin
+[behavior_server-9] [INFO] [1770792990.563615360] [behavior_server]: Creating behavior plugin backup of type nav2_behaviors/BackUp
+[behavior_server-9] [INFO] [1770792990.565786825] [behavior_server]: Configuring backup
+[behavior_server-9] [INFO] [1770792990.592180181] [behavior_server]: Creating behavior plugin drive_on_heading of type nav2_behaviors/DriveOnHeading
+[behavior_server-9] [INFO] [1770792990.594405374] [behavior_server]: Configuring drive_on_heading
+[behavior_server-9] [INFO] [1770792990.621479863] [behavior_server]: Creating behavior plugin assisted_teleop of type nav2_behaviors/AssistedTeleop
+[behavior_server-9] [INFO] [1770792990.627385029] [behavior_server]: Configuring assisted_teleop
+[behavior_server-9] [INFO] [1770792990.654918118] [behavior_server]: Creating behavior plugin wait of type nav2_behaviors/Wait
+[behavior_server-9] [INFO] [1770792990.657231698] [behavior_server]: Configuring wait
+[lifecycle_manager-12] [INFO] [1770792990.682431207] [lifecycle_manager]: [34m[1mConfiguring waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770792990.915238779] [lifecycle_manager]: [34m[1mConfiguring velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770792990.977083292] [lifecycle_manager]: [34m[1mActivating controller_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770792991.151237707] [lifecycle_manager]: Server controller_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770792991.151379662] [lifecycle_manager]: [34m[1mActivating planner_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770792991.393855926] [lifecycle_manager]: Server planner_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770792991.393982136] [lifecycle_manager]: [34m[1mActivating smoother_server[0m[0m
+[lifecycle_manager-12] [INFO] [1770792991.509218300] [lifecycle_manager]: Server smoother_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770792991.509350015] [lifecycle_manager]: [34m[1mActivating bt_navigator[0m[0m
+[bt_navigator-8] [INFO] [1770792991.510244048] [bt_navigator]: Activating
+[bt_navigator-8] [INFO] [1770792991.897993932] [bt_navigator_navigate_to_pose_rclcpp_node]: Waiting on odometry
+[bt_navigator-8] [INFO] [1770792991.922783674] [bt_navigator_navigate_to_pose_rclcpp_node]: Got odometry
+[bt_navigator-8] [INFO] [1770792992.197557181] [bt_navigator]: Creating bond (bt_navigator) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770792992.373436619] [lifecycle_manager]: Server bt_navigator connected with bond.
+[lifecycle_manager-12] [INFO] [1770792992.373585006] [lifecycle_manager]: [34m[1mActivating behavior_server[0m[0m
+[behavior_server-9] [INFO] [1770792992.374587809] [behavior_server]: Activating
+[behavior_server-9] [INFO] [1770792992.374686787] [behavior_server]: Activating spin
+[behavior_server-9] [INFO] [1770792992.374722275] [behavior_server]: Activating backup
+[behavior_server-9] [INFO] [1770792992.374747556] [behavior_server]: Activating drive_on_heading
+[behavior_server-9] [INFO] [1770792992.374770820] [behavior_server]: Activating assisted_teleop
+[behavior_server-9] [INFO] [1770792992.374793285] [behavior_server]: Activating wait
+[behavior_server-9] [INFO] [1770792992.374823941] [behavior_server]: Creating bond (behavior_server) to lifecycle manager.
+[lifecycle_manager-12] [INFO] [1770792992.505014688] [lifecycle_manager]: Server behavior_server connected with bond.
+[lifecycle_manager-12] [INFO] [1770792992.505135843] [lifecycle_manager]: [34m[1mActivating waypoint_follower[0m[0m
+[lifecycle_manager-12] [INFO] [1770792992.629333966] [lifecycle_manager]: Server waypoint_follower connected with bond.
+[lifecycle_manager-12] [INFO] [1770792992.629458640] [lifecycle_manager]: [34m[1mActivating velocity_smoother[0m[0m
+[lifecycle_manager-12] [INFO] [1770792992.753801726] [lifecycle_manager]: Server velocity_smoother connected with bond.
+[lifecycle_manager-12] [INFO] [1770792992.753939361] [lifecycle_manager]: [34m[1mManaged nodes are active[0m[0m
+[lifecycle_manager-12] [INFO] [1770792992.753970529] [lifecycle_manager]: [34m[1mCreating bond timer...[0m[0m
+[bt_navigator-8] [INFO] [1770793004.954353267] [bt_navigator]: Begin navigating from current location (0.00, 0.00) to (-0.39, -0.32)
+[bt_navigator-8] [WARN] [1770793008.678269729] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770793020.634936180] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770793030.387463716] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770793034.751647730] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [WARN] [1770793036.795985425] [BehaviorTreeEngine]: Behavior Tree tick rate 100.00 was exceeded!
+[bt_navigator-8] [INFO] [1770793040.504805894] [bt_navigator]: Received goal preemption request
+[bt_navigator-8] [INFO] [1770793040.505245422] [bt_navigator]: Begin navigating from current location (-0.03, -0.88) to (-0.56, -1.29)
+[bt_navigator-8] [INFO] [1770793042.724948178] [bt_navigator]: Goal succeeded
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:57:25.466) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3071 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:57:41.213) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3363 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:57:48.810) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3326 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:58:02.214) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3067 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:58:11.049) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3046 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:58:21.325) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3075 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:58:22.112) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3094 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:58:24.212) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3271 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:59:12.146) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3328 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:59:28.108) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 2976 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:59:31.033) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3387 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:59:35.205) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 2939 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 15:59:35.797) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3544 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 16:00:05.676) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3265 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 16:00:14.532) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3152 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 16:00:18.427) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 2752 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 16:00:21.955) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3163 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 16:00:38.198) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3163 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 16:00:47.996) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3211 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 16:00:52.060) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3210 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 16:00:55.643) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3609 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[rtabmap-2] [33m[ WARN] (2026-02-11 16:01:18.553) LocalMapMaker.hpp:230::segmentCloud() Cloud (with 3022 points) is empty after noise filtering. Occupancy grid cannot be created.[0m
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)

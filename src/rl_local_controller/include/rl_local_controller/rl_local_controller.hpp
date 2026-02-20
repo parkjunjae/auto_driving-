@@ -88,10 +88,16 @@ private:
   double creep_speed_{0.05};
   // 제자리 회전을 시작하는 heading 오차(rad)
   double in_place_heading_{0.7};
+  // 목표에 충분히 가까울 때만 제자리 회전을 허용하는 거리(m)
+  double in_place_dist_{0.8};
   // 제자리 회전 최소 각속도(rad/s)
   double min_turn_rate_{0.4};
   double slow_dist_{1.2};
   double heading_gain_{1.0};
+  // heading 오차가 클 때 전진 속도를 줄이는 기준 각도(rad)
+  double heading_slow_angle_{0.8};
+  // heading 오차가 클 때 최소 전진 스케일(0~1)
+  double heading_slow_min_scale_{0.2};
   double avoid_gain_{0.8};
   double turn_gain_{1.0};
   // 좌우 차이 데드밴드(회전 방향 흔들림 방지)
