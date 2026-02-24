@@ -1,0 +1,19 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-23-14-44-16-233894-world-14887
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [tracer_base_node-1]: process started with pid [15095]
+[tracer_base_node-1] Loading parameters: 
+[tracer_base_node-1] - port name: can1
+[tracer_base_node-1] - odom frame name: odom
+[tracer_base_node-1] - base frame name: base_link
+[tracer_base_node-1] - odom topic name: odom
+[tracer_base_node-1] - publish tf: false
+[tracer_base_node-1] - is tracer mini: false
+[tracer_base_node-1] - simulated robot: false
+[tracer_base_node-1] - sim control rate: 50
+[tracer_base_node-1] ----------------------------
+[tracer_base_node-1] Robot initialized, start running ...
+[tracer_base_node-1] Start listening to port: can1
+[tracer_base_node-1] Using CAN bus to talk with the robot
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[tracer_base_node-1] [0m[INFO] [1771826178.210120173] [rclcpp]: signal_handler(SIGINT/SIGTERM)[0m
+[INFO] [tracer_base_node-1]: sending signal 'SIGINT' to process[tracer_base_node-1]

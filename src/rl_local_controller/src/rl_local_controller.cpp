@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cmath>
+#include <limits>
 #include <string>
 
 #include "nav2_costmap_2d/cost_values.hpp"
@@ -180,6 +181,9 @@ void RlLocalController::setPlan(const nav_msgs::msg::Path & path)
 {
   // 최신 전역 경로를 저장한다.
   plan_ = path;
+  // 새 경로를 받으면 근거리 정렬 상태를 초기화한다.
+  align_in_place_mode_ = false;
+  last_turn_dir_ = 0;
 }
 
 geometry_msgs::msg::TwistStamped RlLocalController::computeVelocityCommands(
@@ -193,20 +197,11 @@ geometry_msgs::msg::TwistStamped RlLocalController::computeVelocityCommands(
 
   if (plan_.poses.empty()) {
     // 경로가 없으면 정지한다.
+    align_in_place_mode_ = false;
     return cmd;
   }
 
-  double target_x = 0.0;
-  double target_y = 0.0;
-  if (!getLookaheadTarget(pose, target_x, target_y)) {
-    return cmd;
-  }
-
-  const double yaw = getYaw(pose);
-  const double dx = target_x - pose.pose.position.x;
-  const double dy = target_y - pose.pose.position.y;
-  const double heading_error = normalizeAngle(std::atan2(dy, dx) - yaw);
-  // 목표(경로 끝점)까지의 거리: 제자리 회전을 목표 근처에서만 허용하기 위함
+  // 목표(경로 끝점)까지의 거리: 근거리에서 목표점 직접 추종/제자리 회전 판단에 사용
   const auto & goal_pose = plan_.poses.back().pose.position;
   const double goal_dx = goal_pose.x - pose.pose.position.x;
   const double goal_dy = goal_pose.y - pose.pose.position.y;
@@ -217,20 +212,69 @@ geometry_msgs::msg::TwistStamped RlLocalController::computeVelocityCommands(
   double right = range_max_;
   computeSectorDistances(pose, front, left, right);
 
+  double target_x = 0.0;
+  double target_y = 0.0;
+  const bool near_goal = dist_to_goal <= std::max(0.35, in_place_dist_);
+  if (near_goal) {
+    // 근거리에서는 경로 중간점(룩어헤드)을 쫓지 않고
+    // 최종 목표점을 직접 보게 해서 "목표 주변 원운동"을 줄인다.
+    target_x = goal_pose.x;
+    target_y = goal_pose.y;
+  } else {
+    // 목표가 가까워질수록 룩어헤드를 줄여 불필요한 큰 원호 주행을 억제한다.
+    // (멀리 있을 때는 충분히 크게 유지해 경로를 부드럽게 따라간다.)
+    const double goal_lookahead =
+      std::min(lookahead_dist_, std::max(0.35, dist_to_goal * 0.8));
+    // 전방 장애물이 가까우면 룩어헤드를 더 줄여 "완만 곡선 후 급턴"을 방지한다.
+    const double obstacle_lookahead =
+      clamp(front * 0.9, 0.30, lookahead_dist_);
+    const double adaptive_lookahead =
+      std::min(goal_lookahead, obstacle_lookahead);
+    if (!getLookaheadTarget(pose, adaptive_lookahead, target_x, target_y)) {
+      return cmd;
+    }
+  }
+
+  const double yaw = getYaw(pose);
+  const double dx = target_x - pose.pose.position.x;
+  const double dy = target_y - pose.pose.position.y;
+  const double dist_to_target = std::hypot(dx, dy);
+  const double heading_error = normalizeAngle(std::atan2(dy, dx) - yaw);
+  const double heading_abs = std::abs(heading_error);
+
+  // 근거리 목표에서는 heading 정렬을 우선해 제자리 회전 모드로 진입/해제한다.
+  // enter/exit 임계를 분리(히스테리시스)해 경계에서 모드가 반복 전환되며
+  // 속도가 떨리는 현상을 줄인다.
+  const bool close_target = dist_to_target <= std::max(0.9, in_place_dist_ * 1.8);
+  const double align_enter = close_target ?
+    std::max(0.30, in_place_heading_ * 0.45) :
+    std::max(0.90, in_place_heading_ * 0.90);
+  const double align_exit = close_target ?
+    std::max(0.12, align_enter * 0.45) :
+    std::max(0.30, align_enter * 0.45);
+  if (align_in_place_mode_) {
+    if (heading_abs < align_exit) {
+      align_in_place_mode_ = false;
+    }
+  } else if (close_target && heading_abs > align_enter) {
+    align_in_place_mode_ = true;
+  }
+
   double v_des = 0.0;
   double w_des = 0.0;
 
   // 좌우 차이 데드밴드로 진동을 줄인다.
   const double lr_diff = left - right;
-
-  // 목표 방향 오차가 크더라도 "목표 근처"에서만 제자리 회전으로 정렬한다.
-  // (멀리 있을 때는 전진하면서 방향을 맞춰 자연스럽게 주행)
-  if (std::abs(heading_error) > in_place_heading_ &&
-      front > hard_stop_dist_ &&
-      dist_to_goal <= in_place_dist_) {
+  if (align_in_place_mode_ && front > hard_stop_dist_) {
+    // 근거리 정렬 모드: 선속도를 완전히 차단해 원운동 대신 제자리 회전으로 맞춘다.
     v_des = 0.0;
     const double turn_dir = heading_error >= 0.0 ? 1.0 : -1.0;
-    w_des = turn_dir * std::max(min_turn_rate_, turn_gain_ * max_ang_ * 0.5);
+    // 오차가 작아질수록 각속도도 함께 줄여 목표 방위 근처에서 과회전을 줄인다.
+    const double turn_scale = clamp(
+      heading_abs / std::max(align_enter, 1e-3), 0.35, 1.0);
+    w_des = turn_dir * std::max(min_turn_rate_, turn_gain_ * max_ang_ * turn_scale);
+    w_des = clamp(w_des, -max_ang_, max_ang_);
+    last_turn_dir_ = (turn_dir >= 0.0) ? 1 : -1;
   } else   if (front < stop_dist_) {
     // 전방이 막혀도 아주 천천히 전진해 재탐색을 유도한다.
     const double hard_stop = std::min(hard_stop_dist_, stop_dist_ * 0.95);
@@ -266,21 +310,55 @@ geometry_msgs::msg::TwistStamped RlLocalController::computeVelocityCommands(
 
     // heading 오차가 큰 경우에는 전진 속도를 추가로 줄여 회전 중심을 만들고
     // 짧은 거리 목표에서 "원형으로 도는" 현상을 완화한다.
-    const double heading_abs = std::abs(heading_error);
     if (heading_abs > heading_slow_angle_) {
       const double over = clamp((heading_abs - heading_slow_angle_) /
         std::max(1e-3, M_PI - heading_slow_angle_), 0.0, 1.0);
       const double heading_scale = clamp(1.0 - over, heading_slow_min_scale_, 1.0);
       v_des *= heading_scale;
     }
+    if (close_target && heading_abs > align_exit) {
+      // 목표 근처에서 heading 오차가 남아 있으면 전진을 강하게 억제한다.
+      // 정렬 모드 진입 직전/직후의 원호 주행을 줄이기 위한 보조 안전장치다.
+      const double align_scale =
+        clamp(1.0 - heading_abs / std::max(align_enter, 1e-3), 0.0, 1.0);
+      v_des *= align_scale;
+      v_des = std::min(v_des, creep_speed_ * 1.5);
+    }
+
+    // 전방 장애물이 가까우면 회전 성분을 선제적으로 키운다.
+    const double near_obstacle_band = stop_dist_ + 0.35;
+    const double proximity = clamp(
+      (near_obstacle_band - front) /
+      std::max(1e-3, near_obstacle_band - hard_stop_dist_),
+      0.0, 1.0);
+    const double heading_boost = 1.0 + 0.9 * proximity;
+    const double avoid_boost = 1.0 + 1.2 * proximity;
 
     // 목표 방향과 장애물 회피를 합쳐 회전 속도를 만든다.
-    const double heading_term = heading_gain_ * clamp(heading_error / M_PI, -1.0, 1.0);
+    const double heading_term =
+      heading_gain_ * heading_boost * clamp(heading_error / M_PI, -1.0, 1.0);
     double avoid_term = 0.0;
     if (std::abs(lr_diff) >= turn_deadband_) {
-      avoid_term = avoid_gain_ * clamp(lr_diff / range_max_, -1.0, 1.0);
+      avoid_term = avoid_gain_ * avoid_boost * clamp(lr_diff / range_max_, -1.0, 1.0);
     }
     w_des = clamp((heading_term + avoid_term) * max_ang_, -max_ang_, max_ang_);
+
+    // 근접 장애물 구간에서는 회전 최소각속도를 보장하고 전진을 제한해 접촉을 줄인다.
+    if (proximity > 0.0 && heading_abs > 0.20) {
+      const double turn_dir = heading_error >= 0.0 ? 1.0 : -1.0;
+      const double min_w = min_turn_rate_ * (1.0 + 0.8 * proximity);
+      if (std::abs(w_des) < min_w) {
+        w_des = turn_dir * min_w;
+      }
+
+      const double near_obs_speed_cap =
+        std::max(creep_speed_ * 1.5, 0.12 * (1.0 - 0.7 * proximity));
+      v_des = std::min(v_des, near_obs_speed_cap);
+      if (front < stop_dist_ + 0.10 && heading_abs > 0.35) {
+        v_des = 0.0;
+      }
+    }
+
     if (std::abs(w_des) > 1e-3) {
       last_turn_dir_ = (w_des >= 0.0) ? 1 : -1;
     }
@@ -400,21 +478,46 @@ double RlLocalController::getYaw(const geometry_msgs::msg::PoseStamped & pose) c
 
 bool RlLocalController::getLookaheadTarget(
   const geometry_msgs::msg::PoseStamped & pose,
+  double lookahead_dist,
   double & target_x,
   double & target_y) const
 {
+  if (plan_.poses.empty()) {
+    return false;
+  }
+
   const double px = pose.pose.position.x;
   const double py = pose.pose.position.y;
 
-  for (const auto & p : plan_.poses) {
-    const double dx = p.pose.position.x - px;
-    const double dy = p.pose.position.y - py;
+  // 1) 현재 로봇과 가장 가까운 경로 점을 찾는다.
+  //    (경로 시작점부터 단순 탐색하면 로봇 뒤쪽 점이 선택될 수 있어 방향이 틀어질 수 있음)
+  std::size_t nearest_idx = 0;
+  double nearest_dist = std::numeric_limits<double>::infinity();
+  for (std::size_t i = 0; i < plan_.poses.size(); ++i) {
+    const double dx = plan_.poses[i].pose.position.x - px;
+    const double dy = plan_.poses[i].pose.position.y - py;
     const double dist = std::hypot(dx, dy);
-    if (dist >= lookahead_dist_) {
-      target_x = p.pose.position.x;
-      target_y = p.pose.position.y;
+    if (dist < nearest_dist) {
+      nearest_dist = dist;
+      nearest_idx = i;
+    }
+  }
+
+  // 2) 최근접 점부터 "경로 진행 방향"으로 누적 거리를 더해
+  //    룩어헤드 타깃을 계산한다. 세그먼트 중간이면 보간해 좌표를 만든다.
+  double accumulated = 0.0;
+  for (std::size_t i = nearest_idx; i + 1 < plan_.poses.size(); ++i) {
+    const auto & p0 = plan_.poses[i].pose.position;
+    const auto & p1 = plan_.poses[i + 1].pose.position;
+    const double seg = std::hypot(p1.x - p0.x, p1.y - p0.y);
+    if (accumulated + seg >= lookahead_dist) {
+      const double remain = std::max(0.0, lookahead_dist - accumulated);
+      const double ratio = seg > 1e-6 ? (remain / seg) : 0.0;
+      target_x = p0.x + (p1.x - p0.x) * ratio;
+      target_y = p0.y + (p1.y - p0.y) * ratio;
       return true;
     }
+    accumulated += seg;
   }
 
   // 룩어헤드 거리가 부족하면 마지막 목표를 사용한다.

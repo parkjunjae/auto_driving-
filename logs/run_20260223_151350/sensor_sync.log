@@ -1,0 +1,301 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-23-15-14-00-928650-world-30037
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [livox_timestamp_offset_node-1]: process started with pid [30462]
+[INFO] [camera_imu_bias_corrector_cpp-2]: process started with pid [30467]
+[INFO] [imu_filter_madgwick_node-3]: process started with pid [30471]
+[INFO] [lidar_deskewing-4]: process started with pid [30475]
+[INFO] [static_transform_publisher-5]: process started with pid [30484]
+[INFO] [static_transform_publisher-6]: process started with pid [30489]
+[imu_filter_madgwick_node-3] [INFO] [1771827242.195410976] [imu_filter]: Starting ImuFilter
+[camera_imu_bias_corrector_cpp-2] [INFO] [1771827242.207343769] [camera_imu_bias_corrector]: IMU bias corrector started: input=/camera/camera/imu output=/camera/camera/imu_bias_corrected
+[imu_filter_madgwick_node-3] [INFO] [1771827242.225958923] [imu_filter]: Using dt computed from message headers
+[imu_filter_madgwick_node-3] [INFO] [1771827242.229535212] [imu_filter]: The gravity vector is kept in the IMU message.
+[imu_filter_madgwick_node-3] [INFO] [1771827242.236189317] [imu_filter]: Imu filter gain set to 0.100000
+[imu_filter_madgwick_node-3] [INFO] [1771827242.238336492] [imu_filter]: Gyro drift bias set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827242.240275568] [imu_filter]: Magnetometer bias values: 0.000000 0.000000 0.000000
+[static_transform_publisher-6] [INFO] [1771827242.435515919] [camera_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-6] translation: ('0.200000', '0.000000', '0.580000')
+[static_transform_publisher-6] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-6] from 'base_link' to 'camera_link'
+[static_transform_publisher-5] [INFO] [1771827242.494924359] [livox_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-5] translation: ('0.000000', '0.000000', '0.830000')
+[static_transform_publisher-5] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-5] from 'base_link' to 'livox_frame'
+[livox_timestamp_offset_node-1] [INFO] [1771827246.487750970] [livox_timestamp_offset]: input_topic=/livox/lidar output_topic=/livox/lidar/synced offset_sec=0.036
+[camera_imu_bias_corrector_cpp-2] [INFO] [1771827246.530206814] [camera_imu_bias_corrector]: Calibrating IMU bias... keep robot still.
+[imu_filter_madgwick_node-3] [INFO] [1771827246.530696167] [imu_filter]: First IMU message received.
+[lidar_deskewing-4] [INFO] [1771827248.343315505] [lidar_deskewing]:   fixed_frame_id:  base_link
+[lidar_deskewing-4] [INFO] [1771827248.344149472] [lidar_deskewing]:   wait_for_transform:  0.200000s
+[lidar_deskewing-4] [INFO] [1771827248.344202881] [lidar_deskewing]:   slerp:  true
+[lidar_deskewing-4] [WARN] [1771827248.662445181] [lidar_deskewing]: deskewing failed! returning possible skewed cloud!
+[camera_imu_bias_corrector_cpp-2] [INFO] [1771827253.598808858] [camera_imu_bias_corrector]: IMU bias calibrated: x=-0.000503 y=0.001769 z=-0.004707
+[imu_filter_madgwick_node-3] [INFO] [1771827320.368195273] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.200000
+[imu_filter_madgwick_node-3] [INFO] [1771827320.378854507] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827320.382929077] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030000
+[imu_filter_madgwick_node-3] [INFO] [1771827320.392007611] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827320.404132727] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827320.406142428] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100000
+[imu_filter_madgwick_node-3] [INFO] [1771827320.995810305] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.199821
+[imu_filter_madgwick_node-3] [INFO] [1771827320.998980731] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827320.999281952] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030055
+[imu_filter_madgwick_node-3] [INFO] [1771827320.999368386] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827320.999434179] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827320.999492004] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100054
+[imu_filter_madgwick_node-3] [INFO] [1771827321.429367823] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.199609
+[imu_filter_madgwick_node-3] [INFO] [1771827321.429586323] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827321.432753421] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030055
+[imu_filter_madgwick_node-3] [INFO] [1771827321.432928912] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827321.433122452] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827321.433195285] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100105
+[imu_filter_madgwick_node-3] [INFO] [1771827321.854151262] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.199373
+[imu_filter_madgwick_node-3] [INFO] [1771827321.854357249] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827321.854434371] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030118
+[imu_filter_madgwick_node-3] [INFO] [1771827321.854500548] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827321.854570725] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827321.854635015] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100167
+[imu_filter_madgwick_node-3] [INFO] [1771827322.278060892] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.199081
+[imu_filter_madgwick_node-3] [INFO] [1771827322.278370338] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827322.278550501] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030192
+[imu_filter_madgwick_node-3] [INFO] [1771827322.278634311] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827322.278703656] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827322.278771849] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100241
+[imu_filter_madgwick_node-3] [INFO] [1771827322.702076989] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.198822
+[imu_filter_madgwick_node-3] [INFO] [1771827322.702274048] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827322.702353602] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030248
+[imu_filter_madgwick_node-3] [INFO] [1771827322.702429571] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827322.702498116] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827322.702560902] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100302
+[imu_filter_madgwick_node-3] [INFO] [1771827323.117763142] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.198487
+[imu_filter_madgwick_node-3] [INFO] [1771827323.123448109] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827323.123767027] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030300
+[imu_filter_madgwick_node-3] [INFO] [1771827323.123861077] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827323.123925334] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827323.123984535] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100366
+[imu_filter_madgwick_node-3] [INFO] [1771827323.589707150] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.198207
+[imu_filter_madgwick_node-3] [INFO] [1771827323.589898258] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827323.590008468] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030354
+[imu_filter_madgwick_node-3] [INFO] [1771827323.590073429] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827323.590130486] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827323.590186135] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100427
+[imu_filter_madgwick_node-3] [INFO] [1771827324.013031746] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.197932
+[imu_filter_madgwick_node-3] [INFO] [1771827324.018758154] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827324.018950734] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030411
+[imu_filter_madgwick_node-3] [INFO] [1771827324.019023183] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827324.019085200] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827324.019134673] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100490
+[imu_filter_madgwick_node-3] [INFO] [1771827324.454410782] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.197707
+[imu_filter_madgwick_node-3] [INFO] [1771827324.454606210] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827324.454682595] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030464
+[imu_filter_madgwick_node-3] [INFO] [1771827324.454755397] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827324.459327768] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827324.459510139] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100545
+[imu_filter_madgwick_node-3] [INFO] [1771827324.884926581] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.197481
+[imu_filter_madgwick_node-3] [INFO] [1771827324.885127385] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827324.885889287] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030513
+[imu_filter_madgwick_node-3] [INFO] [1771827324.886010601] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827324.886077194] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827324.886138315] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100599
+[imu_filter_madgwick_node-3] [INFO] [1771827325.316252410] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.197243
+[imu_filter_madgwick_node-3] [INFO] [1771827325.316590337] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827325.316708515] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030562
+[imu_filter_madgwick_node-3] [INFO] [1771827325.316774532] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827325.316836069] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827325.316894854] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100653
+[imu_filter_madgwick_node-3] [INFO] [1771827325.738996900] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.196992
+[imu_filter_madgwick_node-3] [INFO] [1771827325.743444405] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827325.743627640] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030613
+[imu_filter_madgwick_node-3] [INFO] [1771827325.743821276] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827325.743894525] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827325.743954142] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100710
+[imu_filter_madgwick_node-3] [INFO] [1771827326.176925281] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.196734
+[imu_filter_madgwick_node-3] [INFO] [1771827326.182177825] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827326.185284249] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030668
+[imu_filter_madgwick_node-3] [INFO] [1771827326.185477981] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827326.185679649] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827326.185747330] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100768
+[imu_filter_madgwick_node-3] [INFO] [1771827326.645936372] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.196459
+[imu_filter_madgwick_node-3] [INFO] [1771827326.646145784] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827326.646232506] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030724
+[imu_filter_madgwick_node-3] [INFO] [1771827326.646297851] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827326.646356796] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827326.646415901] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100829
+[imu_filter_madgwick_node-3] [INFO] [1771827327.108508690] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.196168
+[imu_filter_madgwick_node-3] [INFO] [1771827327.111600426] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827327.111828751] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030784
+[imu_filter_madgwick_node-3] [INFO] [1771827327.111909072] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827327.111974833] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827327.112033458] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100893
+[imu_filter_madgwick_node-3] [INFO] [1771827327.594387896] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.195857
+[imu_filter_madgwick_node-3] [INFO] [1771827327.594608636] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827327.594696445] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030846
+[imu_filter_madgwick_node-3] [INFO] [1771827327.594764927] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827327.594827104] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827327.594900385] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100959
+[imu_filter_madgwick_node-3] [INFO] [1771827327.984615986] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.195535
+[imu_filter_madgwick_node-3] [INFO] [1771827327.984812949] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827327.984888599] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030910
+[imu_filter_madgwick_node-3] [INFO] [1771827327.984953848] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827327.985018329] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827327.985078778] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101028
+[imu_filter_madgwick_node-3] [INFO] [1771827328.410846107] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.195248
+[imu_filter_madgwick_node-3] [INFO] [1771827328.415804565] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827328.415996440] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030966
+[imu_filter_madgwick_node-3] [INFO] [1771827328.416075514] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827328.416138907] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827328.416236541] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101089
+[imu_filter_madgwick_node-3] [INFO] [1771827328.832861335] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.194956
+[imu_filter_madgwick_node-3] [INFO] [1771827328.833066138] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827328.833153628] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031022
+[imu_filter_madgwick_node-3] [INFO] [1771827328.833285182] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827328.833366336] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827328.833430465] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101150
+[imu_filter_madgwick_node-3] [INFO] [1771827329.260144243] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.194666
+[imu_filter_madgwick_node-3] [INFO] [1771827329.260479225] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827329.260562874] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031080
+[imu_filter_madgwick_node-3] [INFO] [1771827329.260678588] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827329.260743613] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827329.261102628] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101212
+[imu_filter_madgwick_node-3] [INFO] [1771827329.709138809] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.194368
+[imu_filter_madgwick_node-3] [INFO] [1771827329.709384382] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827329.709580225] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031136
+[imu_filter_madgwick_node-3] [INFO] [1771827329.709694532] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827329.709760901] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827329.709819942] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101274
+[imu_filter_madgwick_node-3] [INFO] [1771827330.162475215] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.194085
+[imu_filter_madgwick_node-3] [INFO] [1771827330.162685811] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827330.162875863] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031195
+[imu_filter_madgwick_node-3] [INFO] [1771827330.162952248] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827330.163030905] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827330.163104443] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101336
+[imu_filter_madgwick_node-3] [INFO] [1771827330.585584159] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.193800
+[imu_filter_madgwick_node-3] [INFO] [1771827330.591624877] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827330.591922163] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031253
+[imu_filter_madgwick_node-3] [INFO] [1771827330.592006996] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827330.592072661] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827330.592133366] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101398
+[imu_filter_madgwick_node-3] [INFO] [1771827331.019159150] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.193516
+[imu_filter_madgwick_node-3] [INFO] [1771827331.019379826] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827331.019456947] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031312
+[imu_filter_madgwick_node-3] [INFO] [1771827331.019521108] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827331.019581717] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827331.019638742] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101460
+[imu_filter_madgwick_node-3] [INFO] [1771827331.494364785] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.193233
+[imu_filter_madgwick_node-3] [INFO] [1771827331.494697943] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827331.494781113] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031371
+[imu_filter_madgwick_node-3] [INFO] [1771827331.494844538] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827331.494902939] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827331.494957084] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101522
+[imu_filter_madgwick_node-3] [INFO] [1771827331.954161725] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.192951
+[imu_filter_madgwick_node-3] [INFO] [1771827331.954499811] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827331.954584324] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827331.954651941] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827331.954713447] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827331.954773320] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101584
+[imu_filter_madgwick_node-3] [INFO] [1771827332.377284845] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.192540
+[imu_filter_madgwick_node-3] [INFO] [1771827332.377531985] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827332.377606675] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827332.377671188] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827332.377729621] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827332.377789622] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101645
+[imu_filter_madgwick_node-3] [INFO] [1771827332.828922596] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.192098
+[imu_filter_madgwick_node-3] [INFO] [1771827332.829252394] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827332.829332107] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827332.829399660] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827332.829457133] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827332.829516655] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101706
+[imu_filter_madgwick_node-3] [INFO] [1771827333.286812332] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.191659
+[imu_filter_madgwick_node-3] [INFO] [1771827333.287025520] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827333.287109938] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827333.287175539] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827333.287237492] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827333.287296789] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101767
+[imu_filter_madgwick_node-3] [INFO] [1771827333.714263243] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.191217
+[imu_filter_madgwick_node-3] [INFO] [1771827333.714590161] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827333.714669075] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827333.714733940] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827333.714794805] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827333.714862422] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101827
+[imu_filter_madgwick_node-3] [INFO] [1771827334.168418960] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.190785
+[imu_filter_madgwick_node-3] [INFO] [1771827334.168638036] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827334.168720694] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827334.168796887] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827334.168859928] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827334.175984922] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101888
+[imu_filter_madgwick_node-3] [INFO] [1771827334.588503273] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.190348
+[imu_filter_madgwick_node-3] [INFO] [1771827334.594754235] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827334.595074049] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827334.595164066] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827334.595237251] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827334.595304069] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.101949
+[imu_filter_madgwick_node-3] [INFO] [1771827335.041960673] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.189906
+[imu_filter_madgwick_node-3] [INFO] [1771827335.042207526] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827335.042290023] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827335.044832437] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827335.045010040] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827335.045090458] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102010
+[imu_filter_madgwick_node-3] [INFO] [1771827335.512829302] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.189465
+[imu_filter_madgwick_node-3] [INFO] [1771827335.513017657] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827335.513088282] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827335.513152700] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827335.513284670] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827335.513357439] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102070
+[imu_filter_madgwick_node-3] [INFO] [1771827335.999936146] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.189027
+[imu_filter_madgwick_node-3] [INFO] [1771827336.000268184] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827336.000514716] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827336.000587262] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827336.000650751] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827336.000708672] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102131
+[imu_filter_madgwick_node-3] [INFO] [1771827336.458770412] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.188589
+[imu_filter_madgwick_node-3] [INFO] [1771827336.458980687] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827336.459057905] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827336.463418688] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827336.467427241] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827336.467722766] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102192
+[imu_filter_madgwick_node-3] [INFO] [1771827336.953706070] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.188157
+[imu_filter_madgwick_node-3] [INFO] [1771827336.953901946] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827336.953979579] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827336.954042236] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827336.954101949] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827336.954164094] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102253
+[imu_filter_madgwick_node-3] [INFO] [1771827337.449924472] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.187724
+[imu_filter_madgwick_node-3] [INFO] [1771827337.450135644] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827337.450213789] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827337.450280542] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827337.450347904] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827337.450413953] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102313
+[imu_filter_madgwick_node-3] [INFO] [1771827337.926970589] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.187290
+[imu_filter_madgwick_node-3] [INFO] [1771827337.927323651] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827337.927418917] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827337.927488518] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827337.927556136] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827337.927619209] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102374
+[imu_filter_madgwick_node-3] [INFO] [1771827338.334697141] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.186846
+[imu_filter_madgwick_node-3] [INFO] [1771827338.334921081] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827338.335000795] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827338.335068444] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827338.335131133] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827338.335189470] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102435
+[imu_filter_madgwick_node-3] [INFO] [1771827338.773365664] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.186395
+[imu_filter_madgwick_node-3] [INFO] [1771827338.773692838] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827338.773779304] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827338.773846825] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827338.773909450] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827338.773970091] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102495
+[imu_filter_madgwick_node-3] [INFO] [1771827339.203506032] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.185968
+[imu_filter_madgwick_node-3] [INFO] [1771827339.203717396] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827339.203795029] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827339.203859062] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827339.204028666] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827339.204097019] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102556
+[imu_filter_madgwick_node-3] [INFO] [1771827339.650202029] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.185525
+[imu_filter_madgwick_node-3] [INFO] [1771827339.650542611] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827339.650631701] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827339.650699926] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827339.650762903] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827339.650825208] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102617
+[imu_filter_madgwick_node-3] [INFO] [1771827340.087732355] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.185085
+[imu_filter_madgwick_node-3] [INFO] [1771827340.087951591] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827340.088035913] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.031430
+[imu_filter_madgwick_node-3] [INFO] [1771827340.088104234] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827340.088166827] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827340.088226668] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.102678

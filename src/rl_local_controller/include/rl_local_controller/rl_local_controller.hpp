@@ -54,6 +54,8 @@ private:
   // 전역 경로에서 룩어헤드 목표점을 찾는다.
   bool getLookaheadTarget(
     const geometry_msgs::msg::PoseStamped & pose,
+    // 호출 시점의 상황(목표 거리)에 맞게 동적으로 계산된 룩어헤드 거리
+    double lookahead_dist,
     double & target_x,
     double & target_y) const;
 
@@ -135,9 +137,12 @@ private:
 
   // PID 목표 속도 퍼블리셔(학습/디버깅용)
   rclcpp::Publisher<geometry_msgs::msg::TwistStamped>::SharedPtr desired_cmd_pub_;
-};
-
-}  // namespace rl_local_controller
 
   // 직전 회전 방향(진동 억제용 히스테리시스)
   int last_turn_dir_{0};
+  // 근거리 목표 정렬 시 제자리 회전 모드 유지 플래그
+  // - enter/exit 임계를 분리해 경계에서 모드가 빠르게 튀는 현상을 줄인다.
+  bool align_in_place_mode_{false};
+};
+
+}  // namespace rl_local_controller

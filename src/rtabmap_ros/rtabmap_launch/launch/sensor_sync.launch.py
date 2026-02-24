@@ -159,7 +159,7 @@ def generate_launch_description():
         DeclareLaunchArgument('use_sim_time', default_value='false'),
 
         # LiDAR 타임스탬프 오프셋 (측정 후 조정 필요)
-        DeclareLaunchArgument('lidar_offset_sec', default_value='0.036',
+        DeclareLaunchArgument('lidar_offset_sec', default_value='0.018',
             description='LiDAR timestamp offset in seconds. Measure: now - lidar_stamp'),
 
         # Livox 마운트 위치 (base_link 기준)

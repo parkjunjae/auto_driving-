@@ -1,0 +1,4 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-23-16-23-45-252226-world-49738
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [python3-1]: process started with pid [49820]
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)

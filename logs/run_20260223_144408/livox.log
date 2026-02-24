@@ -1,0 +1,26 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-23-14-44-13-366124-world-14858
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [livox_ros_driver2_node-1]: process started with pid [14897]
+[livox_ros_driver2_node-1] [INFO] [1771825453.823797038] [livox_lidar_publisher]: Livox Ros Driver2 Version: 1.2.4
+[livox_ros_driver2_node-1] [INFO] [1771825453.825411659] [livox_lidar_publisher]: Data Source is raw lidar.
+[livox_ros_driver2_node-1] [INFO] [1771825453.825476108] [livox_lidar_publisher]: Config file : /home/world/to_ws/src/livox_ros_driver2/launch_ROS2/../config/MID360_config.json
+[livox_ros_driver2_node-1] LdsLidar *GetInstance
+[livox_ros_driver2_node-1] config lidar type: 8
+[livox_ros_driver2_node-1] successfully parse base config, counts: 1
+[livox_ros_driver2_node-1] [INFO] [1771825453.833402457] [livox_lidar_publisher]: Init lds lidar success!
+[livox_ros_driver2_node-1] GetFreeIndex key:livox_lidar_2483136704.
+[livox_ros_driver2_node-1] Init queue, real query size:32.
+[livox_ros_driver2_node-1] Lidar[0] storage queue size: 31
+[livox_ros_driver2_node-1] set pcl data type, handle: 2483136704, data type: 1
+[livox_ros_driver2_node-1] set scan pattern, handle: 2483136704, scan pattern: 0
+[livox_ros_driver2_node-1] begin to change work mode to 'Normal', handle: 2483136704
+[livox_ros_driver2_node-1] successfully set data type, handle: 2483136704, set_bit: 2
+[livox_ros_driver2_node-1] successfully set pattern mode, handle: 2483136704, set_bit: 0
+[livox_ros_driver2_node-1] successfully set lidar attitude, ip: 192.168.1.148
+[livox_ros_driver2_node-1] successfully change work mode, handle: 2483136704
+[livox_ros_driver2_node-1] successfully enable Livox Lidar imu, ip: 192.168.1.148
+[livox_ros_driver2_node-1] [INFO] [1771825456.841610066] [livox_lidar_publisher]: livox/lidar publish use PointCloud2 format
+[livox_ros_driver2_node-1] [INFO] [1771825456.843723864] [livox_lidar_publisher]: livox/imu publish use imu format
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[livox_ros_driver2_node-1] [INFO] [1771826178.210228048] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[INFO] [livox_ros_driver2_node-1]: sending signal 'SIGINT' to process[livox_ros_driver2_node-1]

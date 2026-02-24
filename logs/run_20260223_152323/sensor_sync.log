@@ -1,0 +1,36 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-23-15-23-32-249795-world-34977
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [livox_timestamp_offset_node-1]: process started with pid [35364]
+[INFO] [camera_imu_bias_corrector_cpp-2]: process started with pid [35370]
+[INFO] [imu_filter_madgwick_node-3]: process started with pid [35375]
+[INFO] [lidar_deskewing-4]: process started with pid [35378]
+[INFO] [static_transform_publisher-5]: process started with pid [35383]
+[INFO] [static_transform_publisher-6]: process started with pid [35395]
+[imu_filter_madgwick_node-3] [INFO] [1771827812.983831450] [imu_filter]: Starting ImuFilter
+[imu_filter_madgwick_node-3] [INFO] [1771827812.992740411] [imu_filter]: Using dt computed from message headers
+[imu_filter_madgwick_node-3] [INFO] [1771827812.994370302] [imu_filter]: The gravity vector is kept in the IMU message.
+[imu_filter_madgwick_node-3] [INFO] [1771827812.995939904] [imu_filter]: Imu filter gain set to 0.100000
+[imu_filter_madgwick_node-3] [INFO] [1771827812.996991671] [imu_filter]: Gyro drift bias set to 0.000000
+[static_transform_publisher-6] [INFO] [1771827813.000702088] [camera_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-6] translation: ('0.200000', '0.000000', '0.580000')
+[static_transform_publisher-6] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-6] from 'base_link' to 'camera_link'
+[imu_filter_madgwick_node-3] [INFO] [1771827813.010217494] [imu_filter]: Magnetometer bias values: 0.000000 0.000000 0.000000
+[camera_imu_bias_corrector_cpp-2] [INFO] [1771827813.103149812] [camera_imu_bias_corrector]: IMU bias corrector started: input=/camera/camera/imu output=/camera/camera/imu_bias_corrected
+[static_transform_publisher-5] [INFO] [1771827813.116434260] [livox_tf]: Spinning until stopped - publishing transform
+[static_transform_publisher-5] translation: ('0.000000', '0.000000', '0.830000')
+[static_transform_publisher-5] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-5] from 'base_link' to 'livox_frame'
+[livox_timestamp_offset_node-1] [INFO] [1771827815.939567356] [livox_timestamp_offset]: input_topic=/livox/lidar output_topic=/livox/lidar/synced offset_sec=0.036
+[lidar_deskewing-4] [INFO] [1771827816.763108023] [lidar_deskewing]:   fixed_frame_id:  base_link
+[lidar_deskewing-4] [INFO] [1771827816.764414419] [lidar_deskewing]:   wait_for_transform:  0.200000s
+[lidar_deskewing-4] [INFO] [1771827816.764479924] [lidar_deskewing]:   slerp:  true
+[imu_filter_madgwick_node-3] [INFO] [1771827817.741754771] [imu_filter]: First IMU message received.
+[camera_imu_bias_corrector_cpp-2] [INFO] [1771827817.775085318] [camera_imu_bias_corrector]: Calibrating IMU bias... keep robot still.
+[camera_imu_bias_corrector_cpp-2] [INFO] [1771827824.038970497] [camera_imu_bias_corrector]: IMU bias calibrated: x=-0.001068 y=0.001690 z=-0.004761
+[imu_filter_madgwick_node-3] [INFO] [1771827863.584565802] [imu_filter]: Parameter RLController.pid_kp_lin set to 1.200000
+[imu_filter_madgwick_node-3] [INFO] [1771827863.584788814] [imu_filter]: Parameter RLController.pid_ki_lin set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827863.584860656] [imu_filter]: Parameter RLController.pid_kd_lin set to 0.030000
+[imu_filter_madgwick_node-3] [INFO] [1771827863.584925521] [imu_filter]: Parameter RLController.pid_kp_ang set to 1.230000
+[imu_filter_madgwick_node-3] [INFO] [1771827863.584985043] [imu_filter]: Parameter RLController.pid_ki_ang set to 0.000000
+[imu_filter_madgwick_node-3] [INFO] [1771827863.585042100] [imu_filter]: Parameter RLController.pid_kd_ang set to 0.100000

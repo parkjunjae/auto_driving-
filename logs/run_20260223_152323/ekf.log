@@ -1,0 +1,6 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-23-15-23-33-841831-world-35049
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [ekf_node-1]: process started with pid [35507]
+[ekf_node-1] Failed to meet update rate! Took 0.055610165000000003066seconds. Try decreasing the rate, limiting sensor output frequency, or limiting the number of sensors.
+[ekf_node-1] Failed to meet update rate! Took 0.11431860600000000316seconds. Try decreasing the rate, limiting sensor output frequency, or limiting the number of sensors.
+[ekf_node-1] Failed to meet update rate! Took 0.055185963999999997076seconds. Try decreasing the rate, limiting sensor output frequency, or limiting the number of sensors.

@@ -1,0 +1,16 @@
+[INFO] [launch]: All log files can be found below /home/world/.ros/log/2026-02-23-15-03-33-578844-world-23570
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [tracer_base_node-1]: process started with pid [23810]
+[tracer_base_node-1] Loading parameters: 
+[tracer_base_node-1] - port name: can1
+[tracer_base_node-1] - odom frame name: odom
+[tracer_base_node-1] - base frame name: base_link
+[tracer_base_node-1] - odom topic name: odom
+[tracer_base_node-1] - publish tf: false
+[tracer_base_node-1] - is tracer mini: false
+[tracer_base_node-1] - simulated robot: false
+[tracer_base_node-1] - sim control rate: 50
+[tracer_base_node-1] ----------------------------
+[tracer_base_node-1] Robot initialized, start running ...
+[tracer_base_node-1] Start listening to port: can1
+[tracer_base_node-1] Using CAN bus to talk with the robot
